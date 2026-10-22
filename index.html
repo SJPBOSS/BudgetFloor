@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Budget Floor — Eat well on $10 this week in Canada</title>
-    <meta name="description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
+    <meta name="description" content="A grocery list for Canada at $10. Statistics Canada average retail prices, August 2026.">
     <link rel="canonical" href="https://www.getbudgetfloor.com/">
     <meta name="theme-color" content="#f3efe7">
     <meta property="og:site_name" content="Budget Floor">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.getbudgetfloor.com/">
     <meta property="og:title" content="Budget Floor — Eat well on $10 this week in Canada">
-    <meta property="og:description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
+    <meta property="og:description" content="A grocery list for Canada at $10. Statistics Canada average retail prices, August 2026.">
     <meta property="og:image" content="https://www.getbudgetfloor.com/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
     <meta property="og:locale:alternate" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Budget Floor — Eat well on $10 this week in Canada">
-    <meta name="twitter:description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
+    <meta name="twitter:description" content="A grocery list for Canada at $10. Statistics Canada average retail prices, August 2026.">
     <meta name="twitter:image" content="https://www.getbudgetfloor.com/og.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -72,22 +72,22 @@
             var desc;
             if (region === "MX") {
                 desc = lang === "fr"
-                    ? "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Tortillas, haricots, légumes, fruit et huile. Prix Soriana vérifiés le 22 oct. 2026."
+                    ? "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Prix Profeco pour Mexico, octobre 2026."
                     : (lang === "es"
-                        ? "Lista de compras en México por $" + budget + " MXN. Tortillas, frijoles, verdura, fruta y aceite. Precios de Soriana revisados el 22 de oct. de 2026."
-                        : "A grocery list for Mexico at $" + budget + " MXN. Tortillas, beans, vegetables, fruit, and oil. Soriana prices checked 22 Oct 2026.");
+                        ? "Lista de compras en México por $" + budget + " MXN. Precios de Profeco para la Ciudad de México, octubre de 2026."
+                        : "A grocery list for Mexico at $" + budget + " MXN. Profeco prices for Mexico City, October 2026.");
             } else if (region === "US") {
                 desc = lang === "fr"
-                    ? "Liste d'épicerie pour les États-Unis à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026."
+                    ? "Liste d'épicerie pour les États-Unis à " + budget + " $. Prix moyens du Bureau of Labor Statistics, septembre 2026."
                     : (lang === "es"
-                        ? "Lista de compras para Estados Unidos por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026."
-                        : "A grocery list for the United States at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.");
+                        ? "Lista de compras para Estados Unidos por $" + budget + ". Precios promedio del Bureau of Labor Statistics, septiembre de 2026."
+                        : "A grocery list for the United States at $" + budget + ". Bureau of Labor Statistics average prices, September 2026.");
             } else {
                 desc = lang === "fr"
-                    ? "Liste d'épicerie pour le Canada à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026."
+                    ? "Liste d'épicerie pour le Canada à " + budget + " $. Prix moyens de Statistique Canada, août 2026."
                     : (lang === "es"
-                        ? "Lista de compras para Canadá por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026."
-                        : "A grocery list for Canada at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.");
+                        ? "Lista de compras para Canadá por $" + budget + ". Precios promedio de Statistics Canada, agosto de 2026."
+                        : "A grocery list for Canada at $" + budget + ". Statistics Canada average retail prices, August 2026.");
             }
             var htmlLang = lang === "fr" ? "fr-CA" : (lang === "es" ? (region === "MX" ? "es-MX" : "es") : (region === "US" ? "en-US" : (region === "MX" ? "en" : "en-CA")));
             var ogLocale = htmlLang === "fr-CA" ? "fr_CA" : (htmlLang === "es-MX" || htmlLang === "es" ? "es_MX" : (htmlLang === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA")));
@@ -110,7 +110,7 @@
         <header class="hero">
             <p class="eyebrow">Budget Floor</p>
             <h1 id="hero-title">Eat well on $10 this week in Canada</h1>
-            <p class="source" id="price-source">Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.</p>
+            <p class="source" id="price-source">Statistics Canada, Canada average, August 2026.</p>
             <div class="controls">
                 <div class="seg" role="group" id="languages" aria-label="Language">
                     <button type="button" data-lang="en" lang="en" id="lang-en" aria-pressed="true">EN</button>
@@ -181,23 +181,29 @@
             if (source) {
                 if (region === "MX") {
                     source.textContent = lang === "fr"
-                        ? "Soriana, vérifié le 22 oct. 2026."
-                        : (lang === "es" ? "Soriana, revisado el 22 de oct. de 2026." : "Soriana, checked 22 Oct 2026.");
+                        ? "Profeco, Mexico, octobre 2026."
+                        : (lang === "es" ? "Profeco, Ciudad de México, octubre de 2026." : "Profeco, Mexico City, October 2026.");
+                } else if (region === "US") {
+                    source.textContent = lang === "fr"
+                        ? "Bureau of Labor Statistics, moyenne des villes américaines, septembre 2026."
+                        : (lang === "es"
+                            ? "Bureau of Labor Statistics, promedio de las ciudades de EE. UU., septiembre de 2026."
+                            : "Bureau of Labor Statistics, U.S. city average, September 2026.");
                 } else if (lang === "fr") {
-                    source.textContent = "Estimé, oct. 2026. Il y a des légumes et de l'huile dans chaque liste. Les bananes et le chou n'ont pas de prix, parce qu'aucune page de magasin n'a pu être lue.";
+                    source.textContent = "Statistique Canada, moyenne du Canada, août 2026.";
                 } else if (lang === "es") {
-                    source.textContent = "Estimado, oct. 2026. Hay verdura y aceite en cada lista. El plátano y la col no tienen precio, porque no se pudo leer una página de tienda.";
+                    source.textContent = "Statistics Canada, promedio de Canadá, agosto de 2026.";
                 } else {
-                    source.textContent = "Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.";
+                    source.textContent = "Statistics Canada, Canada average, August 2026.";
                 }
             }
         })();
     </script>
     <section class="site-guides" id="guides" aria-labelledby="guides-heading">
         <h2 id="guides-heading">Guides</h2>
-        <p lang="en">Budget Floor is a free grocery list for tight weeks in Canada, the United States, and Mexico. Pick a country and an amount. Every list includes vegetables and cooking oil. Canada and United States prices are estimated, October 2026, because no store page is on file. Mexico prices are regular Soriana shelf prices, read on 22 October 2026. The guides below keep their own addresses.</p>
-        <p lang="fr">Budget Floor est une liste d'épicerie gratuite pour les semaines serrées, au Canada, aux États-Unis et au Mexique. Chaque liste contient des légumes et de l'huile. Les prix canadiens et américains sont estimés (oct. 2026). Les prix du Mexique sont les prix réguliers de Soriana, lus le 22 oct. 2026. Les guides ont chacun leur adresse.</p>
-        <p lang="es">Budget Floor es una lista de compras gratuita para las semanas ajustadas, en Canadá, Estados Unidos y México. Cada lista incluye verdura y aceite. Los precios de Canadá y Estados Unidos son estimados (oct. 2026). Los de México son los precios regulares de anaquel en Soriana, leídos el 22 de oct. de 2026. Cada guía tiene su propia dirección.</p>
+        <p lang="en">Budget Floor is a free grocery list for tight weeks in Canada, the United States, and Mexico. Pick a country and an amount. Canada prices are Statistics Canada averages for August 2026. United States prices are Bureau of Labor Statistics averages for September 2026. Mexico prices are Profeco observations for Mexico City in October 2026. The guides below keep their own addresses.</p>
+        <p lang="fr">Budget Floor est une liste d'épicerie gratuite pour les semaines serrées, au Canada, aux États-Unis et au Mexique. Les prix du Canada sont les moyennes de Statistique Canada d'août 2026. Les prix des États-Unis sont les moyennes du Bureau of Labor Statistics de septembre 2026. Les prix du Mexique sont des observations de Profeco pour Mexico, en octobre 2026. Les guides ont chacun leur adresse.</p>
+        <p lang="es">Budget Floor es una lista de compras gratuita para las semanas ajustadas, en Canadá, Estados Unidos y México. Los precios de Canadá son los promedios de Statistics Canada de agosto de 2026. Los de Estados Unidos son los promedios del Bureau of Labor Statistics de septiembre de 2026. Los de México son observaciones de Profeco para la Ciudad de México, en octubre de 2026. Cada guía tiene su propia dirección.</p>
         <div class="guide-cols">
             <div lang="en">
                 <h3>English</h3>
@@ -219,8 +225,8 @@
                     <li><a href="/fr/budget-epicerie-une-personne-canada/">Budget d'épicerie pour une personne</a></li>
                     <li><a href="/fr/budget-epicerie-famille-canada/">Budget d'épicerie pour une famille</a></li>
                     <li><a href="/fr/repas-pas-chers-canada/">Repas pas chers à moins de 10 $</a></li>
-                    <li><a href="/cheap-grocery-list-mexico/" hreflang="en" lang="en">Cheap grocery list for Mexico</a></li>
-                    <li><a href="/es/lista-de-compras-barata-mexico/" hreflang="es-MX" lang="es">Lista de compras barata en México</a></li>
+                    <li><a href="/fr/liste-epicerie-pas-chere-mexique/">Liste d'épicerie pas chère au Mexique</a></li>
+                    <li><a href="/fr/plan-repas-semaine-mexique/">Plan de repas pour une semaine au Mexique</a></li>
                 </ul>
             </div>
             <div lang="es">

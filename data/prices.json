@@ -1,675 +1,1529 @@
 {
-  "about": "Mexico prices were read from Soriana product pages on 2026-10-22. The price used is the regular shelf price. Where the page also showed a lower temporary price, that sale was not used. A points price was not used. Canada and United States prices are the figures already stored in this project. No store page is on file for them, so they stay estimated. Bananas and cabbage are not given a Canada or United States price, because no store page could be read.",
+  "about": "Canada prices are Statistics Canada table 18-10-0245-01, Canada average, August 2026. United States prices are Bureau of Labor Statistics CPI average prices, U.S. city average, September 2026. Mexico prices are Profeco Quién es Quién en los Precios observations for Mexico City, October 2026. A line that is part of a published package, or a whole number of pounds, keeps the published rate. No price was lowered to fit a cap.",
   "checked": "2026-10-22",
   "countries": {
     "CA": {
       "currency": "CAD",
-      "budgets": [5, 10, 15, 20, 25, 30],
+      "budgets": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
       "defaultBudget": 10,
       "source": {
-        "kind": "estimated",
-        "store": null,
-        "checked": "2026-10-22",
-        "url": null
+        "kind": "official",
+        "name": "Statistics Canada",
+        "table": "18-10-0245-01",
+        "month": "2026-08",
+        "geography": "Canada",
+        "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501"
       },
       "items": {
-        "ca_lentils": {
-          "price": "2.25",
-          "estimated": true,
+        "ca_bananas": {
+          "price": "1.89",
+          "estimated": false,
           "name": {
-            "en": "Dried lentils, 450 g",
-            "fr": "Lentilles sèches, 450 g",
-            "es": "Lentejas secas, 450 g"
-          }
+            "en": "Bananas, 1 kg",
+            "fr": "Bananes, 1 kg",
+            "es": "Plátanos, 1 kg"
+          },
+          "product": "Bananas, per kilogram",
+          "unit": "per kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834294",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "1.89",
+          "publishedUnit": "per kilogram"
         },
-        "ca_carrots": {
-          "price": "1.75",
-          "estimated": true,
+        "ca_cabbage_half": {
+          "price": "1.32",
+          "estimated": false,
           "name": {
-            "en": "Carrots, 2 kg",
-            "fr": "Carottes, 2 kg",
-            "es": "Zanahorias, 2 kg"
-          }
+            "en": "Cabbage, 0.5 kg",
+            "fr": "Chou, 0,5 kg",
+            "es": "Col, 0.5 kg"
+          },
+          "product": "Cabbage, per kilogram",
+          "unit": "0.5 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834302",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.63",
+          "publishedUnit": "per kilogram",
+          "calc": "0.5 × 2.63 = 1.315, half-up to the cent is 1.32"
+        },
+        "ca_cabbage": {
+          "price": "2.63",
+          "estimated": false,
+          "name": {
+            "en": "Cabbage, 1 kg",
+            "fr": "Chou, 1 kg",
+            "es": "Col, 1 kg"
+          },
+          "product": "Cabbage, per kilogram",
+          "unit": "1 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834302",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.63",
+          "publishedUnit": "per kilogram",
+          "calc": "1 × 2.63"
         },
         "ca_oil": {
-          "price": "1.00",
-          "estimated": true,
+          "price": "1.64",
+          "estimated": false,
           "name": {
             "en": "Vegetable oil, 500 ml",
             "fr": "Huile végétale, 500 ml",
             "es": "Aceite vegetal, 500 ml"
-          }
+          },
+          "product": "Vegetable oil, 3 litres",
+          "unit": "500 ml",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834336",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "9.82",
+          "publishedUnit": "3 litres",
+          "calc": "9.82 / 6 = 1.6366…, half-up to the cent is 1.64. 500 ml is one sixth of the published 3 L bottle."
         },
-        "ca_oats": {
-          "price": "3.25",
-          "estimated": true,
+        "ca_lentils": {
+          "price": "3.63",
+          "estimated": false,
           "name": {
-            "en": "Oats, 1 kg",
-            "fr": "Gruau, 1 kg",
-            "es": "Avena, 1 kg"
-          }
-        },
-        "ca_eggs": {
-          "price": "2.50",
-          "estimated": true,
-          "name": {
-            "en": "6 large eggs",
-            "fr": "6 gros œufs",
-            "es": "6 huevos grandes"
-          }
+            "en": "Dried lentils, 900 g",
+            "fr": "Lentilles sèches, 900 g",
+            "es": "Lentejas secas, 900 g"
+          },
+          "product": "Dried lentils, 900 grams",
+          "unit": "900 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834344",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.63",
+          "publishedUnit": "900 grams"
         },
         "ca_beans": {
-          "price": "1.50",
-          "estimated": true,
+          "price": "1.70",
+          "estimated": false,
           "name": {
-            "en": "Can of beans",
-            "fr": "Canne de haricots",
-            "es": "Lata de frijoles"
-          }
+            "en": "Canned beans and lentils, 540 ml",
+            "fr": "Haricots et lentilles en canne, 540 ml",
+            "es": "Frijoles y lentejas en lata, 540 ml"
+          },
+          "product": "Canned beans and lentils, 540 millilitres",
+          "unit": "540 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834343",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "1.70",
+          "publishedUnit": "540 millilitres"
         },
         "ca_spinach": {
           "price": "2.25",
-          "estimated": true,
+          "estimated": false,
           "name": {
-            "en": "Frozen spinach",
-            "fr": "Épinards surgelés",
-            "es": "Espinaca congelada"
-          }
+            "en": "Frozen spinach, 300 g",
+            "fr": "Épinards surgelés, 300 g",
+            "es": "Espinaca congelada, 300 g"
+          },
+          "product": "Frozen spinach, 300 grams",
+          "unit": "300 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869916",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.25",
+          "publishedUnit": "300 grams"
+        },
+        "ca_carrots": {
+          "price": "3.89",
+          "estimated": false,
+          "name": {
+            "en": "Carrots, 1.36 kg",
+            "fr": "Carottes, 1,36 kg",
+            "es": "Zanahorias, 1.36 kg"
+          },
+          "product": "Carrots, 1.36 kilograms",
+          "unit": "1.36 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834303",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.89",
+          "publishedUnit": "1.36 kilograms"
+        },
+        "ca_tomatoes": {
+          "price": "2.18",
+          "estimated": false,
+          "name": {
+            "en": "Canned tomatoes, 796 ml",
+            "fr": "Tomates en conserve, 796 ml",
+            "es": "Tomates en lata, 796 ml"
+          },
+          "product": "Canned tomatoes, 796 millilitres",
+          "unit": "796 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834341",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.18",
+          "publishedUnit": "796 millilitres"
+        },
+        "ca_eggs": {
+          "price": "4.83",
+          "estimated": false,
+          "name": {
+            "en": "Eggs, 1 dozen",
+            "fr": "Œufs, 1 douzaine",
+            "es": "Huevos, 1 docena"
+          },
+          "product": "Eggs, 1 dozen",
+          "unit": "1 dozen",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834290",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.83",
+          "publishedUnit": "1 dozen"
         },
         "ca_bread": {
-          "price": "1.25",
-          "estimated": true,
+          "price": "3.63",
+          "estimated": false,
           "name": {
-            "en": "White bread",
-            "fr": "Pain blanc",
-            "es": "Pan blanco"
-          }
-        },
-        "ca_pb": {
-          "price": "3.75",
-          "estimated": true,
-          "name": {
-            "en": "Peanut butter, 500 g",
-            "fr": "Beurre d'arachide, 500 g",
-            "es": "Mantequilla de maní, 500 g"
-          }
-        },
-        "ca_rice": {
-          "price": "2.75",
-          "estimated": true,
-          "name": {
-            "en": "Rice, 900 g",
-            "fr": "Riz, 900 g",
-            "es": "Arroz, 900 g"
-          }
-        },
-        "ca_onions": {
-          "price": "2.50",
-          "estimated": true,
-          "name": {
-            "en": "Bag of onions",
-            "fr": "Sac d'oignons",
-            "es": "Bolsa de cebollas"
-          }
-        },
-        "ca_pasta": {
-          "price": "1.75",
-          "estimated": true,
-          "name": {
-            "en": "Pasta, 900 g",
-            "fr": "Pâtes, 900 g",
-            "es": "Pasta, 900 g"
-          }
-        },
-        "ca_sauce": {
-          "price": "1.75",
-          "estimated": true,
-          "name": {
-            "en": "Pasta sauce",
-            "fr": "Sauce à spaghetti",
-            "es": "Salsa para pasta"
-          }
-        },
-        "ca_salt": {
-          "price": "1.50",
-          "estimated": true,
-          "name": {
-            "en": "Salt and pepper",
-            "fr": "Sel et poivre",
-            "es": "Sal y pimienta"
-          }
+            "en": "White bread, 675 g",
+            "fr": "Pain blanc, 675 g",
+            "es": "Pan blanco, 675 g"
+          },
+          "product": "White bread, 675 grams",
+          "unit": "675 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834326",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.63",
+          "publishedUnit": "675 grams"
         }
       },
       "tiers": {
-        "5": ["ca_lentils", "ca_carrots", "ca_oil"],
-        "10": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil"],
-        "15": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread"],
-        "20": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice"],
-        "25": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice", "ca_onions", "ca_pasta"],
-        "30": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice", "ca_onions", "ca_pasta", "ca_sauce", "ca_lentils", "ca_salt"]
-      }
+        "5": [
+          "ca_bananas",
+          "ca_cabbage_half",
+          "ca_oil"
+        ],
+        "10": [
+          "ca_lentils",
+          "ca_cabbage",
+          "ca_bananas",
+          "ca_oil"
+        ],
+        "15": [
+          "ca_lentils",
+          "ca_beans",
+          "ca_cabbage",
+          "ca_spinach",
+          "ca_bananas",
+          "ca_oil"
+        ],
+        "20": [
+          "ca_lentils",
+          "ca_beans",
+          "ca_cabbage",
+          "ca_spinach",
+          "ca_carrots",
+          "ca_tomatoes",
+          "ca_bananas",
+          "ca_oil"
+        ],
+        "25": [
+          "ca_lentils",
+          "ca_beans",
+          "ca_cabbage",
+          "ca_spinach",
+          "ca_carrots",
+          "ca_tomatoes",
+          "ca_eggs",
+          "ca_bananas",
+          "ca_oil"
+        ],
+        "30": [
+          "ca_lentils",
+          "ca_beans",
+          "ca_cabbage",
+          "ca_spinach",
+          "ca_carrots",
+          "ca_tomatoes",
+          "ca_eggs",
+          "ca_bread",
+          "ca_bananas",
+          "ca_oil"
+        ]
+      },
+      "confirmedNotListed": [
+        {
+          "price": "9.73",
+          "estimated": false,
+          "name": {
+            "en": "White rice, 2 kg",
+            "fr": "Riz blanc, 2 kg",
+            "es": "Arroz blanco, 2 kg"
+          },
+          "product": "White rice, 2 kilograms",
+          "unit": "2 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869937",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "9.73",
+          "publishedUnit": "2 kilograms",
+          "reason": "The published 2 kg bag does not fit under $30 once eggs and the 675 g loaf are on the list. The price was not cut."
+        },
+        {
+          "price": "5.87",
+          "estimated": false,
+          "name": {
+            "en": "Brown rice, 900 g",
+            "fr": "Riz brun, 900 g",
+            "es": "Arroz integral, 900 g"
+          },
+          "product": "Brown rice, 900 grams",
+          "unit": "900 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869906",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "5.87",
+          "publishedUnit": "900 grams",
+          "reason": "A different product from white rice. The 900 g bag does not fit the $30 list with eggs and bread. The price was not cut."
+        },
+        {
+          "price": "5.95",
+          "estimated": false,
+          "name": {
+            "en": "Peanut butter, 1 kg",
+            "fr": "Beurre d'arachide, 1 kg",
+            "es": "Mantequilla de maní, 1 kg"
+          },
+          "product": "Peanut butter, 1 kilogram",
+          "unit": "1 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834338",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "5.95",
+          "publishedUnit": "1 kilogram",
+          "reason": "The published 1 kg jar does not fit under $30 with the loaf and the eggs. The price was not cut."
+        },
+        {
+          "price": "4.58",
+          "estimated": false,
+          "name": {
+            "en": "Onions, 1.36 kg",
+            "fr": "Oignons, 1,36 kg",
+            "es": "Cebollas, 1.36 kg"
+          },
+          "product": "Onions, 1.36 kilograms",
+          "unit": "1.36 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834305",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.58",
+          "publishedUnit": "1.36 kilograms",
+          "reason": "The published 1.36 kg bag does not fit the $30 list. The price was not cut."
+        },
+        {
+          "price": "3.37",
+          "estimated": false,
+          "name": {
+            "en": "Dry or fresh pasta, 500 g",
+            "fr": "Pâtes sèches ou fraîches, 500 g",
+            "es": "Pasta seca o fresca, 500 g"
+          },
+          "product": "Dry or fresh pasta, 500 grams",
+          "unit": "500 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834327",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.37",
+          "publishedUnit": "500 grams",
+          "reason": "The published 500 g package does not fit the $30 list. The price was not cut."
+        },
+        {
+          "price": "3.42",
+          "estimated": false,
+          "name": {
+            "en": "Pasta sauce, 650 ml",
+            "fr": "Sauce à spaghetti, 650 ml",
+            "es": "Salsa para pasta, 650 ml"
+          },
+          "product": "Pasta sauce, 650 millilitres",
+          "unit": "650 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869925",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.42",
+          "publishedUnit": "650 millilitres",
+          "reason": "The published 650 ml jar does not fit the $30 list. The price was not cut."
+        },
+        {
+          "price": "4.17",
+          "estimated": false,
+          "name": {
+            "en": "Cereal, 400 g",
+            "fr": "Céréales, 400 g",
+            "es": "Cereal, 400 g"
+          },
+          "product": "Cereal, 400 grams",
+          "unit": "400 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834328",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.17",
+          "publishedUnit": "400 grams",
+          "reason": "Rolled oats are not in this table. The published cereal box does not fit the $30 list. The price was not cut."
+        }
+      ]
     },
     "US": {
       "currency": "USD",
-      "budgets": [5, 10, 15, 20, 25, 30],
+      "budgets": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
       "defaultBudget": 10,
       "source": {
-        "kind": "estimated",
-        "store": null,
-        "checked": "2026-10-22",
-        "url": null
+        "kind": "official",
+        "name": "Bureau of Labor Statistics",
+        "table": "CPI Average Price Data",
+        "month": "2026-09",
+        "geography": "U.S. city average",
+        "url": "https://www.bls.gov/cpi/factsheets/average-prices.htm"
       },
       "items": {
+        "us_potatoes": {
+          "price": "0.989",
+          "estimated": false,
+          "name": {
+            "en": "Potatoes, 1 lb",
+            "fr": "Pommes de terre, 1 lb",
+            "es": "Papas, 1 lb"
+          },
+          "product": "Potatoes, white, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712112",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712112",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.989",
+          "publishedUnit": "1 pound"
+        },
+        "us_potatoes_2": {
+          "price": "1.978",
+          "estimated": false,
+          "name": {
+            "en": "Potatoes, 2 lb (2 × $0.989)",
+            "fr": "Pommes de terre, 2 lb (2 × 0,989 $)",
+            "es": "Papas, 2 lb (2 × $0.989)"
+          },
+          "product": "Potatoes, white, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712112",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712112",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.989",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 0.989 = 1.978"
+        },
+        "us_bananas": {
+          "price": "0.656",
+          "estimated": false,
+          "name": {
+            "en": "Bananas, 1 lb",
+            "fr": "Bananes, 1 lb",
+            "es": "Plátano, 1 lb"
+          },
+          "product": "Bananas, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.656",
+          "publishedUnit": "1 pound"
+        },
+        "us_bananas_2": {
+          "price": "1.312",
+          "estimated": false,
+          "name": {
+            "en": "Bananas, 2 lb (2 × $0.656)",
+            "fr": "Bananes, 2 lb (2 × 0,656 $)",
+            "es": "Plátano, 2 lb (2 × $0.656)"
+          },
+          "product": "Bananas, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.656",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 0.656 = 1.312"
+        },
         "us_beans": {
-          "price": "1.00",
-          "estimated": true,
+          "price": "1.669",
+          "estimated": false,
           "name": {
-            "en": "Black beans, 1 can",
-            "fr": "Haricots noirs, 1 canne",
-            "es": "Frijoles negros, 1 lata"
-          }
+            "en": "Dried beans, 1 lb",
+            "fr": "Haricots secs, 1 lb",
+            "es": "Frijoles secos, 1 lb"
+          },
+          "product": "Beans, dried, any type, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000714233",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000714233",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.669",
+          "publishedUnit": "1 pound"
         },
-        "us_carrots": {
-          "price": "2.00",
-          "estimated": true,
+        "us_beans_2": {
+          "price": "3.338",
+          "estimated": false,
           "name": {
-            "en": "Carrots, 2 lb",
-            "fr": "Carottes, 2 lb",
-            "es": "Zanahorias, 2 lb"
-          }
+            "en": "Dried beans, 2 lb (2 × $1.669)",
+            "fr": "Haricots secs, 2 lb (2 × 1,669 $)",
+            "es": "Frijoles secos, 2 lb (2 × $1.669)"
+          },
+          "product": "Beans, dried, any type, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000714233",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000714233",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.669",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 1.669 = 3.338"
         },
-        "us_oil": {
-          "price": "1.00",
-          "estimated": true,
+        "us_lettuce": {
+          "price": "1.636",
+          "estimated": false,
           "name": {
-            "en": "Vegetable oil",
-            "fr": "Huile végétale",
-            "es": "Aceite vegetal"
-          }
-        },
-        "us_oats": {
-          "price": "2.50",
-          "estimated": true,
-          "name": {
-            "en": "Oats, 18 oz",
-            "fr": "Gruau, 18 oz",
-            "es": "Avena, 18 oz"
-          }
+            "en": "Iceberg lettuce, 1 lb",
+            "fr": "Laitue iceberg, 1 lb",
+            "es": "Lechuga iceberg, 1 lb"
+          },
+          "product": "Lettuce, iceberg, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.636",
+          "publishedUnit": "1 pound"
         },
         "us_eggs": {
-          "price": "3.50",
-          "estimated": true,
+          "price": "2.272",
+          "estimated": false,
           "name": {
-            "en": "12 eggs",
-            "fr": "12 œufs",
-            "es": "12 huevos"
-          }
-        },
-        "us_veg": {
-          "price": "2.00",
-          "estimated": true,
-          "name": {
-            "en": "Frozen vegetables",
-            "fr": "Légumes surgelés",
-            "es": "Verdura congelada"
-          }
-        },
-        "us_bread": {
-          "price": "2.00",
-          "estimated": true,
-          "name": {
-            "en": "Sliced bread",
-            "fr": "Pain tranché",
-            "es": "Pan de molde"
-          }
-        },
-        "us_pb": {
-          "price": "3.50",
-          "estimated": true,
-          "name": {
-            "en": "Peanut butter",
-            "fr": "Beurre d'arachide",
-            "es": "Mantequilla de maní"
-          }
-        },
-        "us_onions": {
-          "price": "2.00",
-          "estimated": true,
-          "name": {
-            "en": "Yellow onions",
-            "fr": "Oignons jaunes",
-            "es": "Cebollas amarillas"
-          }
+            "en": "Eggs, 1 dozen",
+            "fr": "Œufs, 1 douzaine",
+            "es": "Huevos, 1 docena"
+          },
+          "product": "Eggs, grade A, large, per doz.",
+          "unit": "1 dozen",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000708111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000708111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.272",
+          "publishedUnit": "1 dozen"
         },
         "us_rice": {
-          "price": "2.50",
-          "estimated": true,
+          "price": "1.118",
+          "estimated": false,
           "name": {
-            "en": "White rice, 2 lb",
-            "fr": "Riz blanc, 2 lb",
-            "es": "Arroz blanco, 2 lb"
-          }
+            "en": "White rice, 1 lb",
+            "fr": "Riz blanc, 1 lb",
+            "es": "Arroz blanco, 1 lb"
+          },
+          "product": "Rice, white, long grain, uncooked, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701312",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701312",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.118",
+          "publishedUnit": "1 pound"
         },
-        "us_lentils": {
-          "price": "2.50",
-          "estimated": true,
+        "us_rice_2": {
+          "price": "2.236",
+          "estimated": false,
           "name": {
-            "en": "Lentils, 1 lb",
-            "fr": "Lentilles, 1 lb",
-            "es": "Lentejas, 1 lb"
-          }
+            "en": "White rice, 2 lb (2 × $1.118)",
+            "fr": "Riz blanc, 2 lb (2 × 1,118 $)",
+            "es": "Arroz blanco, 2 lb (2 × $1.118)"
+          },
+          "product": "Rice, white, long grain, uncooked, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701312",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701312",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.118",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 1.118 = 2.236"
         },
         "us_pasta": {
-          "price": "1.50",
-          "estimated": true,
+          "price": "1.375",
+          "estimated": false,
           "name": {
-            "en": "Pasta, 1 lb",
-            "fr": "Pâtes, 1 lb",
-            "es": "Pasta, 1 lb"
-          }
+            "en": "Spaghetti, 1 lb",
+            "fr": "Spaghetti, 1 lb",
+            "es": "Espagueti, 1 lb"
+          },
+          "product": "Spaghetti and macaroni, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701322",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701322",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.375",
+          "publishedUnit": "1 pound"
         },
-        "us_sauce": {
-          "price": "2.00",
-          "estimated": true,
+        "us_pasta_2": {
+          "price": "2.750",
+          "estimated": false,
           "name": {
-            "en": "Marinara sauce",
-            "fr": "Sauce marinara",
-            "es": "Salsa marinara"
-          }
+            "en": "Spaghetti, 2 lb (2 × $1.375)",
+            "fr": "Spaghetti, 2 lb (2 × 1,375 $)",
+            "es": "Espagueti, 2 lb (2 × $1.375)"
+          },
+          "product": "Spaghetti and macaroni, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701322",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701322",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.375",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 1.375 = 2.750"
         },
-        "us_salt": {
-          "price": "2.00",
-          "estimated": true,
+        "us_bread": {
+          "price": "1.830",
+          "estimated": false,
           "name": {
-            "en": "Seasoning salt",
-            "fr": "Sel assaisonné",
-            "es": "Sal sazonada"
-          }
+            "en": "White bread, 1 lb",
+            "fr": "Pain blanc, 1 lb",
+            "es": "Pan blanco, 1 lb"
+          },
+          "product": "Bread, white, pan, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000702111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000702111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.830",
+          "publishedUnit": "1 pound"
+        },
+        "us_bread_2": {
+          "price": "3.660",
+          "estimated": false,
+          "name": {
+            "en": "White bread, 2 lb (2 × $1.830)",
+            "fr": "Pain blanc, 2 lb (2 × 1,830 $)",
+            "es": "Pan blanco, 2 lb (2 × $1.830)"
+          },
+          "product": "Bread, white, pan, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000702111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000702111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.830",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 1.830 = 3.660"
+        },
+        "us_tomatoes": {
+          "price": "1.992",
+          "estimated": false,
+          "name": {
+            "en": "Tomatoes, 1 lb",
+            "fr": "Tomates, 1 lb",
+            "es": "Tomates, 1 lb"
+          },
+          "product": "Tomatoes, field grown, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.992",
+          "publishedUnit": "1 pound"
+        },
+        "us_flour": {
+          "price": "0.545",
+          "estimated": false,
+          "name": {
+            "en": "White flour, 1 lb",
+            "fr": "Farine blanche, 1 lb",
+            "es": "Harina blanca, 1 lb"
+          },
+          "product": "Flour, white, all purpose, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.545",
+          "publishedUnit": "1 pound"
+        },
+        "us_flour_2": {
+          "price": "1.090",
+          "estimated": false,
+          "name": {
+            "en": "White flour, 2 lb (2 × $0.545)",
+            "fr": "Farine blanche, 2 lb (2 × 0,545 $)",
+            "es": "Harina blanca, 2 lb (2 × $0.545)"
+          },
+          "product": "Flour, white, all purpose, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.545",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 0.545 = 1.090"
+        },
+        "us_chicken": {
+          "price": "2.064",
+          "estimated": false,
+          "name": {
+            "en": "Whole chicken, 1 lb",
+            "fr": "Poulet entier, 1 lb",
+            "es": "Pollo entero, 1 lb"
+          },
+          "product": "Chicken, fresh, whole, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000706111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000706111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.064",
+          "publishedUnit": "1 pound"
+        },
+        "us_chicken_2": {
+          "price": "4.128",
+          "estimated": false,
+          "name": {
+            "en": "Whole chicken, 2 lb (2 × $2.064)",
+            "fr": "Poulet entier, 2 lb (2 × 2,064 $)",
+            "es": "Pollo entero, 2 lb (2 × $2.064)"
+          },
+          "product": "Chicken, fresh, whole, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000706111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000706111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.064",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 2.064 = 4.128"
+        },
+        "us_oranges": {
+          "price": "1.723",
+          "estimated": false,
+          "name": {
+            "en": "Navel oranges, 1 lb",
+            "fr": "Oranges navel, 1 lb",
+            "es": "Naranjas navel, 1 lb"
+          },
+          "product": "Oranges, navel, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.723",
+          "publishedUnit": "1 pound"
+        },
+        "us_oranges_2": {
+          "price": "3.446",
+          "estimated": false,
+          "name": {
+            "en": "Navel oranges, 2 lb (2 × $1.723)",
+            "fr": "Oranges navel, 2 lb (2 × 1,723 $)",
+            "es": "Naranjas navel, 2 lb (2 × $1.723)"
+          },
+          "product": "Oranges, navel, per lb.",
+          "unit": "2 pounds",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.723",
+          "publishedUnit": "2 pounds",
+          "calc": "2 × 1.723 = 3.446"
         }
       },
       "tiers": {
-        "5": ["us_beans", "us_carrots", "us_oil"],
-        "10": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil"],
-        "15": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread"],
-        "20": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions"],
-        "25": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions", "us_rice", "us_lentils"],
-        "30": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions", "us_rice", "us_lentils", "us_pasta", "us_sauce", "us_salt"]
-      }
+        "5": [
+          "us_potatoes",
+          "us_lettuce",
+          "us_bananas",
+          "us_beans"
+        ],
+        "10": [
+          "us_potatoes",
+          "us_lettuce",
+          "us_bananas",
+          "us_beans",
+          "us_eggs",
+          "us_rice",
+          "us_pasta"
+        ],
+        "15": [
+          "us_potatoes",
+          "us_lettuce",
+          "us_bananas",
+          "us_beans",
+          "us_eggs",
+          "us_rice",
+          "us_pasta",
+          "us_bread",
+          "us_tomatoes",
+          "us_flour"
+        ],
+        "20": [
+          "us_potatoes",
+          "us_lettuce",
+          "us_bananas",
+          "us_beans_2",
+          "us_eggs",
+          "us_rice",
+          "us_pasta",
+          "us_bread",
+          "us_tomatoes",
+          "us_flour",
+          "us_chicken",
+          "us_oranges"
+        ],
+        "25": [
+          "us_potatoes_2",
+          "us_lettuce",
+          "us_bananas",
+          "us_beans_2",
+          "us_eggs",
+          "us_rice_2",
+          "us_pasta_2",
+          "us_bread_2",
+          "us_tomatoes",
+          "us_flour",
+          "us_chicken",
+          "us_oranges"
+        ],
+        "30": [
+          "us_potatoes_2",
+          "us_lettuce",
+          "us_bananas_2",
+          "us_beans_2",
+          "us_eggs",
+          "us_rice_2",
+          "us_pasta_2",
+          "us_bread_2",
+          "us_tomatoes",
+          "us_flour_2",
+          "us_chicken_2",
+          "us_oranges_2"
+        ]
+      },
+      "confirmedNotListed": [
+        {
+          "price": "1.019",
+          "estimated": false,
+          "name": {
+            "en": "White sugar, 1 lb",
+            "fr": "Sucre blanc, 1 lb",
+            "es": "Azúcar blanca, 1 lb"
+          },
+          "product": "Sugar, white, all sizes, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000715211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000715211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.019",
+          "publishedUnit": "1 pound",
+          "reason": "Published and unused. The lists already hold a vegetable and fruit under each cap."
+        }
+      ]
     },
     "MX": {
       "currency": "MXN",
-      "budgets": [100, 200, 300, 500],
+      "budgets": [
+        100,
+        200,
+        300,
+        500
+      ],
       "defaultBudget": 200,
       "source": {
-        "kind": "store",
-        "store": "Soriana",
-        "checked": "2026-10-22",
-        "url": "https://www.soriana.com/"
+        "kind": "official",
+        "name": "Profeco",
+        "table": "Quién es Quién en los Precios",
+        "month": "2026-10",
+        "geography": "Ciudad de México",
+        "url": "https://qqp.profeco.gob.mx/"
       },
       "items": {
         "mx_tortilla": {
-          "price": "13.90",
+          "price": "22",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
             "en": "Corn tortillas, 1 kg",
             "fr": "Tortillas de maïs, 1 kg",
-            "es": "Tortilla de maíz blanca, 1 kg"
+            "es": "Tortilla de maíz, 1 kg"
           },
-          "product": "Tortilla de Maíz Blanca 1 Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz"
+          "product": "TORTILLA DE MAÍZ, S/M, 1 KG. GRANEL",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=TORTILLA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "22",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-20",
+          "chain": "Tortillerías tradicionales",
+          "place": "Tortillería La Torti (Esmeralda), Iztapalapa",
+          "observations": 80,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_tortilla_2": {
-          "price": "27.80",
+          "price": "44",
           "estimated": false,
-          "priceKind": "calculated",
-          "calc": "2 × $13.90",
           "name": {
-            "en": "Corn tortillas, 1 kg × 2 (2 × $13.90)",
-            "fr": "Tortillas de maïs, 1 kg × 2 (2 × 13,90 $)",
-            "es": "Tortilla de maíz blanca, 1 kg × 2 (2 × $13.90)"
+            "en": "Corn tortillas, 1 kg × 2 (2 × $22)",
+            "fr": "Tortillas de maïs, 1 kg × 2 (2 × 22 $)",
+            "es": "Tortilla de maíz, 1 kg × 2 (2 × $22)"
           },
-          "product": "Tortilla de Maíz Blanca 1 Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz"
+          "product": "TORTILLA DE MAÍZ, S/M, 1 KG. GRANEL",
+          "unit": "2 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=TORTILLA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "22",
+          "publishedUnit": "2 kg",
+          "observed": "2026-10-20",
+          "chain": "Tortillerías tradicionales",
+          "place": "Tortillería La Torti (Esmeralda), Iztapalapa",
+          "observations": 80,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price.",
+          "calc": "2 × 22 = 44"
         },
         "mx_frijol": {
-          "price": "20.00",
+          "price": "35",
           "estimated": false,
-          "priceKind": "shelf",
-          "note": "The tile also showed $5.00 with points. That points price was not used.",
           "name": {
-            "en": "Black beans, Precíssimo 908 g",
-            "fr": "Haricots noirs Precíssimo, 908 g",
-            "es": "Frijol negro Precíssimo, 908 g"
+            "en": "Black beans, Verde Valle 900 g",
+            "fr": "Haricots noirs Verde Valle, 900 g",
+            "es": "Frijol negro Verde Valle, 900 g"
           },
-          "product": "Frijol Negro Precíssimo 908 g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=frijol%20negro"
+          "product": "FRIJOL, VERDE VALLE, BOLSA 900 GR. NEGRO",
+          "unit": "900 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=FRIJOL",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "35",
+          "publishedUnit": "900 g",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Periférico, Tlalpan",
+          "observations": 45,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_frijol_2": {
-          "price": "40.00",
+          "price": "70",
           "estimated": false,
-          "priceKind": "calculated",
-          "calc": "2 × $20.00",
-          "note": "Each bag is $20.00. The $5.00 points price on the tile was not used.",
           "name": {
-            "en": "Black beans, Precíssimo 908 g × 2 (2 × $20.00)",
-            "fr": "Haricots noirs Precíssimo, 908 g × 2 (2 × 20,00 $)",
-            "es": "Frijol negro Precíssimo, 908 g × 2 (2 × $20.00)"
+            "en": "Black beans, Verde Valle 900 g × 2 (2 × $35)",
+            "fr": "Haricots noirs Verde Valle, 900 g × 2 (2 × 35 $)",
+            "es": "Frijol negro Verde Valle, 900 g × 2 (2 × $35)"
           },
-          "product": "Frijol Negro Precíssimo 908 g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=frijol%20negro"
-        },
-        "mx_zanahoria": {
-          "price": "14.90",
-          "estimated": false,
-          "priceKind": "shelf",
-          "note": "Regular shelf price. The page also showed $14.80, and $8.80 with 50 points. Those were not used.",
-          "name": {
-            "en": "Carrots, 1 kg",
-            "fr": "Carottes, 1 kg",
-            "es": "Zanahoria, 1 kg"
-          },
-          "product": "Zanahoria Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/zanahoria-kg/515.html",
-          "productUrl": "https://www.soriana.com/zanahoria-kg/515.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=zanahoria",
-          "saleNotUsed": "14.80"
+          "product": "FRIJOL, VERDE VALLE, BOLSA 900 GR. NEGRO",
+          "unit": "1.8 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=FRIJOL",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "35",
+          "publishedUnit": "1.8 kg",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Periférico, Tlalpan",
+          "observations": 45,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price.",
+          "calc": "2 × 35 = 70"
         },
         "mx_platano": {
-          "price": "22.50",
+          "price": "18",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
             "en": "Bananas, 1 kg",
             "fr": "Bananes, 1 kg",
             "es": "Plátano, 1 kg"
           },
-          "product": "Plátano Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/platano-kg/456.html",
-          "productUrl": "https://www.soriana.com/platano-kg/456.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=platano"
+          "product": "PLÁTANO, S/M, 1 KG. TABASCO/CHIAPAS/ROATÁN/PORTALIMÓN",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=PLATANO",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "18",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Parques Polanco, Miguel Hidalgo",
+          "observations": 21,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_platano_2": {
-          "price": "45.00",
+          "price": "36",
           "estimated": false,
-          "priceKind": "calculated",
-          "calc": "2 × $22.50",
           "name": {
-            "en": "Bananas, 1 kg × 2 (2 × $22.50)",
-            "fr": "Bananes, 1 kg × 2 (2 × 22,50 $)",
-            "es": "Plátano, 1 kg × 2 (2 × $22.50)"
+            "en": "Bananas, 1 kg × 2 (2 × $18)",
+            "fr": "Bananes, 1 kg × 2 (2 × 18 $)",
+            "es": "Plátano, 1 kg × 2 (2 × $18)"
           },
-          "product": "Plátano Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/platano-kg/456.html",
-          "productUrl": "https://www.soriana.com/platano-kg/456.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=platano"
+          "product": "PLÁTANO, S/M, 1 KG. TABASCO/CHIAPAS/ROATÁN/PORTALIMÓN",
+          "unit": "2 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=PLATANO",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "18",
+          "publishedUnit": "2 kg",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Parques Polanco, Miguel Hidalgo",
+          "observations": 21,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price.",
+          "calc": "2 × 18 = 36"
         },
-        "mx_aceite_450": {
-          "price": "21.00",
+        "mx_zanahoria": {
+          "price": "14.9",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Vegetable oil, Precíssimo 450 ml",
-            "fr": "Huile végétale Precíssimo, 450 ml",
-            "es": "Aceite vegetal Precíssimo, 450 ml"
+            "en": "Carrots, 1 kg",
+            "fr": "Carottes, 1 kg",
+            "es": "Zanahoria, 1 kg"
           },
-          "product": "Aceite Comestible Vegetal Precíssimo 450 ml",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/aceite-comestible-vegetal-precissimo-450-ml/11916741.html",
-          "productUrl": "https://www.soriana.com/aceite-comestible-vegetal-precissimo-450-ml/11916741.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal"
+          "product": "ZANAHORIA, S/M, 1 KG. GRANDE",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=ZANAHORIA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "14.9",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-19",
+          "chain": "Soriana Super",
+          "place": "Sucursal Eugenia (279), Benito Juárez",
+          "observations": 36,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
-        "mx_aceite_850": {
-          "price": "30.90",
+        "mx_aceite": {
+          "price": "43",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Vegetable oil, Precíssimo 850 ml",
-            "fr": "Huile végétale Precíssimo, 850 ml",
-            "es": "Aceite vegetal Precíssimo, 850 ml"
+            "en": "Vegetable oil, 1 L",
+            "fr": "Huile végétale, 1 L",
+            "es": "Aceite vegetal, 1 L"
           },
-          "product": "Aceite Vegetal Precíssimo 850 ml",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/aceite-vegetal-precissimo-850-ml/11711965.html",
-          "productUrl": "https://www.soriana.com/aceite-vegetal-precissimo-850-ml/11711965.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
-          "saleNotUsed": "28.50",
-          "note": "Regular shelf price. The page also showed a temporary price of $28.50, which was not used."
+          "product": "ACEITE, 1-2-3, BOTELLA 1 LT. VEGETAL",
+          "unit": "1 L",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=ACEITE",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "43",
+          "publishedUnit": "1 L",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Periférico, Tlalpan",
+          "observations": 61,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_huevo_12": {
-          "price": "33.90",
+          "price": "29",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "White eggs, Precíssimo 12",
-            "fr": "Œufs blancs Precíssimo, 12",
-            "es": "Huevo blanco Precíssimo, 12 piezas"
+            "en": "White eggs, Bachoco 12",
+            "fr": "Œufs blancs Bachoco, 12",
+            "es": "Huevo blanco Bachoco, 12 piezas"
           },
-          "product": "Huevo Blanco Precíssimo 12 Piezas",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/huevo-blanco-precissimo-12-piezas/11842346.html",
-          "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-12-piezas/11842346.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
-          "saleNotUsed": "25.00",
-          "note": "Regular shelf price. The page also showed a temporary price of $25.00, which was not used."
+          "product": "HUEVO, BACHOCO, PAQUETE CON 12 BLANCO",
+          "unit": "12 eggs",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=HUEVO",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "29",
+          "publishedUnit": "12 eggs",
+          "observed": "2026-10-20",
+          "chain": "Soriana Hiper",
+          "place": "Sucursal Iztapalapa (262), Iztapalapa",
+          "observations": 50,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_huevo_30": {
-          "price": "64.90",
+          "price": "67",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "White eggs, Precíssimo 30",
-            "fr": "Œufs blancs Precíssimo, 30",
-            "es": "Huevo blanco Precíssimo, 30 piezas"
+            "en": "White eggs, San Juan 30",
+            "fr": "Œufs blancs San Juan, 30",
+            "es": "Huevo blanco San Juan, 30 piezas"
           },
-          "product": "Huevo Blanco Precíssimo 30 Piezas",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/huevo-blanco-precissimo-30-piezas/11834017.html",
-          "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-30-piezas/11834017.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
-          "saleNotUsed": "55.90",
-          "note": "Regular shelf price. The page also showed a temporary price of $55.90, which was not used."
+          "product": "HUEVO, SAN JUAN, PAQUETE CON 30 BLANCO",
+          "unit": "30 eggs",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=HUEVO",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "67",
+          "publishedUnit": "30 eggs",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Periférico, Tlalpan",
+          "observations": 43,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
-        "mx_arroz": {
-          "price": "14.90",
+        "mx_cebolla_q": {
+          "price": "16.75",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Rice, Precíssimo extra 900 g",
-            "fr": "Riz extra Precíssimo, 900 g",
-            "es": "Arroz extra Precíssimo, 900 g"
+            "en": "White onion, 0.25 kg (0.25 × $67/kg)",
+            "fr": "Oignon blanc, 0,25 kg (0,25 × 67 $/kg)",
+            "es": "Cebolla blanca, 0.25 kg (0.25 × $67/kg)"
           },
-          "product": "Arroz Extra Precíssimo 900g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=arroz"
+          "product": "CEBOLLA, S/M, 1 KG. BLANCA SIN RABO",
+          "unit": "0.25 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=CEBOLLA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "67",
+          "publishedUnit": "per kilogram",
+          "observed": "2026-10-16",
+          "chain": "Bodega Aurrera Express",
+          "place": "Sucursal Poniente 140, Gustavo A. Madero",
+          "observations": 21,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price.",
+          "calc": "0.25 × 67 = 16.75"
         },
-        "mx_arroz_2": {
-          "price": "29.80",
+        "mx_avena": {
+          "price": "16",
           "estimated": false,
-          "priceKind": "calculated",
-          "calc": "2 × $14.90",
           "name": {
-            "en": "Rice, Precíssimo extra 900 g × 2 (2 × $14.90)",
-            "fr": "Riz extra Precíssimo, 900 g × 2 (2 × 14,90 $)",
-            "es": "Arroz extra Precíssimo, 900 g × 2 (2 × $14.90)"
+            "en": "Oats, Granvita 400 g",
+            "fr": "Avoine Granvita, 400 g",
+            "es": "Avena Granvita, 400 g"
           },
-          "product": "Arroz Extra Precíssimo 900g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=arroz"
+          "product": "AVENA, GRANVITA, BOLSA 400 GR.",
+          "unit": "400 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=AVENA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "16",
+          "publishedUnit": "400 g",
+          "observed": "2026-10-20",
+          "chain": "Walmart",
+          "place": "Sucursal Lomas, Miguel Hidalgo",
+          "observations": 41,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
+        },
+        "mx_avena_2": {
+          "price": "32",
+          "estimated": false,
+          "name": {
+            "en": "Oats, Granvita 400 g × 2 (2 × $16)",
+            "fr": "Avoine Granvita, 400 g × 2 (2 × 16 $)",
+            "es": "Avena Granvita, 400 g × 2 (2 × $16)"
+          },
+          "product": "AVENA, GRANVITA, BOLSA 400 GR.",
+          "unit": "800 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=AVENA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "16",
+          "publishedUnit": "800 g",
+          "observed": "2026-10-20",
+          "chain": "Walmart",
+          "place": "Sucursal Lomas, Miguel Hidalgo",
+          "observations": 41,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price.",
+          "calc": "2 × 16 = 32"
         },
         "mx_jitomate": {
-          "price": "39.90",
+          "price": "27",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
             "en": "Saladette tomatoes, 1 kg",
             "fr": "Tomates saladette (jitomate), 1 kg",
             "es": "Jitomate saladette, 1 kg"
           },
-          "product": "Jitomate Huaje Saladette Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/jitomate-huaje-saladette-kg/480.html",
-          "productUrl": "https://www.soriana.com/jitomate-huaje-saladette-kg/480.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=jitomate",
-          "saleNotUsed": "29.90",
-          "note": "Regular shelf price. The page also showed a temporary price of $29.90, which was not used."
-        },
-        "mx_cebolla_q": {
-          "price": "17.23",
-          "estimated": false,
-          "priceKind": "calculated",
-          "calc": "0.25 kg × $68.90/kg = $17.225, rounded to $17.23",
-          "note": "Soriana sells this onion by the kilogram. The smallest step on the tile is 0.25 kg.",
-          "name": {
-            "en": "White onion, 0.25 kg (0.25 × $68.90/kg)",
-            "fr": "Oignon blanc, 0,25 kg (0,25 × 68,90 $/kg)",
-            "es": "Cebolla blanca, 0.25 kg (0.25 × $68.90/kg)"
-          },
-          "product": "Cebolla blanca Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca"
-        },
-        "mx_cebolla": {
-          "price": "68.90",
-          "estimated": false,
-          "priceKind": "shelf",
-          "name": {
-            "en": "White onion, 1 kg",
-            "fr": "Oignon blanc, 1 kg",
-            "es": "Cebolla blanca, 1 kg"
-          },
-          "product": "Cebolla blanca Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca"
+          "product": "JITOMATE, S/M, 1 KG. SALADETTE/ HUAJE O TOMATE SALADETTE/ HUAJE",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=JITOMATE",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "27",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Parques Polanco, Miguel Hidalgo",
+          "observations": 23,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_lenteja": {
-          "price": "15.00",
+          "price": "25",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Lentils, Precíssimo 500 g",
-            "fr": "Lentilles Precíssimo, 500 g",
-            "es": "Lenteja Precíssimo, 500 g"
+            "en": "Lentils, Verde Valle 500 g",
+            "fr": "Lentilles Verde Valle, 500 g",
+            "es": "Lenteja Verde Valle, 500 g"
           },
-          "product": "Lenteja Precíssimo 500g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/lenteja-precissimo-500g/11712375.html",
-          "productUrl": "https://www.soriana.com/lenteja-precissimo-500g/11712375.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=lenteja"
+          "product": "LENTEJA, VERDE VALLE, BOLSA 500 GR.",
+          "unit": "500 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=LENTEJA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "25",
+          "publishedUnit": "500 g",
+          "observed": "2026-10-20",
+          "chain": "Bodega Aurrera",
+          "place": "Sucursal Iztapalapa, Iztapalapa",
+          "observations": 46,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
-        "mx_col": {
-          "price": "51.80",
+        "mx_arroz": {
+          "price": "39",
           "estimated": false,
-          "priceKind": "calculated",
           "name": {
-            "en": "Green cabbage, 2 kg (2 × $25.90/kg)",
-            "fr": "Chou blanc, 2 kg (2 × 25,90 $/kg)",
-            "es": "Col blanca, 2 kg (2 × $25.90/kg)"
+            "en": "White rice, Verde Valle 1 kg",
+            "fr": "Riz blanc Verde Valle, 1 kg",
+            "es": "Arroz Verde Valle, 1 kg"
           },
-          "product": "Col Blanca Kg",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/col-blanca-kg/159.html",
-          "productUrl": "https://www.soriana.com/col-blanca-kg/159.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=repollo",
-          "unitPrice": "25.90",
-          "calc": "2 kg × $25.90/kg. The product page minimum and step are 2.00 kg.",
-          "note": "Not on a list. $51.80 does not fit $300 or $500 after the regular shelf prices."
-        },
-        "mx_avena": {
-          "price": "25.50",
-          "estimated": false,
-          "priceKind": "shelf",
-          "name": {
-            "en": "Oats, Granvita integral 700 g",
-            "fr": "Avoine Granvita, 700 g",
-            "es": "Avena integral Granvita, 700 g"
-          },
-          "product": "Avena Integral Granvita 700 Gr Bolsa",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/avena-integral-granvita-700-gr-bolsa/11321439.html",
-          "productUrl": "https://www.soriana.com/avena-integral-granvita-700-gr-bolsa/11321439.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=avena"
+          "product": "ARROZ, VERDE VALLE, BOLSA 1 KG. SUPER EXTRA",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=ARROZ",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "39",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-20",
+          "chain": "Walmart Express",
+          "place": "Sucursal Parques Polanco, Miguel Hidalgo",
+          "observations": 30,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_chicharo": {
-          "price": "39.90",
+          "price": "12.3",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Frozen peas, Valley Foods 500 g",
-            "fr": "Petits pois surgelés Valley Foods, 500 g",
-            "es": "Chícharos congelados Valley Foods, 500 g"
+            "en": "Canned peas, La Costeña 220 g",
+            "fr": "Petits pois en conserve La Costeña, 220 g",
+            "es": "Chícharos en lata La Costeña, 220 g"
           },
-          "product": "Chícharos Congelados Valley Foods Fresh 500 g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/chicharos-congelados-valley-foods-fresh-500-g/11900763.html",
-          "productUrl": "https://www.soriana.com/chicharos-congelados-valley-foods-fresh-500-g/11900763.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=chicharo%20congelado"
+          "product": "CHÍCHAROS EN LATA, LA COSTEÑA, LATA 220 GR.",
+          "unit": "220 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=CHICHARO",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "12.3",
+          "publishedUnit": "220 g",
+          "observed": "2026-10-20",
+          "chain": "Soriana Hiper",
+          "place": "Sucursal Miyana (252), Miguel Hidalgo",
+          "observations": 33,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
+        },
+        "mx_col": {
+          "price": "31",
+          "estimated": false,
+          "name": {
+            "en": "Green cabbage, 1 kg",
+            "fr": "Chou vert, 1 kg",
+            "es": "Col, 1 kg"
+          },
+          "product": "COL, S/M, 1 KG. BLANCA O REPOLLO",
+          "unit": "1 kg",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=COL",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "31",
+          "publishedUnit": "1 kg",
+          "observed": "2026-10-20",
+          "chain": "Bodega Aurrera",
+          "place": "Sucursal Mariano Escobedo, Miguel Hidalgo",
+          "observations": 54,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         },
         "mx_pasta": {
-          "price": "19.80",
+          "price": "11.9",
           "estimated": false,
-          "priceKind": "shelf",
           "name": {
-            "en": "Spaghetti, Italpasta 500 g",
-            "fr": "Spaghetti Italpasta, 500 g",
-            "es": "Spaghetti Italpasta, 500 g"
+            "en": "Spaghetti, La Moderna 220 g",
+            "fr": "Spaghetti La Moderna, 220 g",
+            "es": "Pasta para sopa La Moderna, 220 g"
           },
-          "product": "Pasta Italpasta Spaghetti 500 g",
-          "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/pasta-italpasta-spaghetti-500-g/11348173.html",
-          "productUrl": "https://www.soriana.com/pasta-italpasta-spaghetti-500-g/11348173.html",
-          "checked": "2026-10-22",
-          "searchUrl": "https://www.soriana.com/buscar?q=pasta%20spaghetti"
+          "product": "PASTA PARA SOPA, LA MODERNA, PAQUETE 220 GR. SPAGHETTI",
+          "unit": "220 g",
+          "sourceName": "Profeco",
+          "sourceTable": "Quién es Quién en los Precios",
+          "sourceUrl": "https://qqp.profeco.gob.mx/",
+          "apiUrl": "https://qqp.profeco.gob.mx/api/precios?clave_ciudad=0901&busqueda=PASTA",
+          "series": "clave_ciudad=0901",
+          "month": "2026-10",
+          "geography": "Ciudad de México",
+          "publishedValue": "11.9",
+          "publishedUnit": "220 g",
+          "observed": "2026-10-15",
+          "chain": "Soriana Hiper",
+          "place": "Sucursal Consulado (418), Venustiano Carranza",
+          "observations": 24,
+          "method": "Upper median of Mexico City observations for this exact product, then the latest row at that price."
         }
       },
       "tiers": {
-        "100": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450"],
-        "200": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q"],
-        "300": ["mx_tortilla_2", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja", "mx_avena", "mx_chicharo"],
-        "500": ["mx_tortilla_2", "mx_frijol_2", "mx_zanahoria", "mx_platano_2", "mx_aceite_850", "mx_huevo_12", "mx_huevo_30", "mx_arroz_2", "mx_jitomate", "mx_cebolla", "mx_lenteja", "mx_avena", "mx_chicharo", "mx_pasta"]
+        "100": [
+          "mx_tortilla",
+          "mx_frijol",
+          "mx_zanahoria",
+          "mx_platano"
+        ],
+        "200": [
+          "mx_tortilla",
+          "mx_frijol",
+          "mx_zanahoria",
+          "mx_platano",
+          "mx_aceite",
+          "mx_huevo_12",
+          "mx_cebolla_q",
+          "mx_avena"
+        ],
+        "300": [
+          "mx_tortilla",
+          "mx_frijol",
+          "mx_zanahoria",
+          "mx_platano",
+          "mx_aceite",
+          "mx_huevo_12",
+          "mx_cebolla_q",
+          "mx_avena",
+          "mx_jitomate",
+          "mx_lenteja",
+          "mx_arroz",
+          "mx_chicharo"
+        ],
+        "500": [
+          "mx_tortilla_2",
+          "mx_frijol_2",
+          "mx_zanahoria",
+          "mx_platano_2",
+          "mx_aceite",
+          "mx_huevo_12",
+          "mx_huevo_30",
+          "mx_cebolla_q",
+          "mx_avena_2",
+          "mx_jitomate",
+          "mx_lenteja",
+          "mx_arroz",
+          "mx_chicharo",
+          "mx_col",
+          "mx_pasta"
+        ]
       }
     }
   }

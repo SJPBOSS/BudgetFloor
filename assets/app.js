@@ -35,12 +35,18 @@ function initialState() {
     return { lang, region, budget };
 }
 
-function cents(value) {
-    return Math.round(Number(value) * 100);
+function thousandths(value) {
+    const parts = String(value).split(".");
+    const whole = parseInt(parts[0], 10) || 0;
+    const frac = (parts[1] || "").slice(0, 3).padEnd(3, "0");
+    return whole * 1000 + parseInt(frac, 10);
 }
 
-function formatMoney(totalCents) {
-    return (totalCents / 100).toFixed(2);
+function formatMoney(totalThousandths) {
+    const whole = Math.floor(totalThousandths / 1000);
+    const frac = totalThousandths % 1000;
+    if (frac % 10 === 0) return whole + "." + String(frac / 10).padStart(2, "0");
+    return whole + "." + String(frac).padStart(3, "0");
 }
 
 function pageTitle(lang, region, budget) {
@@ -52,18 +58,18 @@ function pageTitle(lang, region, budget) {
 
 function pageDesc(lang, region, budget) {
     if (region === "MX") {
-        if (lang === "fr") return "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Tortillas, haricots, légumes, fruit et huile. Prix Soriana vérifiés le 22 oct. 2026.";
-        if (lang === "es") return "Lista de compras en México por $" + budget + " MXN. Tortillas, frijoles, verdura, fruta y aceite. Precios de Soriana revisados el 22 de oct. de 2026.";
-        return "A grocery list for Mexico at $" + budget + " MXN. Tortillas, beans, vegetables, fruit, and oil. Soriana prices checked 22 Oct 2026.";
+        if (lang === "fr") return "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Prix Profeco pour Mexico, octobre 2026.";
+        if (lang === "es") return "Lista de compras en México por $" + budget + " MXN. Precios de Profeco para la Ciudad de México, octubre de 2026.";
+        return "A grocery list for Mexico at $" + budget + " MXN. Profeco prices for Mexico City, October 2026.";
     }
     if (region === "US") {
-        if (lang === "fr") return "Liste d'épicerie pour les États-Unis à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026.";
-        if (lang === "es") return "Lista de compras para Estados Unidos por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026.";
-        return "A grocery list for the United States at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.";
+        if (lang === "fr") return "Liste d'épicerie pour les États-Unis à " + budget + " $. Prix moyens du Bureau of Labor Statistics, septembre 2026.";
+        if (lang === "es") return "Lista de compras para Estados Unidos por $" + budget + ". Precios promedio del Bureau of Labor Statistics, septiembre de 2026.";
+        return "A grocery list for the United States at $" + budget + ". Bureau of Labor Statistics average prices, September 2026.";
     }
-    if (lang === "fr") return "Liste d'épicerie pour le Canada à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026.";
-    if (lang === "es") return "Lista de compras para Canadá por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026.";
-    return "A grocery list for Canada at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.";
+    if (lang === "fr") return "Liste d'épicerie pour le Canada à " + budget + " $. Prix moyens de Statistique Canada, août 2026.";
+    if (lang === "es") return "Lista de compras para Canadá por $" + budget + ". Precios promedio de Statistics Canada, agosto de 2026.";
+    return "A grocery list for Canada at $" + budget + ". Statistics Canada average retail prices, August 2026.";
 }
 
 function htmlLang(lang, region) {
@@ -92,33 +98,33 @@ const COPY = {
         equal: (total, cur) => "These foods add up to $" + total + " " + cur + ".",
         under: (total, cur, budget) => "These foods add up to $" + total + " " + cur + ", inside the $" + budget + " cap.",
         source: {
-            CA: "Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.",
-            US: "Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.",
-            MX: "Soriana, checked 22 Oct 2026."
+            CA: "Statistics Canada, Canada average, August 2026.",
+            US: "Bureau of Labor Statistics, U.S. city average, September 2026.",
+            MX: "Profeco, Mexico City, October 2026."
         },
         heading: (budget, region) => "Eat well on $" + budget + " this week " + WHERE.en[region],
         meals: {
             CA: {
-                5: ["A pot of lentils and carrots.", "Cook the lentils with the carrots and a spoon of oil. That pot is dinner, and a warm bowl works for breakfast too. Fruit is not on this $5 list: there is no banana price on file for Canada."],
-                10: ["Oats in the morning, beans and carrots at night.", "Put an egg on the beans and carrots, cooked in a little oil. Six eggs across the week means the egg joins the plate. It is not the whole dinner."],
-                15: ["The same plates, plus spinach and bread.", "Toast sits beside the oats. Dinner is beans, carrots, and frozen spinach in oil, with an egg on some nights. The foods add up to $13.50, inside the $15 cap."],
-                20: ["Rice, peanut butter, and a vegetable every night.", "Breakfast is oats, or peanut butter on bread. Dinner is rice with beans, carrots, and spinach, cooked in oil. Add an egg when you want one. The plate is more than rice alone."],
-                25: ["Onion and a pasta night.", "Keep the oats, the eggs, and the vegetables. Cook onion into the pot, and use one night of pasta with spinach so the week is not the same bowl. This shop is $24.25."],
-                30: ["Enough foods to rotate the week.", "Oats, rice, pasta, lentils, eggs, beans, peanut butter, bread, carrots, spinach, onions, oil, sauce, and salt. One night is a lentil and carrot stew. Another is rice and beans with spinach. Another is pasta with sauce and onion."]
+                5: ["Bananas, cabbage, and oil.", "A kilogram of bananas, half a kilogram of cabbage, and 500 ml of oil. Cabbage is published at $2.63 a kilogram, so this list takes half of that, $1.32. The foods add up to $4.85."],
+                10: ["Lentils with cabbage, bananas, and oil.", "Cook the lentils with a kilogram of cabbage and a little oil. The bananas are the fruit. This shop is $9.79, inside $10."],
+                15: ["A can of beans and frozen spinach.", "The beans and the spinach go in the pot with the lentils and cabbage. Breakfast can be bananas. The list is $13.74."],
+                20: ["Carrots and canned tomatoes join the pot.", "Dinner is lentils, beans, cabbage, spinach, carrots, and tomato, cooked in oil, with bananas on the side. This shop is $19.81."],
+                25: ["A dozen eggs across the week.", "Keep the same pot. The eggs sit on the plate some nights. They are not the whole dinner. The foods add up to $24.64."],
+                30: ["The 675 g loaf of white bread.", "Bananas and toast in the morning. Dinner stays the lentil pot with the vegetables. The loaf is the published price, $3.63. The list is $28.27."]
             },
             US: {
-                5: ["Beans, carrots, and oil.", "Cook them as a small stew. The lines add up to $4.00, inside a $5 cap. There is no banana price on file for the United States."],
-                10: ["Oats in the morning, beans and carrots at night.", "Dinner is beans and carrots in oil, with an egg on the plate. A dozen eggs covers the week. The egg is not the whole meal."],
-                15: ["Frozen vegetables and bread join the pot.", "Toast goes with breakfast. Stir the frozen vegetables into the beans. This list is $14.00, inside the $15 cap."],
-                20: ["Peanut butter and onions.", "Breakfast can be oats or peanut butter on bread. Dinner is beans, carrots, frozen vegetables, and onion in oil, with an egg beside them."],
-                25: ["Rice one night, lentils the next.", "Both nights keep the carrots or the frozen vegetables, plus onion and oil. This list is $24.50."],
-                30: ["Pasta gives you another dinner.", "Sauce, pasta, rice, or lentils, and always a vegetable in the pot. These foods add up to $30.00."]
+                5: ["Potatoes, bananas, dried beans, and lettuce.", "Cook the beans with potato and lettuce, and eat a banana. These are per-pound averages, and the lines add up to $4.95, inside $5."],
+                10: ["Eggs, rice, and spaghetti.", "Breakfast can be eggs or a banana. Dinner is beans and potato, or spaghetti, with lettuce. The list is $9.715."],
+                15: ["Bread, tomatoes, and flour.", "Toast with breakfast. Tomatoes go in with the beans. A pound of flour is there for a simple dough. This shop is $14.082."],
+                20: ["Chicken, oranges, and a second pound of beans.", "Chicken with potato, tomato, and lettuce. Oranges and bananas are the fruit. Two pounds of dried beans are twice the per-pound average. The foods add up to $19.538."],
+                25: ["A second pound of rice, bread, potato, and pasta.", "The same meals, with more of the foods that are priced by the pound. This list is $24.85."],
+                30: ["More chicken, oranges, flour, and bananas.", "Each of those is two pounds, still at the published per-pound rate. The list is $29.838, inside $30."]
             },
             MX: {
-                100: ["Tortillas, beans, carrots, banana, and oil.", "Cook the beans with carrot and a little oil, and eat them with tortillas. The banana is the fruit. This shop is $92.30, inside $100 MXN. Eggs and rice do not fit this amount, and the plate is still a real meal."],
-                200: ["A week of Mexican staples.", "Breakfast is eggs with tortilla and tomato. Later, beans with rice, onion, and carrot, plus a banana. The onion is a quarter kilogram, the smallest step Soriana listed, so it seasons the pot. The regular price of the eggs is $33.90, so the lentil bag does not fit this amount. The list is $198.23."],
-                300: ["Oats and frozen peas join the week.", "Have oats some mornings. Put the peas in the pot with the beans, rice, lentils, and onion. Another kilogram of tortillas is on the list. Cabbage does not fit: Soriana's smallest step is 2 kg, which is $51.80. The foods add up to $292.53."],
-                500: ["A bigger shop you can share.", "More tortillas, beans, rice, eggs, and bananas, a full kilogram of onion, peas, oats, oil, and pasta. Cook one pot and split it. Cabbage's 2 kg step does not fit this amount either. The list is $496.20, inside $500 MXN."]
+                100: ["Tortillas, beans, carrots, and banana.", "Cook the beans with carrot and eat them with tortillas. The banana is the fruit. A litre of oil is $43 in these observations, so oil waits for the next amount. This shop is $89.90, inside $100 MXN."],
+                200: ["Oil, eggs, oats, and a little onion.", "Breakfast can be eggs with tortilla, or oats and banana. Dinner is beans with carrot and onion, cooked in oil. The onion is a quarter kilogram at $67 per kilogram. The list is $194.65."],
+                300: ["Tomato, lentils, rice, and canned peas.", "The pot can be beans and rice with tomato, lentils, and peas. Cabbage is $31 a kilogram and does not fit next to the rice. The foods add up to $297.95."],
+                500: ["A bigger shop you can share.", "A second kilogram of tortillas, beans, and bananas, another bag of oats, a 30-egg carton, cabbage, and pasta. The onion stays a quarter kilogram, because a full kilogram is $67. The list is $498.85."]
             }
         }
     },
@@ -134,33 +140,33 @@ const COPY = {
         equal: (total, cur) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + ".",
         under: (total, cur, budget) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + ", sous le plafond de " + budget + " $.",
         source: {
-            CA: "Estimé, oct. 2026. Il y a des légumes et de l'huile dans chaque liste. Les bananes et le chou n'ont pas de prix, parce qu'aucune page de magasin n'a pu être lue.",
-            US: "Estimé, oct. 2026. Il y a des légumes et de l'huile dans chaque liste. Les bananes et le chou n'ont pas de prix, parce qu'aucune page de magasin n'a pu être lue.",
-            MX: "Soriana, vérifié le 22 oct. 2026."
+            CA: "Statistique Canada, moyenne du Canada, août 2026.",
+            US: "Bureau of Labor Statistics, moyenne des villes américaines, septembre 2026.",
+            MX: "Profeco, Mexico, octobre 2026."
         },
         heading: (budget, region) => "Bien manger avec " + budget + " $ cette semaine " + WHERE.fr[region],
         meals: {
             CA: {
-                5: ["Un chaudron de lentilles et de carottes.", "Faites cuire les lentilles avec les carottes et un peu d'huile. Ce plat sert de souper, et un bol chaud convient au déjeuner. Il n'y a pas de fruit sur cette liste de 5 $ : aucun prix de banane n'est au dossier pour le Canada."],
-                10: ["Du gruau le matin, des haricots et des carottes le soir.", "Déposez un œuf sur les haricots et les carottes, cuits avec un peu d'huile. Six œufs pour la semaine, c'est un œuf dans l'assiette, pas un souper composé d'un seul œuf."],
-                15: ["Les mêmes assiettes, plus des épinards et du pain.", "Une rôtie accompagne le gruau. Le souper, c'est haricots, carottes et épinards surgelés dans l'huile, avec un œuf certains soirs. Les aliments font 13,50 $, sous le plafond de 15 $."],
-                20: ["Du riz, du beurre d'arachide, et un légume chaque soir.", "Le déjeuner, c'est du gruau ou du beurre d'arachide sur du pain. Le souper, c'est du riz avec des haricots, des carottes et des épinards, cuits dans l'huile. Ajoutez un œuf si vous en voulez un. L'assiette n'est pas que du riz."],
-                25: ["De l'oignon et une soirée de pâtes.", "Gardez le gruau, les œufs et les légumes. Faites revenir l'oignon dans le chaudron, et prévoyez un soir de pâtes avec des épinards. Cette épicerie fait 24,25 $."],
-                30: ["Assez d'aliments pour varier la semaine.", "Gruau, riz, pâtes, lentilles, œufs, haricots, beurre d'arachide, pain, carottes, épinards, oignons, huile, sauce et sel. Un soir, un ragoût de lentilles et de carottes. Un autre, du riz et des haricots avec des épinards. Un autre, des pâtes avec la sauce et de l'oignon."]
+                5: ["Bananes, chou et huile.", "Un kilo de bananes, un demi-kilo de chou et 500 ml d'huile. Le chou est publié à 2,63 $ le kilo, alors cette liste en prend la moitié, soit 1,32 $. Les aliments font 4,85 $."],
+                10: ["Des lentilles avec du chou, des bananes et de l'huile.", "Faites cuire les lentilles avec un kilo de chou et un peu d'huile. Les bananes sont le fruit. Cette épicerie fait 9,79 $, sous 10 $."],
+                15: ["Une canne de haricots et des épinards surgelés.", "Les haricots et les épinards vont dans le chaudron avec les lentilles et le chou. Le déjeuner peut être des bananes. La liste fait 13,74 $."],
+                20: ["Des carottes et des tomates en conserve.", "Le souper, c'est lentilles, haricots, chou, épinards, carottes et tomate, cuits dans l'huile, avec des bananes à côté. Cette épicerie fait 19,81 $."],
+                25: ["Une douzaine d'œufs pour la semaine.", "Gardez le même chaudron. Les œufs accompagnent l'assiette certains soirs. Ils ne sont pas tout le souper. Les aliments font 24,64 $."],
+                30: ["Le pain blanc de 675 g.", "Des bananes et une rôtie au déjeuner. Le souper reste le chaudron de lentilles avec les légumes. La miche est au prix publié, 3,63 $. La liste fait 28,27 $."]
             },
             US: {
-                5: ["Haricots, carottes et huile.", "Cuisinez un petit ragoût. Les lignes font 4,00 $, sous un plafond de 5 $. Aucun prix de banane n'est au dossier pour les États-Unis."],
-                10: ["Du gruau le matin, des haricots et des carottes le soir.", "Le souper, c'est des haricots et des carottes dans l'huile, avec un œuf dans l'assiette. Une douzaine d'œufs couvre la semaine. L'œuf n'est pas tout le repas."],
-                15: ["Des légumes surgelés et du pain s'ajoutent.", "Une rôtie avec le déjeuner. Mélangez les légumes surgelés aux haricots. Cette liste fait 14,00 $, sous 15 $."],
-                20: ["Du beurre d'arachide et des oignons.", "Le déjeuner peut être du gruau ou du beurre d'arachide sur du pain. Le souper, c'est haricots, carottes, légumes surgelés et oignon dans l'huile, avec un œuf à côté."],
-                25: ["Du riz un soir, des lentilles le suivant.", "Les deux soirs gardent les carottes ou les légumes surgelés, plus l'oignon et l'huile. Cette liste fait 24,50 $."],
-                30: ["Les pâtes donnent un autre souper.", "Sauce, pâtes, riz ou lentilles, et toujours un légume dans le chaudron. Ces aliments font 30,00 $."]
+                5: ["Pommes de terre, bananes, haricots secs et laitue.", "Cuisez les haricots avec la pomme de terre et la laitue, et mangez une banane. Ce sont des moyennes à la livre. Les lignes font 4,95 $, sous 5 $."],
+                10: ["Des œufs, du riz et du spaghetti.", "Le déjeuner peut être des œufs ou une banane. Le souper, c'est des haricots et une pomme de terre, ou du spaghetti, avec de la laitue. La liste fait 9,715 $."],
+                15: ["Du pain, des tomates et de la farine.", "Une rôtie avec le déjeuner. Les tomates vont avec les haricots. Une livre de farine sert à une pâte simple. Cette épicerie fait 14,082 $."],
+                20: ["Du poulet, des oranges et une deuxième livre de haricots.", "Du poulet avec pomme de terre, tomate et laitue. Les oranges et les bananes sont le fruit. Deux livres de haricots secs, c'est deux fois la moyenne à la livre. Les aliments font 19,538 $."],
+                25: ["Une deuxième livre de riz, de pain, de pommes de terre et de pâtes.", "Les mêmes repas, avec plus des aliments vendus à la livre. Cette liste fait 24,85 $."],
+                30: ["Plus de poulet, d'oranges, de farine et de bananes.", "Chacun de ces aliments est à deux livres, toujours au taux publié à la livre. La liste fait 29,838 $, sous 30 $."]
             },
             MX: {
-                100: ["Tortillas, haricots, carottes, bananes et huile.", "Cuisez les haricots avec la carotte et un peu d'huile, et mangez-les avec des tortillas. La banane est le fruit. Cette épicerie fait 92,30 $ MXN, sous 100 $. Les œufs et le riz n'entrent pas dans ce montant, et l'assiette reste un vrai repas."],
-                200: ["Une semaine d'aliments de base au Mexique.", "Au déjeuner, des œufs avec une tortilla et de la tomate. Ensuite, des haricots avec du riz, de l'oignon et de la carotte, plus une banane. L'oignon est un quart de kilo, le plus petit pas affiché chez Soriana. Le prix régulier des œufs est 33,90 $, alors le sac de lentilles n'entre pas. La liste fait 198,23 $."],
-                300: ["L'avoine et les petits pois s'ajoutent.", "Prenez de l'avoine certains matins. Mettez les pois dans le chaudron avec les haricots, le riz, les lentilles et l'oignon. Un autre kilo de tortillas est sur la liste. Le chou n'entre pas : le plus petit pas chez Soriana est 2 kg, soit 51,80 $. Les aliments font 292,53 $."],
-                500: ["Une plus grosse épicerie à partager.", "Plus de tortillas, de haricots, de riz, d'œufs et de bananes, un kilo d'oignon, des pois, de l'avoine, de l'huile et des pâtes. Un seul chaudron peut nourrir plus d'une personne. Le pas de 2 kg du chou n'entre pas non plus. La liste fait 496,20 $, sous 500 $ MXN."]
+                100: ["Tortillas, haricots, carottes et banane.", "Cuisez les haricots avec la carotte et mangez-les avec des tortillas. La banane est le fruit. Un litre d'huile est à 43 $ dans ces observations, alors l'huile attend le montant suivant. Cette épicerie fait 89,90 $ MXN, sous 100 $."],
+                200: ["De l'huile, des œufs, de l'avoine et un peu d'oignon.", "Au déjeuner, des œufs avec une tortilla, ou de l'avoine et une banane. Le souper, c'est des haricots avec de la carotte et de l'oignon, cuits dans l'huile. L'oignon est un quart de kilo à 67 $ le kilo. La liste fait 194,65 $."],
+                300: ["Tomate, lentilles, riz et petits pois en conserve.", "Le chaudron peut être des haricots et du riz avec de la tomate, des lentilles et des pois. Le chou est à 31 $ le kilo et n'entre pas à côté du riz. Les aliments font 297,95 $."],
+                500: ["Une plus grosse épicerie à partager.", "Un deuxième kilo de tortillas, de haricots et de bananes, un autre sac d'avoine, une boîte de 30 œufs, du chou et des pâtes. L'oignon reste un quart de kilo, parce qu'un kilo entier est à 67 $. La liste fait 498,85 $."]
             }
         }
     },
@@ -176,33 +182,33 @@ const COPY = {
         equal: (total, cur) => "Estos alimentos suman $" + total + " " + cur + ".",
         under: (total, cur, budget) => "Estos alimentos suman $" + total + " " + cur + ", dentro del tope de $" + budget + ".",
         source: {
-            CA: "Estimado, oct. 2026. Hay verdura y aceite en cada lista. El plátano y la col no tienen precio, porque no se pudo leer una página de tienda.",
-            US: "Estimado, oct. 2026. Hay verdura y aceite en cada lista. El plátano y la col no tienen precio, porque no se pudo leer una página de tienda.",
-            MX: "Soriana, revisado el 22 de oct. de 2026."
+            CA: "Statistics Canada, promedio de Canadá, agosto de 2026.",
+            US: "Bureau of Labor Statistics, promedio de las ciudades de EE. UU., septiembre de 2026.",
+            MX: "Profeco, Ciudad de México, octubre de 2026."
         },
         heading: (budget, region) => "Comer bien con $" + budget + " esta semana " + WHERE.es[region],
         meals: {
             CA: {
-                5: ["Una olla de lentejas y zanahorias.", "Cocine las lentejas con las zanahorias y un poco de aceite. Esa olla es la cena, y un tazón caliente sirve de desayuno. No hay fruta en esta lista de $5: no hay un precio de plátano registrado para Canadá."],
-                10: ["Avena en la mañana, frijoles y zanahorias en la noche.", "Ponga un huevo sobre los frijoles y las zanahorias, cocidos con un poco de aceite. Seis huevos en la semana significa que el huevo acompaña el plato. No es toda la cena."],
-                15: ["Los mismos platos, más espinaca y pan.", "Una tostada acompaña la avena. La cena es frijoles, zanahorias y espinaca congelada con aceite, y un huevo algunas noches. Los alimentos suman $13.50, dentro de los $15."],
-                20: ["Arroz, mantequilla de maní y una verdura cada noche.", "El desayuno es avena, o mantequilla de maní en pan. La cena es arroz con frijoles, zanahorias y espinaca, cocidos con aceite. Agregue un huevo si quiere. El plato es más que arroz."],
-                25: ["Cebolla y una noche de pasta.", "Siga con la avena, los huevos y las verduras. Cocine la cebolla en la olla, y deje una noche de pasta con espinaca. Esta compra suma $24.25."],
-                30: ["Bastantes alimentos para variar la semana.", "Avena, arroz, pasta, lentejas, huevos, frijoles, mantequilla de maní, pan, zanahorias, espinaca, cebollas, aceite, salsa y sal. Una noche, lentejas con zanahoria. Otra, arroz y frijoles con espinaca. Otra, pasta con salsa y cebolla."]
+                5: ["Plátano, col y aceite.", "Un kilo de plátano, medio kilo de col y 500 ml de aceite. La col se publica a $2.63 el kilo, así que esta lista usa la mitad, $1.32. Los alimentos suman $4.85."],
+                10: ["Lentejas con col, plátano y aceite.", "Cocine las lentejas con un kilo de col y un poco de aceite. El plátano es la fruta. Esta compra suma $9.79, dentro de los $10."],
+                15: ["Una lata de frijoles y espinaca congelada.", "Los frijoles y la espinaca van a la olla con las lentejas y la col. El desayuno puede ser plátano. La lista suma $13.74."],
+                20: ["Zanahorias y tomates en lata.", "La cena es lentejas, frijoles, col, espinaca, zanahoria y tomate, cocidos con aceite, y plátano al lado. Esta compra suma $19.81."],
+                25: ["Una docena de huevos en la semana.", "Siga con la misma olla. Los huevos acompañan el plato algunas noches. No son toda la cena. Los alimentos suman $24.64."],
+                30: ["El pan blanco de 675 g.", "Plátano y pan tostado en el desayuno. La cena sigue siendo la olla de lentejas con las verduras. El pan está al precio publicado, $3.63. La lista suma $28.27."]
             },
             US: {
-                5: ["Frijoles, zanahorias y aceite.", "Cocínelos como un guiso corto. Las líneas suman $4.00, dentro de un tope de $5. No hay un precio de plátano registrado para Estados Unidos."],
-                10: ["Avena en la mañana, frijoles y zanahorias en la noche.", "La cena es frijoles y zanahorias con aceite, y un huevo en el plato. Una docena de huevos cubre la semana. El huevo no es toda la comida."],
-                15: ["Entran la verdura congelada y el pan.", "Una tostada con el desayuno. Mezcle la verdura congelada con los frijoles. Esta lista suma $14.00, dentro de los $15."],
-                20: ["Mantequilla de maní y cebollas.", "El desayuno puede ser avena o mantequilla de maní en pan. La cena es frijoles, zanahorias, verdura congelada y cebolla con aceite, y un huevo al lado."],
-                25: ["Arroz una noche, lentejas la siguiente.", "Las dos noches conservan las zanahorias o la verdura congelada, más cebolla y aceite. Esta lista suma $24.50."],
-                30: ["La pasta da otra cena.", "Salsa, pasta, arroz o lentejas, y siempre una verdura en la olla. Estos alimentos suman $30.00."]
+                5: ["Papas, plátano, frijoles secos y lechuga.", "Cocine los frijoles con papa y lechuga, y coma un plátano. Son promedios por libra. Las líneas suman $4.95, dentro de los $5."],
+                10: ["Huevos, arroz y espagueti.", "El desayuno puede ser huevos o un plátano. La cena es frijoles y papa, o espagueti, con lechuga. La lista suma $9.715."],
+                15: ["Pan, tomates y harina.", "Una tostada con el desayuno. Los tomates van con los frijoles. Una libra de harina sirve para una masa sencilla. Esta compra suma $14.082."],
+                20: ["Pollo, naranjas y otra libra de frijoles.", "Pollo con papa, tomate y lechuga. Las naranjas y el plátano son la fruta. Dos libras de frijoles secos son el doble del promedio por libra. Los alimentos suman $19.538."],
+                25: ["Otra libra de arroz, pan, papa y pasta.", "Las mismas comidas, con más de los alimentos que se publican por libra. Esta lista suma $24.85."],
+                30: ["Más pollo, naranjas, harina y plátano.", "Cada uno de esos alimentos va a dos libras, al mismo precio por libra publicado. La lista suma $29.838, dentro de los $30."]
             },
             MX: {
-                100: ["Tortillas, frijoles, zanahoria, plátano y aceite.", "Cocine los frijoles con zanahoria y un poco de aceite, y acompáñelos con tortilla. El plátano es la fruta de la semana. Esta lista suma $92.30, dentro de $100 MXN. El huevo y el arroz no caben en este monto, y el plato igual es una comida."],
-                200: ["Una semana con la comida de todos los días.", "En el desayuno, huevo con tortilla y jitomate. Después, frijoles con arroz, cebolla y zanahoria, y un plátano. La cebolla es un cuarto de kilo, el paso más chico que mostró Soriana, así que sazona la olla. El precio regular del huevo es $33.90, así que la bolsa de lenteja no cabe. La lista suma $198.23."],
-                300: ["Entran la avena y los chícharos.", "Tome avena algunas mañanas. Meta los chícharos a la olla, con los frijoles, el arroz, la lenteja y la cebolla. Hay otro kilo de tortilla. La col no cabe: el paso más chico en Soriana es 2 kg, o sea $51.80. Los alimentos suman $292.53."],
-                500: ["Una compra más grande para compartir.", "Más tortilla, frijol, arroz, huevo y plátano, un kilo de cebolla, chícharos, avena, aceite y pasta. Una olla alcanza para más de una persona. El paso de 2 kg de la col tampoco cabe. La lista suma $496.20, dentro de $500 MXN."]
+                100: ["Tortillas, frijoles, zanahoria y plátano.", "Cocine los frijoles con zanahoria y acompáñelos con tortilla. El plátano es la fruta. Un litro de aceite sale en $43 en estas observaciones, así que el aceite espera al siguiente monto. Esta lista suma $89.90, dentro de $100 MXN."],
+                200: ["Aceite, huevo, avena y un poco de cebolla.", "En el desayuno, huevo con tortilla, o avena y plátano. Después, frijoles con zanahoria y cebolla, cocidos con aceite. La cebolla es un cuarto de kilo a $67 el kilo. La lista suma $194.65."],
+                300: ["Jitomate, lenteja, arroz y chícharos en lata.", "La olla puede ser frijoles y arroz con jitomate, lenteja y chícharos. La col está en $31 el kilo y no cabe junto al arroz. Los alimentos suman $297.95."],
+                500: ["Una compra más grande para compartir.", "Otro kilo de tortilla, frijol y plátano, otra bolsa de avena, un cartón de 30 huevos, col y pasta. La cebolla se queda en un cuarto de kilo, porque un kilo completo son $67. La lista suma $498.85."]
             }
         }
     }
@@ -346,9 +352,9 @@ function paintList() {
     const country = prices.countries[region];
     const ids = country.tiers[String(budget)];
     const items = ids.map((id) => country.items[id]);
-    const totalCents = items.reduce((sum, item) => sum + cents(item.price), 0);
-    const total = formatMoney(totalCents);
-    const capCents = budget * 100;
+    const totalThousandths = items.reduce((sum, item) => sum + thousandths(item.price), 0);
+    const total = formatMoney(totalThousandths);
+    const capThousandths = budget * 1000;
     list.replaceChildren();
     items.forEach((item) => {
         const li = document.createElement("li");
@@ -374,7 +380,7 @@ function paintList() {
     figure.className = "total-figure";
     figure.textContent = "$" + total + " " + country.currency;
     totalEl.append(label, figure);
-    sumEl.textContent = totalCents === capCents ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
+    sumEl.textContent = totalThousandths === capThousandths ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
 }
 
 function render() {
