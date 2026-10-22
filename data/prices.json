@@ -1,5 +1,5 @@
 {
-  "about": "Mexico prices were read from Soriana search-result tiles on 2026-10-22. The current price is the clevertap sale price when that field was present, otherwise the single shelf price on the tile. A points price was not used. Canada and United States prices are the figures already stored in this project. No store page is on file for them, so they stay estimated. Bananas and cabbage are not given a Canada or United States price, because no store page could be read.",
+  "about": "Mexico prices were read from Soriana product pages on 2026-10-22. The price used is the regular shelf price. Where the page also showed a lower temporary price, that sale was not used. A points price was not used. Canada and United States prices are the figures already stored in this project. No store page is on file for them, so they stay estimated. Bananas and cabbage are not given a Canada or United States price, because no store page could be read.",
   "checked": "2026-10-22",
   "countries": {
     "CA": {
@@ -318,9 +318,10 @@
           },
           "product": "Tortilla de Maíz Blanca 1 Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz",
+          "sourceUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
           "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz"
         },
         "mx_tortilla_2": {
           "price": "27.80",
@@ -334,9 +335,10 @@
           },
           "product": "Tortilla de Maíz Blanca 1 Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz",
+          "sourceUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
           "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz"
         },
         "mx_frijol": {
           "price": "20.00",
@@ -350,9 +352,10 @@
           },
           "product": "Frijol Negro Precíssimo 908 g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=frijol%20negro",
+          "sourceUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
           "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=frijol%20negro"
         },
         "mx_frijol_2": {
           "price": "40.00",
@@ -367,16 +370,16 @@
           },
           "product": "Frijol Negro Precíssimo 908 g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=frijol%20negro",
+          "sourceUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
           "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=frijol%20negro"
         },
         "mx_zanahoria": {
-          "price": "14.80",
+          "price": "14.90",
           "estimated": false,
-          "priceKind": "sale",
-          "listPrice": "14.90",
-          "note": "Sale price on the tile. A $8.80 figure on the same tile was not used.",
+          "priceKind": "shelf",
+          "note": "Regular shelf price. The page also showed $14.80, and $8.80 with 50 points. Those were not used.",
           "name": {
             "en": "Carrots, 1 kg",
             "fr": "Carottes, 1 kg",
@@ -384,9 +387,11 @@
           },
           "product": "Zanahoria Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=zanahoria",
+          "sourceUrl": "https://www.soriana.com/zanahoria-kg/515.html",
           "productUrl": "https://www.soriana.com/zanahoria-kg/515.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=zanahoria",
+          "saleNotUsed": "14.80"
         },
         "mx_platano": {
           "price": "22.50",
@@ -399,9 +404,10 @@
           },
           "product": "Plátano Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=platano",
+          "sourceUrl": "https://www.soriana.com/platano-kg/456.html",
           "productUrl": "https://www.soriana.com/platano-kg/456.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=platano"
         },
         "mx_platano_2": {
           "price": "45.00",
@@ -415,9 +421,10 @@
           },
           "product": "Plátano Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=platano",
+          "sourceUrl": "https://www.soriana.com/platano-kg/456.html",
           "productUrl": "https://www.soriana.com/platano-kg/456.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=platano"
         },
         "mx_aceite_450": {
           "price": "21.00",
@@ -430,15 +437,15 @@
           },
           "product": "Aceite Comestible Vegetal Precíssimo 450 ml",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
+          "sourceUrl": "https://www.soriana.com/aceite-comestible-vegetal-precissimo-450-ml/11916741.html",
           "productUrl": "https://www.soriana.com/aceite-comestible-vegetal-precissimo-450-ml/11916741.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal"
         },
         "mx_aceite_850": {
-          "price": "28.50",
+          "price": "30.90",
           "estimated": false,
-          "priceKind": "sale",
-          "listPrice": "30.90",
+          "priceKind": "shelf",
           "name": {
             "en": "Vegetable oil, Precíssimo 850 ml",
             "fr": "Huile végétale Precíssimo, 850 ml",
@@ -446,15 +453,17 @@
           },
           "product": "Aceite Vegetal Precíssimo 850 ml",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
+          "sourceUrl": "https://www.soriana.com/aceite-vegetal-precissimo-850-ml/11711965.html",
           "productUrl": "https://www.soriana.com/aceite-vegetal-precissimo-850-ml/11711965.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
+          "saleNotUsed": "28.50",
+          "note": "Regular shelf price. The page also showed a temporary price of $28.50, which was not used."
         },
         "mx_huevo_12": {
-          "price": "25.00",
+          "price": "33.90",
           "estimated": false,
-          "priceKind": "sale",
-          "listPrice": "33.90",
+          "priceKind": "shelf",
           "name": {
             "en": "White eggs, Precíssimo 12",
             "fr": "Œufs blancs Precíssimo, 12",
@@ -462,15 +471,17 @@
           },
           "product": "Huevo Blanco Precíssimo 12 Piezas",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "sourceUrl": "https://www.soriana.com/huevo-blanco-precissimo-12-piezas/11842346.html",
           "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-12-piezas/11842346.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "saleNotUsed": "25.00",
+          "note": "Regular shelf price. The page also showed a temporary price of $25.00, which was not used."
         },
         "mx_huevo_30": {
-          "price": "55.90",
+          "price": "64.90",
           "estimated": false,
-          "priceKind": "sale",
-          "listPrice": "64.90",
+          "priceKind": "shelf",
           "name": {
             "en": "White eggs, Precíssimo 30",
             "fr": "Œufs blancs Precíssimo, 30",
@@ -478,9 +489,12 @@
           },
           "product": "Huevo Blanco Precíssimo 30 Piezas",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "sourceUrl": "https://www.soriana.com/huevo-blanco-precissimo-30-piezas/11834017.html",
           "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-30-piezas/11834017.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "saleNotUsed": "55.90",
+          "note": "Regular shelf price. The page also showed a temporary price of $55.90, which was not used."
         },
         "mx_arroz": {
           "price": "14.90",
@@ -493,9 +507,10 @@
           },
           "product": "Arroz Extra Precíssimo 900g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=arroz",
+          "sourceUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
           "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=arroz"
         },
         "mx_arroz_2": {
           "price": "29.80",
@@ -509,15 +524,15 @@
           },
           "product": "Arroz Extra Precíssimo 900g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=arroz",
+          "sourceUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
           "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=arroz"
         },
         "mx_jitomate": {
-          "price": "29.90",
+          "price": "39.90",
           "estimated": false,
-          "priceKind": "sale",
-          "listPrice": "39.90",
+          "priceKind": "shelf",
           "name": {
             "en": "Saladette tomatoes, 1 kg",
             "fr": "Tomates saladette (jitomate), 1 kg",
@@ -525,9 +540,12 @@
           },
           "product": "Jitomate Huaje Saladette Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=jitomate",
+          "sourceUrl": "https://www.soriana.com/jitomate-huaje-saladette-kg/480.html",
           "productUrl": "https://www.soriana.com/jitomate-huaje-saladette-kg/480.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=jitomate",
+          "saleNotUsed": "29.90",
+          "note": "Regular shelf price. The page also showed a temporary price of $29.90, which was not used."
         },
         "mx_cebolla_q": {
           "price": "17.23",
@@ -542,9 +560,10 @@
           },
           "product": "Cebolla blanca Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca",
+          "sourceUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
           "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca"
         },
         "mx_cebolla": {
           "price": "68.90",
@@ -557,9 +576,10 @@
           },
           "product": "Cebolla blanca Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca",
+          "sourceUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
           "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca"
         },
         "mx_lenteja": {
           "price": "15.00",
@@ -572,24 +592,29 @@
           },
           "product": "Lenteja Precíssimo 500g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=lenteja",
+          "sourceUrl": "https://www.soriana.com/lenteja-precissimo-500g/11712375.html",
           "productUrl": "https://www.soriana.com/lenteja-precissimo-500g/11712375.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=lenteja"
         },
         "mx_col": {
-          "price": "25.90",
+          "price": "51.80",
           "estimated": false,
-          "priceKind": "shelf",
+          "priceKind": "calculated",
           "name": {
-            "en": "Green cabbage, 1 kg",
-            "fr": "Chou blanc, 1 kg",
-            "es": "Col blanca, 1 kg"
+            "en": "Green cabbage, 2 kg (2 × $25.90/kg)",
+            "fr": "Chou blanc, 2 kg (2 × 25,90 $/kg)",
+            "es": "Col blanca, 2 kg (2 × $25.90/kg)"
           },
           "product": "Col Blanca Kg",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=repollo",
+          "sourceUrl": "https://www.soriana.com/col-blanca-kg/159.html",
           "productUrl": "https://www.soriana.com/col-blanca-kg/159.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=repollo",
+          "unitPrice": "25.90",
+          "calc": "2 kg × $25.90/kg. The product page minimum and step are 2.00 kg.",
+          "note": "Not on a list. $51.80 does not fit $300 or $500 after the regular shelf prices."
         },
         "mx_avena": {
           "price": "25.50",
@@ -602,9 +627,10 @@
           },
           "product": "Avena Integral Granvita 700 Gr Bolsa",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=avena",
+          "sourceUrl": "https://www.soriana.com/avena-integral-granvita-700-gr-bolsa/11321439.html",
           "productUrl": "https://www.soriana.com/avena-integral-granvita-700-gr-bolsa/11321439.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=avena"
         },
         "mx_chicharo": {
           "price": "39.90",
@@ -617,9 +643,10 @@
           },
           "product": "Chícharos Congelados Valley Foods Fresh 500 g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=chicharo%20congelado",
+          "sourceUrl": "https://www.soriana.com/chicharos-congelados-valley-foods-fresh-500-g/11900763.html",
           "productUrl": "https://www.soriana.com/chicharos-congelados-valley-foods-fresh-500-g/11900763.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=chicharo%20congelado"
         },
         "mx_pasta": {
           "price": "19.80",
@@ -632,16 +659,17 @@
           },
           "product": "Pasta Italpasta Spaghetti 500 g",
           "sourceName": "Soriana",
-          "sourceUrl": "https://www.soriana.com/buscar?q=pasta%20spaghetti",
+          "sourceUrl": "https://www.soriana.com/pasta-italpasta-spaghetti-500-g/11348173.html",
           "productUrl": "https://www.soriana.com/pasta-italpasta-spaghetti-500-g/11348173.html",
-          "checked": "2026-10-22"
+          "checked": "2026-10-22",
+          "searchUrl": "https://www.soriana.com/buscar?q=pasta%20spaghetti"
         }
       },
       "tiers": {
         "100": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450"],
-        "200": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja"],
-        "300": ["mx_tortilla_2", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja", "mx_col", "mx_avena", "mx_chicharo"],
-        "500": ["mx_tortilla_2", "mx_frijol_2", "mx_zanahoria", "mx_platano_2", "mx_aceite_850", "mx_huevo_12", "mx_huevo_30", "mx_arroz_2", "mx_jitomate", "mx_cebolla", "mx_lenteja", "mx_col", "mx_avena", "mx_chicharo", "mx_pasta"]
+        "200": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q"],
+        "300": ["mx_tortilla_2", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja", "mx_avena", "mx_chicharo"],
+        "500": ["mx_tortilla_2", "mx_frijol_2", "mx_zanahoria", "mx_platano_2", "mx_aceite_850", "mx_huevo_12", "mx_huevo_30", "mx_arroz_2", "mx_jitomate", "mx_cebolla", "mx_lenteja", "mx_avena", "mx_chicharo", "mx_pasta"]
       }
     }
   }

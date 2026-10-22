@@ -115,10 +115,10 @@ const COPY = {
                 30: ["Pasta gives you another dinner.", "Sauce, pasta, rice, or lentils, and always a vegetable in the pot. These foods add up to $30.00."]
             },
             MX: {
-                100: ["Tortillas, beans, carrots, banana, and oil.", "Cook the beans with carrot and a little oil, and eat them with tortillas. The banana is the fruit. This shop is $92.20, inside $100 MXN. Eggs and rice do not fit this amount, and the plate is still a real meal."],
-                200: ["A week of Mexican staples.", "Breakfast is eggs with tortilla and tomato. Later, beans or lentils with rice, onion, and carrot, plus a banana. The onion is a quarter kilogram, the smallest step Soriana listed, so it seasons the pot. The list is $194.23."],
-                300: ["Oats, cabbage, and frozen peas join the week.", "Have oats some mornings. Put cabbage and peas in the pot with the beans, rice, and onion. Another kilogram of tortillas is on the list. The foods add up to $299.43."],
-                500: ["A bigger shop you can share.", "More tortillas, beans, rice, eggs, and bananas, a full kilogram of onion, cabbage, peas, oats, oil, and pasta. Cook one pot and split it. The list is $491.70, inside $500 MXN."]
+                100: ["Tortillas, beans, carrots, banana, and oil.", "Cook the beans with carrot and a little oil, and eat them with tortillas. The banana is the fruit. This shop is $92.30, inside $100 MXN. Eggs and rice do not fit this amount, and the plate is still a real meal."],
+                200: ["A week of Mexican staples.", "Breakfast is eggs with tortilla and tomato. Later, beans with rice, onion, and carrot, plus a banana. The onion is a quarter kilogram, the smallest step Soriana listed, so it seasons the pot. The regular price of the eggs is $33.90, so the lentil bag does not fit this amount. The list is $198.23."],
+                300: ["Oats and frozen peas join the week.", "Have oats some mornings. Put the peas in the pot with the beans, rice, lentils, and onion. Another kilogram of tortillas is on the list. Cabbage does not fit: Soriana's smallest step is 2 kg, which is $51.80. The foods add up to $292.53."],
+                500: ["A bigger shop you can share.", "More tortillas, beans, rice, eggs, and bananas, a full kilogram of onion, peas, oats, oil, and pasta. Cook one pot and split it. Cabbage's 2 kg step does not fit this amount either. The list is $496.20, inside $500 MXN."]
             }
         }
     },
@@ -157,10 +157,10 @@ const COPY = {
                 30: ["Les pâtes donnent un autre souper.", "Sauce, pâtes, riz ou lentilles, et toujours un légume dans le chaudron. Ces aliments font 30,00 $."]
             },
             MX: {
-                100: ["Tortillas, haricots, carottes, bananes et huile.", "Cuisez les haricots avec la carotte et un peu d'huile, et mangez-les avec des tortillas. La banane est le fruit. Cette épicerie fait 92,20 $ MXN, sous 100 $. Les œufs et le riz n'entrent pas dans ce montant, et l'assiette reste un vrai repas."],
-                200: ["Une semaine d'aliments de base au Mexique.", "Au déjeuner, des œufs avec une tortilla et de la tomate. Ensuite, des haricots ou des lentilles avec du riz, de l'oignon et de la carotte, plus une banane. L'oignon est un quart de kilo, le plus petit pas affiché chez Soriana. La liste fait 194,23 $."],
-                300: ["L'avoine, le chou et les petits pois s'ajoutent.", "Prenez de l'avoine certains matins. Mettez le chou et les pois dans le chaudron avec les haricots, le riz et l'oignon. Un autre kilo de tortillas est sur la liste. Les aliments font 299,43 $."],
-                500: ["Une plus grosse épicerie à partager.", "Plus de tortillas, de haricots, de riz, d'œufs et de bananes, un kilo d'oignon, du chou, des pois, de l'avoine, de l'huile et des pâtes. Un seul chaudron peut nourrir plus d'une personne. La liste fait 491,70 $, sous 500 $ MXN."]
+                100: ["Tortillas, haricots, carottes, bananes et huile.", "Cuisez les haricots avec la carotte et un peu d'huile, et mangez-les avec des tortillas. La banane est le fruit. Cette épicerie fait 92,30 $ MXN, sous 100 $. Les œufs et le riz n'entrent pas dans ce montant, et l'assiette reste un vrai repas."],
+                200: ["Une semaine d'aliments de base au Mexique.", "Au déjeuner, des œufs avec une tortilla et de la tomate. Ensuite, des haricots avec du riz, de l'oignon et de la carotte, plus une banane. L'oignon est un quart de kilo, le plus petit pas affiché chez Soriana. Le prix régulier des œufs est 33,90 $, alors le sac de lentilles n'entre pas. La liste fait 198,23 $."],
+                300: ["L'avoine et les petits pois s'ajoutent.", "Prenez de l'avoine certains matins. Mettez les pois dans le chaudron avec les haricots, le riz, les lentilles et l'oignon. Un autre kilo de tortillas est sur la liste. Le chou n'entre pas : le plus petit pas chez Soriana est 2 kg, soit 51,80 $. Les aliments font 292,53 $."],
+                500: ["Une plus grosse épicerie à partager.", "Plus de tortillas, de haricots, de riz, d'œufs et de bananes, un kilo d'oignon, des pois, de l'avoine, de l'huile et des pâtes. Un seul chaudron peut nourrir plus d'une personne. Le pas de 2 kg du chou n'entre pas non plus. La liste fait 496,20 $, sous 500 $ MXN."]
             }
         }
     },
@@ -199,10 +199,10 @@ const COPY = {
                 30: ["La pasta da otra cena.", "Salsa, pasta, arroz o lentejas, y siempre una verdura en la olla. Estos alimentos suman $30.00."]
             },
             MX: {
-                100: ["Tortillas, frijoles, zanahoria, plátano y aceite.", "Cocine los frijoles con zanahoria y un poco de aceite, y acompáñelos con tortilla. El plátano es la fruta de la semana. Esta lista suma $92.20, dentro de $100 MXN. El huevo y el arroz no caben en este monto, y el plato igual es una comida."],
-                200: ["Una semana con la comida de todos los días.", "En el desayuno, huevo con tortilla y jitomate. Después, frijoles o lentejas con arroz, cebolla y zanahoria, y un plátano. La cebolla es un cuarto de kilo, el paso más chico que mostró Soriana, así que sazona la olla. La lista suma $194.23."],
-                300: ["Entran la avena, la col y los chícharos.", "Tome avena algunas mañanas. Meta la col y los chícharos a la olla, con los frijoles, el arroz y la cebolla. Hay otro kilo de tortilla. Los alimentos suman $299.43."],
-                500: ["Una compra más grande para compartir.", "Más tortilla, frijol, arroz, huevo y plátano, un kilo de cebolla, col, chícharos, avena, aceite y pasta. Una olla alcanza para más de una persona. La lista suma $491.70, dentro de $500 MXN."]
+                100: ["Tortillas, frijoles, zanahoria, plátano y aceite.", "Cocine los frijoles con zanahoria y un poco de aceite, y acompáñelos con tortilla. El plátano es la fruta de la semana. Esta lista suma $92.30, dentro de $100 MXN. El huevo y el arroz no caben en este monto, y el plato igual es una comida."],
+                200: ["Una semana con la comida de todos los días.", "En el desayuno, huevo con tortilla y jitomate. Después, frijoles con arroz, cebolla y zanahoria, y un plátano. La cebolla es un cuarto de kilo, el paso más chico que mostró Soriana, así que sazona la olla. El precio regular del huevo es $33.90, así que la bolsa de lenteja no cabe. La lista suma $198.23."],
+                300: ["Entran la avena y los chícharos.", "Tome avena algunas mañanas. Meta los chícharos a la olla, con los frijoles, el arroz, la lenteja y la cebolla. Hay otro kilo de tortilla. La col no cabe: el paso más chico en Soriana es 2 kg, o sea $51.80. Los alimentos suman $292.53."],
+                500: ["Una compra más grande para compartir.", "Más tortilla, frijol, arroz, huevo y plátano, un kilo de cebolla, chícharos, avena, aceite y pasta. Una olla alcanza para más de una persona. El paso de 2 kg de la col tampoco cabe. La lista suma $496.20, dentro de $500 MXN."]
             }
         }
     }
