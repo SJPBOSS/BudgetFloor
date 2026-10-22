@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Budget Floor — Cheap grocery lists for Canada</title>
-    <meta name="description" content="Free grocery lists with Canadian prices from $5 to $30. Rice, oats, eggs, beans, and a meal pattern for each amount. Also in French and Spanish.">
+    <title>Budget Floor — Eat well on $10 this week in Canada</title>
+    <meta name="description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
     <link rel="canonical" href="https://www.getbudgetfloor.com/">
     <meta name="theme-color" content="#000000">
     <meta property="og:site_name" content="Budget Floor">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.getbudgetfloor.com/">
-    <meta property="og:title" content="Budget Floor — Cheap grocery lists for Canada">
-    <meta property="og:description" content="Free grocery lists with Canadian prices from $5 to $30. Rice, oats, eggs, beans, and a meal pattern for each amount. Also in French and Spanish.">
+    <meta property="og:title" content="Budget Floor — Eat well on $10 this week in Canada">
+    <meta property="og:description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
     <meta property="og:image" content="https://www.getbudgetfloor.com/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Budget Floor: cheap grocery lists for Canada">
+    <meta property="og:image:alt" content="Budget Floor: eat well on a small grocery list">
     <meta property="og:locale" content="en_CA">
     <meta property="og:locale:alternate" content="fr_CA">
     <meta property="og:locale:alternate" content="es_MX">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Budget Floor — Cheap grocery lists for Canada">
-    <meta name="twitter:description" content="Free grocery lists with Canadian prices from $5 to $30. Rice, oats, eggs, beans, and a meal pattern for each amount. Also in French and Spanish.">
+    <meta name="twitter:title" content="Budget Floor — Eat well on $10 this week in Canada">
+    <meta name="twitter:description" content="A grocery list for Canada at $10. Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.">
     <meta name="twitter:image" content="https://www.getbudgetfloor.com/og.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -30,12 +30,17 @@
 
     <script>
         (function () {
-            var titles = {
-                en: "Budget Floor — Cheap grocery lists for Canada",
-                fr: "Budget Floor — Listes d'épicerie pas chères au Canada",
-                es: "Budget Floor — Listas de compras baratas en Canadá"
+            var BUDGETS = {
+                CA: [5, 10, 15, 20, 25, 30],
+                US: [5, 10, 15, 20, 25, 30],
+                MX: [100, 200, 300, 500]
             };
-            var htmlLang = { en: "en-CA", fr: "fr-CA", es: "es" };
+            var DEFAULTS = { CA: 10, US: 10, MX: 200 };
+            var WHERE = {
+                en: { CA: "in Canada", US: "in the United States", MX: "in Mexico" },
+                fr: { CA: "au Canada", US: "aux États-Unis", MX: "au Mexique" },
+                es: { CA: "en Canadá", US: "en Estados Unidos", MX: "en México" }
+            };
             function allowed(name, values) {
                 var q = new URLSearchParams(location.search).get(name);
                 if (q && values.indexOf(q) !== -1) return q;
@@ -45,10 +50,54 @@
                 } catch (e) {}
                 return null;
             }
+            function setContent(selector, value) {
+                var el = document.querySelector(selector);
+                if (el) el.setAttribute("content", value);
+            }
             var lang = allowed("lang", ["en", "fr", "es"]) || "en";
+            var region = allowed("region", ["CA", "US", "MX"]) || "CA";
+            var budgetQ = parseInt(new URLSearchParams(location.search).get("budget"), 10);
+            var budgetSaved = parseInt(allowed("budget", ["5", "10", "15", "20", "25", "30", "100", "200", "300", "500"]) || "", 10);
+            var budget = BUDGETS[region].indexOf(budgetQ) !== -1 ? budgetQ : (BUDGETS[region].indexOf(budgetSaved) !== -1 ? budgetSaved : DEFAULTS[region]);
             window.__bfLang = lang;
-            document.documentElement.lang = htmlLang[lang];
-            document.title = titles[lang];
+            window.__bfRegion = region;
+            window.__bfBudget = budget;
+            var where = WHERE[lang][region];
+            var title = lang === "fr"
+                ? "Budget Floor — Bien manger avec " + budget + " $ cette semaine " + where
+                : (lang === "es"
+                    ? "Budget Floor — Comer bien con $" + budget + " esta semana " + where
+                    : "Budget Floor — Eat well on $" + budget + " this week " + where);
+            var desc;
+            if (region === "MX") {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Tortillas, haricots, légumes, fruit et huile. Prix Soriana vérifiés le 22 oct. 2026."
+                    : (lang === "es"
+                        ? "Lista de compras en México por $" + budget + " MXN. Tortillas, frijoles, verdura, fruta y aceite. Precios de Soriana revisados el 22 de oct. de 2026."
+                        : "A grocery list for Mexico at $" + budget + " MXN. Tortillas, beans, vegetables, fruit, and oil. Soriana prices checked 22 Oct 2026.");
+            } else if (region === "US") {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie pour les États-Unis à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026."
+                    : (lang === "es"
+                        ? "Lista de compras para Estados Unidos por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026."
+                        : "A grocery list for the United States at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.");
+            } else {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie pour le Canada à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026."
+                    : (lang === "es"
+                        ? "Lista de compras para Canadá por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026."
+                        : "A grocery list for Canada at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.");
+            }
+            var htmlLang = lang === "fr" ? "fr-CA" : (lang === "es" ? (region === "MX" ? "es-MX" : "es") : (region === "US" ? "en-US" : (region === "MX" ? "en" : "en-CA")));
+            var ogLocale = htmlLang === "fr-CA" ? "fr_CA" : (htmlLang === "es-MX" || htmlLang === "es" ? "es_MX" : (htmlLang === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA")));
+            document.documentElement.lang = htmlLang;
+            document.title = title;
+            setContent('meta[name="description"]', desc);
+            setContent('meta[property="og:title"]', title);
+            setContent('meta[property="og:description"]', desc);
+            setContent('meta[property="og:locale"]', ogLocale);
+            setContent('meta[name="twitter:title"]', title);
+            setContent('meta[name="twitter:description"]', desc);
         })();
     </script>
 
@@ -84,6 +133,16 @@
             color: #000;
             box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
             border-color: #22d3ee;
+        }
+
+        .country-select {
+            min-height: 44px;
+            font-size: 16px;
+            background: transparent;
+            color: #fff;
+            border: 0;
+            font-weight: 800;
+            padding-right: 0.25rem;
         }
 
         .fade-up { animation: fadeUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
@@ -133,9 +192,9 @@
 
     <section class="site-guides" id="guides" aria-labelledby="guides-heading">
         <h2 id="guides-heading">Guides</h2>
-        <p lang="en">Budget Floor is a free grocery list for tight weeks. Choose $5, $10, $15, $20, $25, or $30 and the list above shows Canadian shelf prices for a small basket. A US price switch sits on the same page. The guides below are written out in English, French, and Spanish so each one has its own address.</p>
-        <p lang="fr">Budget Floor est une liste d'épicerie gratuite pour les semaines serrées. Les montants vont de 5 $ à 30 $, avec les prix canadiens enregistrés dans l'outil. Les guides en français ont chacun leur adresse.</p>
-        <p lang="es">Budget Floor es una lista de compras gratuita para las semanas ajustadas. Los montos van de $5 a $30, con los precios de Canadá guardados en la herramienta. Cada guía en español tiene su propia dirección.</p>
+        <p lang="en">Budget Floor is a free grocery list for tight weeks in Canada, the United States, and Mexico. Pick a country and an amount. Every list includes vegetables and cooking oil. Canada and United States prices are estimated, October 2026, because no store page is on file. Mexico prices were read on Soriana on 22 October 2026. The guides below keep their own addresses.</p>
+        <p lang="fr">Budget Floor est une liste d'épicerie gratuite pour les semaines serrées, au Canada, aux États-Unis et au Mexique. Chaque liste contient des légumes et de l'huile. Les prix canadiens et américains sont estimés (oct. 2026). Les prix du Mexique ont été lus chez Soriana le 22 oct. 2026. Les guides ont chacun leur adresse.</p>
+        <p lang="es">Budget Floor es una lista de compras gratuita para las semanas ajustadas, en Canadá, Estados Unidos y México. Cada lista incluye verdura y aceite. Los precios de Canadá y Estados Unidos son estimados (oct. 2026). Los de México se leyeron en Soriana el 22 de oct. de 2026. Cada guía tiene su propia dirección.</p>
         <div class="guide-cols">
             <div lang="en">
                 <h3>English</h3>
@@ -145,6 +204,8 @@
                     <li><a href="/grocery-budget-one-person-canada/">Grocery budget for one person</a></li>
                     <li><a href="/grocery-budget-family-canada/">Grocery budget for a family</a></li>
                     <li><a href="/cheap-meals-under-10-canada/">Cheap meals under $10</a></li>
+                    <li><a href="/cheap-grocery-list-mexico/">Cheap grocery list for Mexico</a></li>
+                    <li><a href="/budget-meal-plan-week-mexico/">Budget meal plan for a week in Mexico</a></li>
                 </ul>
             </div>
             <div lang="fr">
@@ -155,6 +216,8 @@
                     <li><a href="/fr/budget-epicerie-une-personne-canada/">Budget d'épicerie pour une personne</a></li>
                     <li><a href="/fr/budget-epicerie-famille-canada/">Budget d'épicerie pour une famille</a></li>
                     <li><a href="/fr/repas-pas-chers-canada/">Repas pas chers à moins de 10 $</a></li>
+                    <li><a href="/cheap-grocery-list-mexico/" hreflang="en" lang="en">Cheap grocery list for Mexico</a></li>
+                    <li><a href="/es/lista-de-compras-barata-mexico/" hreflang="es-MX" lang="es">Lista de compras barata en México</a></li>
                 </ul>
             </div>
             <div lang="es">
@@ -165,24 +228,34 @@
                     <li><a href="/es/presupuesto-comida-una-persona-canada/">Presupuesto de comida para una persona</a></li>
                     <li><a href="/es/presupuesto-comida-familia-canada/">Presupuesto de comida para una familia</a></li>
                     <li><a href="/es/comidas-baratas-canada/">Comidas baratas por menos de $10</a></li>
+                    <li><a href="/es/lista-de-compras-barata-mexico/">Lista de compras barata en México</a></li>
+                    <li><a href="/es/plan-comidas-semana-mexico/">Plan de comidas para una semana en México</a></li>
                 </ul>
             </div>
         </div>
         <h3>Food help</h3>
-        <p>If the basket is smaller than the week, these are real directories, not ads. Canada: <a href="https://www.211.ca/">211.ca</a> and <a href="https://foodbankscanada.ca/">Food Banks Canada</a>. Quebec: <a href="https://www.211qc.ca/">211 Québec</a> and <a href="https://banquesalimentaires.org/">Banques alimentaires du Québec</a>. United States: <a href="https://www.feedingamerica.org/find-your-local-foodbank">Feeding America</a>.</p>
+        <p>If the basket is smaller than the week, these are real directories. Canada: <a href="https://www.211.ca/">211.ca</a> and <a href="https://foodbankscanada.ca/">Food Banks Canada</a>. Quebec: <a href="https://www.211qc.ca/">211 Québec</a> and <a href="https://banquesalimentaires.org/">Banques alimentaires du Québec</a>. United States: <a href="https://www.feedingamerica.org/find-your-local-foodbank">Feeding America</a>. Mexico: <a href="https://bamx.org.mx/">Bancos de Alimentos de México</a> and the <a href="https://bamx.org.mx/donde-estamos/">map of food banks</a>.</p>
     </section>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const DOC_TITLES = {
-            en: "Budget Floor — Cheap grocery lists for Canada",
-            fr: "Budget Floor — Listes d'épicerie pas chères au Canada",
-            es: "Budget Floor — Listas de compras baratas en Canadá"
+        const BUDGETS = {
+            CA: [5, 10, 15, 20, 25, 30],
+            US: [5, 10, 15, 20, 25, 30],
+            MX: [100, 200, 300, 500]
         };
-
-        const HTML_LANG = { en: "en-CA", fr: "fr-CA", es: "es" };
-        const BUDGETS = [5, 10, 15, 20, 25, 30];
+        const DEFAULTS = { CA: 10, US: 10, MX: 200 };
+        const WHERE = {
+            en: { CA: "in Canada", US: "in the United States", MX: "in Mexico" },
+            fr: { CA: "au Canada", US: "aux États-Unis", MX: "au Mexique" },
+            es: { CA: "en Canadá", US: "en Estados Unidos", MX: "en México" }
+        };
+        const COUNTRY_NAME = {
+            en: { CA: "Canada", US: "United States", MX: "Mexico" },
+            fr: { CA: "Canada", US: "États-Unis", MX: "Mexique" },
+            es: { CA: "Canadá", US: "Estados Unidos", MX: "México" }
+        };
 
         function stored(name, values) {
             try {
@@ -198,243 +271,194 @@
             const regionQ = (params.get("region") || "").toUpperCase();
             const budgetQ = parseInt(params.get("budget"), 10);
             const lang = ["en", "fr", "es"].includes(langQ) ? langQ : (stored("lang", ["en", "fr", "es"]) || "en");
-            const region = ["CA", "US"].includes(regionQ) ? regionQ : (stored("region", ["CA", "US"]) || "CA");
-            const budgetSaved = parseInt(stored("budget", ["5", "10", "15", "20", "25", "30"]), 10);
-            const budget = BUDGETS.includes(budgetQ) ? budgetQ : (BUDGETS.includes(budgetSaved) ? budgetSaved : 10);
+            const region = ["CA", "US", "MX"].includes(regionQ) ? regionQ : (stored("region", ["CA", "US", "MX"]) || "CA");
+            const budgetSaved = parseInt(stored("budget", ["5", "10", "15", "20", "25", "30", "100", "200", "300", "500"]), 10);
+            const budget = BUDGETS[region].includes(budgetQ) ? budgetQ : (BUDGETS[region].includes(budgetSaved) ? budgetSaved : DEFAULTS[region]);
             return { lang, region, budget };
         }
 
-        const Icons = {
-            Cart: () => <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>,
-            Alert: () => <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>,
-            Globe: () => <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        };
+        function cents(value) {
+            return Math.round(Number(value) * 100);
+        }
 
-        const TRANSLATIONS = {
+        function formatMoney(totalCents) {
+            return (totalCents / 100).toFixed(2);
+        }
+
+        function pageTitle(lang, region, budget) {
+            const where = WHERE[lang][region];
+            if (lang === "fr") return "Budget Floor — Bien manger avec " + budget + " $ cette semaine " + where;
+            if (lang === "es") return "Budget Floor — Comer bien con $" + budget + " esta semana " + where;
+            return "Budget Floor — Eat well on $" + budget + " this week " + where;
+        }
+
+        function pageDesc(lang, region, budget) {
+            if (region === "MX") {
+                if (lang === "fr") return "Liste d'épicerie au Mexique pour " + budget + " $ MXN. Tortillas, haricots, légumes, fruit et huile. Prix Soriana vérifiés le 22 oct. 2026.";
+                if (lang === "es") return "Lista de compras en México por $" + budget + " MXN. Tortillas, frijoles, verdura, fruta y aceite. Precios de Soriana revisados el 22 de oct. de 2026.";
+                return "A grocery list for Mexico at $" + budget + " MXN. Tortillas, beans, vegetables, fruit, and oil. Soriana prices checked 22 Oct 2026.";
+            }
+            if (region === "US") {
+                if (lang === "fr") return "Liste d'épicerie pour les États-Unis à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026.";
+                if (lang === "es") return "Lista de compras para Estados Unidos por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026.";
+                return "A grocery list for the United States at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.";
+            }
+            if (lang === "fr") return "Liste d'épicerie pour le Canada à " + budget + " $. Légumes et huile dans chaque montant. Prix estimés, oct. 2026.";
+            if (lang === "es") return "Lista de compras para Canadá por $" + budget + ". Verdura y aceite en cada monto. Precios estimados, oct. 2026.";
+            return "A grocery list for Canada at $" + budget + ". Vegetables and cooking oil are in every amount. Prices are estimated, Oct 2026.";
+        }
+
+        function htmlLang(lang, region) {
+            if (lang === "fr") return "fr-CA";
+            if (lang === "es") return region === "MX" ? "es-MX" : "es";
+            if (region === "US") return "en-US";
+            if (region === "MX") return "en";
+            return "en-CA";
+        }
+
+        function setContent(selector, value) {
+            const el = document.querySelector(selector);
+            if (el) el.setAttribute("content", value);
+        }
+
+        const COPY = {
             en: {
-                title: "BUDGET FLOOR",
-                subtitle: "Survival Logistics",
-                selector: "Select Current Capital:",
-                shopping: "SHOPPING",
-                protocol: "The Instructions:",
-                reality: "Reality Check",
-                rescue: "Locate Nearest Aid",
-                footer: "Tactical Build",
-                guidesLink: "Guides",
                 language: "Language",
-                country: "Country prices",
-                unit: "$",
-                market: { CA: "CA market prices", US: "US market prices" },
-                aidName: { CA: "211.ca", US: "Feeding America" },
-                tiers: {
-                    5: { label: "THE FLOOR", protocol: "Small-bag starch focus. High water volume required to stretch satiety.", reality: "CRITICAL: Under $5 in 2026 is emergency territory. Seek aid." },
-                    10: { label: "FOUNDATION", protocol: "Oats for breakfast. Rice + 1 Egg for dinner. Beans for protein stability.", reality: "ENERGY STABLE: No luxury items. Just raw fuel." },
-                    15: { label: "THE BUFFER", protocol: "Adding healthy fats. Peanut butter acts as the caloric floor.", reality: "SECURE: Fat added for brain function." },
-                    20: { label: "THE PEAK", protocol: "Complete nutritional profile. Sauté greens into the grain base.", reality: "OPTIMAL: All major food groups represented." },
-                    25: { label: "EFFICIENCY", protocol: "Texture variety. Pasta rotation reduces the psychological burden.", reality: "VARIETY: Slower burnout rate." },
-                    30: { label: "TRANSITION", protocol: "Flavor aromatics added. Onions and spice restore dignity to the meal.", reality: "HUMAN: Cooking, not just feeding." }
+                country: "Country",
+                choose: "Choose an amount",
+                list: "The list",
+                week: "This week",
+                total: "List total",
+                guides: "Guides",
+                help: "If this shop is still too much, find food help",
+                equal: (total, cur) => "These foods add up to $" + total + " " + cur + ".",
+                under: (total, cur, budget) => "These foods add up to $" + total + " " + cur + ", inside the $" + budget + " cap.",
+                source: {
+                    CA: "Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.",
+                    US: "Estimated, Oct 2026. Vegetables and oil are in every list. Bananas and cabbage are not priced, because no store page could be read.",
+                    MX: "Soriana, checked 22 Oct 2026."
+                },
+                heading: (budget, region) => "Eat well on $" + budget + " this week " + WHERE.en[region],
+                meals: {
+                    CA: {
+                        5: ["A pot of lentils and carrots.", "Cook the lentils with the carrots and a spoon of oil. That pot is dinner, and a warm bowl works for breakfast too. Fruit is not on this $5 list: there is no banana price on file for Canada."],
+                        10: ["Oats in the morning, beans and carrots at night.", "Put an egg on the beans and carrots, cooked in a little oil. Six eggs across the week means the egg joins the plate. It is not the whole dinner."],
+                        15: ["The same plates, plus spinach and bread.", "Toast sits beside the oats. Dinner is beans, carrots, and frozen spinach in oil, with an egg on some nights. The foods add up to $13.50, inside the $15 cap."],
+                        20: ["Rice, peanut butter, and a vegetable every night.", "Breakfast is oats, or peanut butter on bread. Dinner is rice with beans, carrots, and spinach, cooked in oil. Add an egg when you want one. The plate is more than rice alone."],
+                        25: ["Onion and a pasta night.", "Keep the oats, the eggs, and the vegetables. Cook onion into the pot, and use one night of pasta with spinach so the week is not the same bowl. This shop is $24.25."],
+                        30: ["Enough foods to rotate the week.", "Oats, rice, pasta, lentils, eggs, beans, peanut butter, bread, carrots, spinach, onions, oil, sauce, and salt. One night is a lentil and carrot stew. Another is rice and beans with spinach. Another is pasta with sauce and onion."]
+                    },
+                    US: {
+                        5: ["Beans, carrots, and oil.", "Cook them as a small stew. The lines add up to $4.00, inside a $5 cap. There is no banana price on file for the United States."],
+                        10: ["Oats in the morning, beans and carrots at night.", "Dinner is beans and carrots in oil, with an egg on the plate. A dozen eggs covers the week. The egg is not the whole meal."],
+                        15: ["Frozen vegetables and bread join the pot.", "Toast goes with breakfast. Stir the frozen vegetables into the beans. This list is $14.00, inside the $15 cap."],
+                        20: ["Peanut butter and onions.", "Breakfast can be oats or peanut butter on bread. Dinner is beans, carrots, frozen vegetables, and onion in oil, with an egg beside them."],
+                        25: ["Rice one night, lentils the next.", "Both nights keep the carrots or the frozen vegetables, plus onion and oil. This list is $24.50."],
+                        30: ["Pasta gives you another dinner.", "Sauce, pasta, rice, or lentils, and always a vegetable in the pot. These foods add up to $30.00."]
+                    },
+                    MX: {
+                        100: ["Tortillas, beans, carrots, banana, and oil.", "Cook the beans with carrot and a little oil, and eat them with tortillas. The banana is the fruit. This shop is $92.20, inside $100 MXN. Eggs and rice do not fit this amount, and the plate is still a real meal."],
+                        200: ["A week of Mexican staples.", "Breakfast is eggs with tortilla and tomato. Later, beans or lentils with rice, onion, and carrot, plus a banana. The onion is a quarter kilogram, the smallest step Soriana listed, so it seasons the pot. The list is $194.23."],
+                        300: ["Oats, cabbage, and frozen peas join the week.", "Have oats some mornings. Put cabbage and peas in the pot with the beans, rice, and onion. Another kilogram of tortillas is on the list. The foods add up to $299.43."],
+                        500: ["A bigger shop you can share.", "More tortillas, beans, rice, eggs, and bananas, a full kilogram of onion, cabbage, peas, oats, oil, and pasta. Cook one pot and split it. The list is $491.70, inside $500 MXN."]
+                    }
                 }
             },
             fr: {
-                title: "SEUIL CRITIQUE",
-                subtitle: "Logistique de Survie",
-                selector: "Sélectionnez le Capital :",
-                shopping: "ACHATS",
-                protocol: "Les Instructions :",
-                reality: "Réalité",
-                rescue: "Trouver de l'aide",
-                footer: "Version Tactique",
-                guidesLink: "Guides",
                 language: "Langue",
-                country: "Prix selon le pays",
-                unit: "$",
-                market: { CA: "Prix au Canada", US: "Prix aux États-Unis" },
-                aidName: { CA: "211.ca", US: "Feeding America" },
-                tiers: {
-                    5: { label: "LE SOL", protocol: "Focus sur l'amidon en petit format. Eau en volume pour couper la faim.", reality: "CRITIQUE : Moins de 5$ en 2026 nécessite une aide externe." },
-                    10: { label: "FONDATION", protocol: "Avoine le matin. Riz + 1 œuf le soir. Haricots pour les protéines.", reality: "STABLE : Juste du carburant." },
-                    15: { label: "LE TAMPON", protocol: "Ajout de graisses saines. Le beurre d'arachide est votre base.", reality: "SÉCURISÉ : Gras ajouté pour le cerveau." },
-                    20: { label: "LE SOMMET", protocol: "Profil nutritionnel complet. Faites sauter les légumes.", reality: "OPTIMAL : Groupes alimentaires couverts." },
-                    25: { label: "EFFICACITÉ", protocol: "Rotation riz/pâtes pour éviter l'épuisement mental.", reality: "VARIÉTÉ : Charge mentale réduite." },
-                    30: { label: "TRANSITION", protocol: "Ajout d'aromates. Les oignons redonnent de la dignité au repas.", reality: "HUMAIN : On cuisine, on ne se nourrit plus seulement." }
+                country: "Pays",
+                choose: "Choisissez un montant",
+                list: "La liste",
+                week: "Cette semaine",
+                total: "Total de la liste",
+                guides: "Guides",
+                help: "Si cette épicerie est encore trop juste, trouvez de l'aide",
+                equal: (total, cur) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + ".",
+                under: (total, cur, budget) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + ", sous le plafond de " + budget + " $.",
+                source: {
+                    CA: "Estimé, oct. 2026. Il y a des légumes et de l'huile dans chaque liste. Les bananes et le chou n'ont pas de prix, parce qu'aucune page de magasin n'a pu être lue.",
+                    US: "Estimé, oct. 2026. Il y a des légumes et de l'huile dans chaque liste. Les bananes et le chou n'ont pas de prix, parce qu'aucune page de magasin n'a pu être lue.",
+                    MX: "Soriana, vérifié le 22 oct. 2026."
+                },
+                heading: (budget, region) => "Bien manger avec " + budget + " $ cette semaine " + WHERE.fr[region],
+                meals: {
+                    CA: {
+                        5: ["Un chaudron de lentilles et de carottes.", "Faites cuire les lentilles avec les carottes et un peu d'huile. Ce plat sert de souper, et un bol chaud convient au déjeuner. Il n'y a pas de fruit sur cette liste de 5 $ : aucun prix de banane n'est au dossier pour le Canada."],
+                        10: ["Du gruau le matin, des haricots et des carottes le soir.", "Déposez un œuf sur les haricots et les carottes, cuits avec un peu d'huile. Six œufs pour la semaine, c'est un œuf dans l'assiette, pas un souper composé d'un seul œuf."],
+                        15: ["Les mêmes assiettes, plus des épinards et du pain.", "Une rôtie accompagne le gruau. Le souper, c'est haricots, carottes et épinards surgelés dans l'huile, avec un œuf certains soirs. Les aliments font 13,50 $, sous le plafond de 15 $."],
+                        20: ["Du riz, du beurre d'arachide, et un légume chaque soir.", "Le déjeuner, c'est du gruau ou du beurre d'arachide sur du pain. Le souper, c'est du riz avec des haricots, des carottes et des épinards, cuits dans l'huile. Ajoutez un œuf si vous en voulez un. L'assiette n'est pas que du riz."],
+                        25: ["De l'oignon et une soirée de pâtes.", "Gardez le gruau, les œufs et les légumes. Faites revenir l'oignon dans le chaudron, et prévoyez un soir de pâtes avec des épinards. Cette épicerie fait 24,25 $."],
+                        30: ["Assez d'aliments pour varier la semaine.", "Gruau, riz, pâtes, lentilles, œufs, haricots, beurre d'arachide, pain, carottes, épinards, oignons, huile, sauce et sel. Un soir, un ragoût de lentilles et de carottes. Un autre, du riz et des haricots avec des épinards. Un autre, des pâtes avec la sauce et de l'oignon."]
+                    },
+                    US: {
+                        5: ["Haricots, carottes et huile.", "Cuisinez un petit ragoût. Les lignes font 4,00 $, sous un plafond de 5 $. Aucun prix de banane n'est au dossier pour les États-Unis."],
+                        10: ["Du gruau le matin, des haricots et des carottes le soir.", "Le souper, c'est des haricots et des carottes dans l'huile, avec un œuf dans l'assiette. Une douzaine d'œufs couvre la semaine. L'œuf n'est pas tout le repas."],
+                        15: ["Des légumes surgelés et du pain s'ajoutent.", "Une rôtie avec le déjeuner. Mélangez les légumes surgelés aux haricots. Cette liste fait 14,00 $, sous 15 $."],
+                        20: ["Du beurre d'arachide et des oignons.", "Le déjeuner peut être du gruau ou du beurre d'arachide sur du pain. Le souper, c'est haricots, carottes, légumes surgelés et oignon dans l'huile, avec un œuf à côté."],
+                        25: ["Du riz un soir, des lentilles le suivant.", "Les deux soirs gardent les carottes ou les légumes surgelés, plus l'oignon et l'huile. Cette liste fait 24,50 $."],
+                        30: ["Les pâtes donnent un autre souper.", "Sauce, pâtes, riz ou lentilles, et toujours un légume dans le chaudron. Ces aliments font 30,00 $."]
+                    },
+                    MX: {
+                        100: ["Tortillas, haricots, carottes, bananes et huile.", "Cuisez les haricots avec la carotte et un peu d'huile, et mangez-les avec des tortillas. La banane est le fruit. Cette épicerie fait 92,20 $ MXN, sous 100 $. Les œufs et le riz n'entrent pas dans ce montant, et l'assiette reste un vrai repas."],
+                        200: ["Une semaine d'aliments de base au Mexique.", "Au déjeuner, des œufs avec une tortilla et de la tomate. Ensuite, des haricots ou des lentilles avec du riz, de l'oignon et de la carotte, plus une banane. L'oignon est un quart de kilo, le plus petit pas affiché chez Soriana. La liste fait 194,23 $."],
+                        300: ["L'avoine, le chou et les petits pois s'ajoutent.", "Prenez de l'avoine certains matins. Mettez le chou et les pois dans le chaudron avec les haricots, le riz et l'oignon. Un autre kilo de tortillas est sur la liste. Les aliments font 299,43 $."],
+                        500: ["Une plus grosse épicerie à partager.", "Plus de tortillas, de haricots, de riz, d'œufs et de bananes, un kilo d'oignon, du chou, des pois, de l'avoine, de l'huile et des pâtes. Un seul chaudron peut nourrir plus d'une personne. La liste fait 491,70 $, sous 500 $ MXN."]
+                    }
                 }
             },
             es: {
-                title: "PRESUPUESTO",
-                subtitle: "Logística de Supervivencia",
-                selector: "Seleccione Capital Actual:",
-                shopping: "COMPRAS",
-                protocol: "Instrucciones:",
-                reality: "Realidad",
-                rescue: "Buscar Ayuda",
-                footer: "Versión Táctica",
-                guidesLink: "Guías",
                 language: "Idioma",
-                country: "Precios del país",
-                unit: "$",
-                market: { CA: "Precios de Canadá", US: "Precios de EE. UU." },
-                aidName: { CA: "211.ca", US: "Feeding America" },
-                tiers: {
-                    5: { label: "EL SUELO", protocol: "Prioriza el almidón, en bolsas pequeñas. Mucha agua para saciar.", reality: "CRÍTICO: Menos de $5 requiere ayuda externa." },
-                    10: { label: "LA BASE", protocol: "Avena por la mañana. Arroz + 1 huevo por la noche. Frijoles.", reality: "ESTABLE: Solo combustible." },
-                    15: { label: "EL COLCHÓN", protocol: "Grasas saludables. Mantequilla de maní para calorías.", reality: "SEGURO: Grasa para el cerebro." },
-                    20: { label: "LA CIMA", protocol: "Perfil nutricional completo. Verduras con el arroz.", reality: "ÓPTIMO: Nutrición básica alcanzada." },
-                    25: { label: "EFICIENCIA", protocol: "Alternar arroz y pasta. Harina para galletas.", reality: "VARIEDAD: Menos carga mental." },
-                    30: { label: "TRANSICIÓN", protocol: "Cebollas y picante. Recuperando la dignidad al comer.", reality: "HUMANO: Ya no solo sobrevive, cocina." }
+                country: "País",
+                choose: "Elija un monto",
+                list: "La lista",
+                week: "Esta semana",
+                total: "Total de la lista",
+                guides: "Guías",
+                help: "Si esta compra todavía no alcanza, busque ayuda",
+                equal: (total, cur) => "Estos alimentos suman $" + total + " " + cur + ".",
+                under: (total, cur, budget) => "Estos alimentos suman $" + total + " " + cur + ", dentro del tope de $" + budget + ".",
+                source: {
+                    CA: "Estimado, oct. 2026. Hay verdura y aceite en cada lista. El plátano y la col no tienen precio, porque no se pudo leer una página de tienda.",
+                    US: "Estimado, oct. 2026. Hay verdura y aceite en cada lista. El plátano y la col no tienen precio, porque no se pudo leer una página de tienda.",
+                    MX: "Soriana, revisado el 22 de oct. de 2026."
+                },
+                heading: (budget, region) => "Comer bien con $" + budget + " esta semana " + WHERE.es[region],
+                meals: {
+                    CA: {
+                        5: ["Una olla de lentejas y zanahorias.", "Cocine las lentejas con las zanahorias y un poco de aceite. Esa olla es la cena, y un tazón caliente sirve de desayuno. No hay fruta en esta lista de $5: no hay un precio de plátano registrado para Canadá."],
+                        10: ["Avena en la mañana, frijoles y zanahorias en la noche.", "Ponga un huevo sobre los frijoles y las zanahorias, cocidos con un poco de aceite. Seis huevos en la semana significa que el huevo acompaña el plato. No es toda la cena."],
+                        15: ["Los mismos platos, más espinaca y pan.", "Una tostada acompaña la avena. La cena es frijoles, zanahorias y espinaca congelada con aceite, y un huevo algunas noches. Los alimentos suman $13.50, dentro de los $15."],
+                        20: ["Arroz, mantequilla de maní y una verdura cada noche.", "El desayuno es avena, o mantequilla de maní en pan. La cena es arroz con frijoles, zanahorias y espinaca, cocidos con aceite. Agregue un huevo si quiere. El plato es más que arroz."],
+                        25: ["Cebolla y una noche de pasta.", "Siga con la avena, los huevos y las verduras. Cocine la cebolla en la olla, y deje una noche de pasta con espinaca. Esta compra suma $24.25."],
+                        30: ["Bastantes alimentos para variar la semana.", "Avena, arroz, pasta, lentejas, huevos, frijoles, mantequilla de maní, pan, zanahorias, espinaca, cebollas, aceite, salsa y sal. Una noche, lentejas con zanahoria. Otra, arroz y frijoles con espinaca. Otra, pasta con salsa y cebolla."]
+                    },
+                    US: {
+                        5: ["Frijoles, zanahorias y aceite.", "Cocínelos como un guiso corto. Las líneas suman $4.00, dentro de un tope de $5. No hay un precio de plátano registrado para Estados Unidos."],
+                        10: ["Avena en la mañana, frijoles y zanahorias en la noche.", "La cena es frijoles y zanahorias con aceite, y un huevo en el plato. Una docena de huevos cubre la semana. El huevo no es toda la comida."],
+                        15: ["Entran la verdura congelada y el pan.", "Una tostada con el desayuno. Mezcle la verdura congelada con los frijoles. Esta lista suma $14.00, dentro de los $15."],
+                        20: ["Mantequilla de maní y cebollas.", "El desayuno puede ser avena o mantequilla de maní en pan. La cena es frijoles, zanahorias, verdura congelada y cebolla con aceite, y un huevo al lado."],
+                        25: ["Arroz una noche, lentejas la siguiente.", "Las dos noches conservan las zanahorias o la verdura congelada, más cebolla y aceite. Esta lista suma $24.50."],
+                        30: ["La pasta da otra cena.", "Salsa, pasta, arroz o lentejas, y siempre una verdura en la olla. Estos alimentos suman $30.00."]
+                    },
+                    MX: {
+                        100: ["Tortillas, frijoles, zanahoria, plátano y aceite.", "Cocine los frijoles con zanahoria y un poco de aceite, y acompáñelos con tortilla. El plátano es la fruta de la semana. Esta lista suma $92.20, dentro de $100 MXN. El huevo y el arroz no caben en este monto, y el plato igual es una comida."],
+                        200: ["Una semana con la comida de todos los días.", "En el desayuno, huevo con tortilla y jitomate. Después, frijoles o lentejas con arroz, cebolla y zanahoria, y un plátano. La cebolla es un cuarto de kilo, el paso más chico que mostró Soriana, así que sazona la olla. La lista suma $194.23."],
+                        300: ["Entran la avena, la col y los chícharos.", "Tome avena algunas mañanas. Meta la col y los chícharos a la olla, con los frijoles, el arroz y la cebolla. Hay otro kilo de tortilla. Los alimentos suman $299.43."],
+                        500: ["Una compra más grande para compartir.", "Más tortilla, frijol, arroz, huevo y plátano, un kilo de cebolla, col, chícharos, avena, aceite y pasta. Una olla alcanza para más de una persona. La lista suma $491.70, dentro de $500 MXN."]
+                    }
                 }
             }
         };
 
-        const DATA_MAP = {
-            CA: {
-                5: [{ k: "ca_rice_nn", cost: "2.75" }, { k: "ca_lentils", cost: "2.25" }],
-                10: [{ k: "ca_rice", cost: "2.75" }, { k: "ca_oats", cost: "3.25" }, { k: "ca_eggs", cost: "2.50" }, { k: "ca_beans", cost: "1.50" }],
-                15: [{ k: "base10", cost: "10.00" }, { k: "ca_pb", cost: "3.75" }, { k: "ca_bread", cost: "1.25" }],
-                20: [{ k: "base15", cost: "15.00" }, { k: "ca_spinach", cost: "2.25" }, { k: "ca_carrots", cost: "1.75" }, { k: "ca_oil", cost: "1.00" }],
-                25: [{ k: "base20", cost: "20.00" }, { k: "ca_pasta", cost: "1.75" }, { k: "ca_sauce", cost: "1.75" }, { k: "ca_flour", cost: "1.50" }],
-                30: [{ k: "base25", cost: "25.00" }, { k: "ca_onions", cost: "2.50" }, { k: "ca_salt", cost: "1.50" }, { k: "ca_hot", cost: "1.00" }]
-            },
-            US: {
-                5: [{ k: "us_rice", cost: "2.50" }, { k: "us_lentils", cost: "2.50" }],
-                10: [{ k: "us_rice2", cost: "2.50" }, { k: "us_oats", cost: "2.50" }, { k: "us_eggs", cost: "3.50" }, { k: "us_beans", cost: "1.00" }],
-                15: [{ k: "base10", cost: "9.50" }, { k: "us_pb", cost: "3.50" }, { k: "us_bread", cost: "2.00" }],
-                20: [{ k: "base15", cost: "15.00" }, { k: "us_veg", cost: "2.00" }, { k: "us_carrots", cost: "2.00" }, { k: "us_oil", cost: "1.00" }],
-                25: [{ k: "base20", cost: "20.00" }, { k: "us_pasta", cost: "1.50" }, { k: "us_sauce", cost: "2.00" }, { k: "us_flour", cost: "1.50" }],
-                30: [{ k: "base25", cost: "25.00" }, { k: "us_onions", cost: "2.00" }, { k: "us_salt", cost: "2.00" }, { k: "us_hot", cost: "1.00" }]
-            }
-        };
-
-        const ITEM_LABELS = {
-            en: {
-                ca_rice_nn: "900g Rice (No Name)",
-                ca_lentils: "450g Dried Lentils",
-                ca_rice: "900g Rice",
-                ca_oats: "1kg Oats",
-                ca_eggs: "6 Large Eggs",
-                ca_beans: "Can of Beans",
-                ca_pb: "Peanut Butter (500g)",
-                ca_bread: "White Bread",
-                ca_spinach: "Frozen Spinach",
-                ca_carrots: "2kg Carrots",
-                ca_oil: "Veg Oil (500ml)",
-                ca_pasta: "900g Pasta",
-                ca_sauce: "Pasta Sauce",
-                ca_flour: "Flour (1kg)",
-                ca_onions: "Bag of Onions",
-                ca_salt: "Salt/Pepper",
-                ca_hot: "Hot Sauce",
-                base10: "Tier $10 Base",
-                base15: "Tier $15 Base",
-                base20: "Tier $20 Base",
-                base25: "Tier $25 Base",
-                us_rice: "2lb White Rice",
-                us_lentils: "1lb Lentils",
-                us_rice2: "2lb Rice",
-                us_oats: "18oz Oats",
-                us_eggs: "12 Eggs",
-                us_beans: "Black Beans (Can)",
-                us_pb: "Peanut Butter",
-                us_bread: "Sliced Bread",
-                us_veg: "Frozen Veg",
-                us_carrots: "2lb Carrots",
-                us_oil: "Veg Oil",
-                us_pasta: "1lb Pasta",
-                us_sauce: "Marinara Sauce",
-                us_flour: "Flour",
-                us_onions: "Yellow Onions",
-                us_salt: "Seasoning Salt",
-                us_hot: "Hot Sauce"
-            },
-            fr: {
-                ca_rice_nn: "Riz 900 g (No Name)",
-                ca_lentils: "Lentilles sèches 450 g",
-                ca_rice: "Riz 900 g",
-                ca_oats: "Gruau 1 kg",
-                ca_eggs: "6 gros œufs",
-                ca_beans: "Canne de haricots",
-                ca_pb: "Beurre d'arachide (500 g)",
-                ca_bread: "Pain blanc",
-                ca_spinach: "Épinards surgelés",
-                ca_carrots: "Carottes 2 kg",
-                ca_oil: "Huile végétale (500 ml)",
-                ca_pasta: "Pâtes 900 g",
-                ca_sauce: "Sauce à spaghetti",
-                ca_flour: "Farine (1 kg)",
-                ca_onions: "Sac d'oignons",
-                ca_salt: "Sel et poivre",
-                ca_hot: "Sauce piquante",
-                base10: "Base du palier de 10 $",
-                base15: "Base du palier de 15 $",
-                base20: "Base du palier de 20 $",
-                base25: "Base du palier de 25 $",
-                us_rice: "Riz blanc 2 lb",
-                us_lentils: "Lentilles 1 lb",
-                us_rice2: "Riz 2 lb",
-                us_oats: "Gruau 18 oz",
-                us_eggs: "12 œufs",
-                us_beans: "Haricots noirs (canne)",
-                us_pb: "Beurre d'arachide",
-                us_bread: "Pain tranché",
-                us_veg: "Légumes surgelés",
-                us_carrots: "Carottes 2 lb",
-                us_oil: "Huile végétale",
-                us_pasta: "Pâtes 1 lb",
-                us_sauce: "Sauce marinara",
-                us_flour: "Farine",
-                us_onions: "Oignons jaunes",
-                us_salt: "Sel assaisonné",
-                us_hot: "Sauce piquante"
-            },
-            es: {
-                ca_rice_nn: "Arroz 900 g (No Name)",
-                ca_lentils: "Lentejas secas 450 g",
-                ca_rice: "Arroz 900 g",
-                ca_oats: "Avena 1 kg",
-                ca_eggs: "6 huevos grandes",
-                ca_beans: "Lata de frijoles",
-                ca_pb: "Mantequilla de maní (500 g)",
-                ca_bread: "Pan blanco",
-                ca_spinach: "Espinaca congelada",
-                ca_carrots: "Zanahorias 2 kg",
-                ca_oil: "Aceite vegetal (500 ml)",
-                ca_pasta: "Pasta 900 g",
-                ca_sauce: "Salsa para pasta",
-                ca_flour: "Harina (1 kg)",
-                ca_onions: "Bolsa de cebollas",
-                ca_salt: "Sal y pimienta",
-                ca_hot: "Salsa picante",
-                base10: "Base del nivel de $10",
-                base15: "Base del nivel de $15",
-                base20: "Base del nivel de $20",
-                base25: "Base del nivel de $25",
-                us_rice: "Arroz blanco 2 lb",
-                us_lentils: "Lentejas 1 lb",
-                us_rice2: "Arroz 2 lb",
-                us_oats: "Avena 18 oz",
-                us_eggs: "12 huevos",
-                us_beans: "Frijoles negros (lata)",
-                us_pb: "Mantequilla de maní",
-                us_bread: "Pan de molde",
-                us_veg: "Verdura congelada",
-                us_carrots: "Zanahorias 2 lb",
-                us_oil: "Aceite vegetal",
-                us_pasta: "Pasta 1 lb",
-                us_sauce: "Salsa marinara",
-                us_flour: "Harina",
-                us_onions: "Cebollas amarillas",
-                us_salt: "Sal sazonada",
-                us_hot: "Salsa picante"
-            }
-        };
-
-        const AID_URL = {
-            CA: "https://www.211.ca/",
-            US: "https://www.feedingamerica.org/find-your-local-foodbank"
+        const AID = {
+            CA: { href: "https://www.211.ca/", name: "211.ca" },
+            US: { href: "https://www.feedingamerica.org/find-your-local-foodbank", name: "Feeding America" },
+            MX: { href: "https://bamx.org.mx/donde-estamos/", name: "Bancos de Alimentos de México" }
         };
 
         const LANG_ATTR = { en: "en", fr: "fr", es: "es" };
 
-        const App = () => {
+        const App = ({ prices }) => {
             const start = initialState();
             const [lang, setLang] = useState(start.lang);
             const [region, setRegion] = useState(start.region);
@@ -451,73 +475,93 @@
                 else url.searchParams.set("lang", lang);
                 if (region === "CA") url.searchParams.delete("region");
                 else url.searchParams.set("region", region);
-                if (budget === 10) url.searchParams.delete("budget");
+                if (budget === DEFAULTS[region]) url.searchParams.delete("budget");
                 else url.searchParams.set("budget", String(budget));
                 const next = url.pathname + url.search + url.hash;
                 const current = location.pathname + location.search + location.hash;
                 if (next !== current) history.replaceState(null, "", next);
-                document.documentElement.lang = HTML_LANG[lang];
-                document.title = DOC_TITLES[lang];
+                const title = pageTitle(lang, region, budget);
+                const desc = pageDesc(lang, region, budget);
+                const langTag = htmlLang(lang, region);
+                document.documentElement.lang = langTag;
+                document.title = title;
+                setContent('meta[name="description"]', desc);
+                setContent('meta[property="og:title"]', title);
+                setContent('meta[property="og:description"]', desc);
+                setContent('meta[name="twitter:title"]', title);
+                setContent('meta[name="twitter:description"]', desc);
+                const ogLocale = langTag === "fr-CA" ? "fr_CA" : (langTag === "es" || langTag === "es-MX" ? "es_MX" : (langTag === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA")));
+                setContent('meta[property="og:locale"]', ogLocale);
             }, [lang, region, budget]);
 
-            const t = TRANSLATIONS[lang];
-            const tierInfo = t.tiers[budget];
-            const shoppingItems = DATA_MAP[region][budget];
+            const t = COPY[lang];
+            const country = prices.countries[region];
+            const ids = country.tiers[String(budget)];
+            const items = ids.map((id) => country.items[id]);
+            const totalCents = items.reduce((sum, item) => sum + cents(item.price), 0);
+            const total = formatMoney(totalCents);
+            const capCents = budget * 100;
+            const meal = t.meals[region][budget];
+            const aid = AID[region];
+            const budgets = country.budgets;
+            const sumLine = totalCents === capCents ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
+
+            function chooseRegion(next) {
+                setRegion(next);
+                if (!BUDGETS[next].includes(budget)) setBudget(DEFAULTS[next]);
+            }
 
             return (
                 <div className="min-h-screen flex flex-col p-4 sm:p-6 md:p-12 relative">
                     <div className="flex flex-wrap gap-3 mb-6 z-50">
                         <div className="flex bg-zinc-900 rounded-xl p-1 border border-white/10" role="group" aria-label={t.language}>
-                            {["en", "fr", "es"].map(l => (
+                            {["en", "fr", "es"].map((code) => (
                                 <button
-                                    key={l}
+                                    key={code}
                                     type="button"
-                                    lang={LANG_ATTR[l]}
-                                    aria-pressed={lang === l}
-                                    onClick={() => setLang(l)}
-                                    className={`min-h-[44px] min-w-[44px] px-4 py-2 rounded-lg text-xs font-black uppercase transition-colors ${lang === l ? "bg-white text-black" : "text-zinc-300 hover:text-white"}`}
+                                    lang={LANG_ATTR[code]}
+                                    aria-pressed={lang === code}
+                                    onClick={() => setLang(code)}
+                                    className={`min-h-[44px] min-w-[44px] px-4 py-2 rounded-lg text-xs font-black uppercase transition-colors ${lang === code ? "bg-white text-black" : "text-zinc-300 hover:text-white"}`}
                                 >
-                                    {l}
+                                    {code}
                                 </button>
                             ))}
                         </div>
-                        <div className="flex bg-zinc-900 rounded-xl p-1 border border-white/10" role="group" aria-label={t.country}>
-                            {["CA", "US"].map(r => (
-                                <button
-                                    key={r}
-                                    type="button"
-                                    aria-pressed={region === r}
-                                    onClick={() => setRegion(r)}
-                                    className={`min-h-[44px] min-w-[44px] px-4 py-2 rounded-lg text-xs font-black uppercase transition-colors ${region === r ? "bg-cyan-400 text-black" : "text-zinc-300 hover:text-white"}`}
-                                >
-                                    {r}
-                                </button>
-                            ))}
-                        </div>
+                        <label className="flex items-center gap-2 bg-zinc-900 rounded-xl px-3 border border-white/10 min-h-[44px]">
+                            <span className="text-xs font-black uppercase tracking-wide text-zinc-400">{t.country}</span>
+                            <select
+                                className="country-select"
+                                value={region}
+                                onChange={(event) => chooseRegion(event.target.value)}
+                            >
+                                {["CA", "US", "MX"].map((code) => (
+                                    <option key={code} value={code}>{COUNTRY_NAME[lang][code]}</option>
+                                ))}
+                            </select>
+                        </label>
                     </div>
 
                     <header className="mb-8 sm:mb-10 border-b-8 border-cyan-400 pb-6">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Icons.Globe />
-                            <p className="text-[11px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.28em] text-cyan-400">{t.subtitle}</p>
-                        </div>
-                        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black italic tracking-tighter uppercase leading-[1.02] text-white break-words">
-                            {t.title}
+                        <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-400 mb-3">Budget Floor</p>
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black italic tracking-tight leading-[1.05] text-white break-words">
+                            {t.heading(budget, region)}
                         </h1>
+                        <p id="price-source" className="mt-4 text-base sm:text-lg text-zinc-200 max-w-3xl">{t.source[region]}</p>
                     </header>
 
-                    <section className="mb-8 sm:mb-10 space-y-4" aria-labelledby="capital-heading">
-                        <h2 id="capital-heading" className="text-xs font-black uppercase tracking-widest text-zinc-400">{t.selector}</h2>
-                        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3" role="group" aria-label={t.selector}>
-                            {BUDGETS.map(val => (
+                    <section className="mb-8 sm:mb-10 space-y-4" aria-labelledby="amount-heading">
+                        <h2 id="amount-heading" className="text-xs font-black uppercase tracking-widest text-zinc-400">{t.choose} · {country.currency}</h2>
+                        <div className={`grid gap-2 sm:gap-3 ${budgets.length > 4 ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`} role="group" aria-label={t.choose}>
+                            {budgets.map((val) => (
                                 <button
                                     key={val}
                                     type="button"
                                     aria-pressed={budget === val}
                                     onClick={() => setBudget(val)}
-                                    className={`budget-block min-h-[44px] py-4 sm:py-8 rounded-2xl sm:rounded-3xl font-black text-2xl sm:text-3xl italic ${budget === val ? "active text-black" : "bg-zinc-900 text-zinc-300"}`}
+                                    className={`budget-block min-h-[44px] py-4 sm:py-8 rounded-2xl sm:rounded-3xl font-black text-xl sm:text-3xl italic ${budget === val ? "active text-black" : "bg-zinc-900 text-zinc-300"}`}
                                 >
-                                    {t.unit}{val}
+                                    ${val}
                                 </button>
                             ))}
                         </div>
@@ -525,60 +569,73 @@
 
                     <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
                         <div className="lg:col-span-5 space-y-4 sm:space-y-6">
-                            <div className="flex flex-wrap items-center justify-between gap-3 bg-white/5 p-4 sm:p-5 rounded-2xl border border-white/10">
-                                <div className="flex items-center gap-3 min-w-0">
-                                    <Icons.Cart />
-                                    <h2 className="text-sm font-black uppercase tracking-widest text-cyan-400">{tierInfo.label} {t.shopping}</h2>
-                                </div>
-                                <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">{t.market[region]}</p>
-                            </div>
+                            <h2 className="text-sm font-black uppercase tracking-widest text-cyan-400">{t.list}</h2>
                             <div className="space-y-3" aria-live="polite">
-                                {shoppingItems.map((item) => (
-                                    <div key={item.k} className="flex flex-wrap justify-between items-center gap-3 p-5 sm:p-8 bg-zinc-900 rounded-3xl sm:rounded-[2.5rem] border-l-8 border-cyan-400 fade-up shadow-xl">
-                                        <span className="text-xl sm:text-2xl md:text-4xl font-black italic uppercase tracking-tighter min-w-0 break-words">{ITEM_LABELS[lang][item.k]}</span>
-                                        <span className="text-xl font-black text-cyan-400 shrink-0">{t.unit}{item.cost}</span>
+                                {items.map((item, index) => (
+                                    <div key={ids[index]} className="flex flex-wrap justify-between items-center gap-3 p-5 sm:p-6 bg-zinc-900 rounded-3xl border-l-8 border-cyan-400 fade-up shadow-xl">
+                                        <span className="text-lg sm:text-2xl font-black italic tracking-tight min-w-0 break-words">{item.name[lang]}</span>
+                                        <span className="text-xl font-black text-cyan-400 shrink-0">${item.price}</span>
                                     </div>
                                 ))}
+                                <div className="flex flex-wrap justify-between items-center gap-3 p-5 sm:p-6 bg-white text-black rounded-3xl">
+                                    <span className="text-lg sm:text-2xl font-black italic">{t.total}</span>
+                                    <span className="text-xl font-black shrink-0">${total} {country.currency}</span>
+                                </div>
                             </div>
-                            {budget === 5 && (
-                                <a href={AID_URL[region]} className="w-full p-5 sm:p-8 bg-red-600/10 border-4 border-red-600/30 text-red-400 font-black uppercase tracking-widest text-sm rounded-3xl sm:rounded-[3rem] flex flex-wrap items-center justify-center gap-3 hover:bg-red-600 hover:text-white transition-colors">
-                                    <Icons.Alert />
-                                    <span>{t.rescue}</span>
-                                    <span className="normal-case tracking-normal">{t.aidName[region]}</span>
-                                </a>
-                            )}
+                            <p className="text-base text-zinc-200">{sumLine}</p>
+                            <a href={aid.href} className="w-full p-5 sm:p-6 bg-zinc-900 border border-cyan-400/50 text-white font-bold text-base rounded-3xl flex flex-wrap items-center justify-center gap-2 hover:bg-cyan-400 hover:text-black transition-colors">
+                                <span>{t.help}</span>
+                                <span className="underline">{aid.name}</span>
+                            </a>
                         </div>
 
                         <div className="lg:col-span-7 flex flex-col gap-6">
-                            <div className="bg-cyan-400 text-black p-6 sm:p-10 flex flex-col justify-between h-full rounded-3xl sm:rounded-[4rem] relative overflow-hidden fade-up shadow-2xl">
+                            <div className="bg-cyan-400 text-black p-6 sm:p-10 flex flex-col justify-between h-full rounded-3xl sm:rounded-[2.5rem] relative overflow-hidden fade-up shadow-2xl">
                                 <div className="scanline" aria-hidden="true"></div>
                                 <div className="relative z-10">
-                                    <h2 className="text-xs font-black uppercase tracking-widest mb-6 bg-black text-white inline-block px-4 py-1">{t.protocol}</h2>
-                                    <p className="text-2xl sm:text-4xl md:text-6xl font-black italic leading-tight tracking-tight mb-8 text-black">
-                                        "{tierInfo.protocol}"
+                                    <h2 className="text-xs font-black uppercase tracking-widest mb-4 bg-black text-white inline-block px-4 py-1">{t.week}</h2>
+                                    <p className="text-2xl sm:text-4xl font-black italic leading-tight tracking-tight mb-6 text-black">
+                                        {meal[0]}
                                     </p>
-                                </div>
-                                <div className="bg-black/10 p-5 sm:p-8 rounded-3xl sm:rounded-[2.5rem] border border-black/10 relative z-10">
-                                    <p className="text-xs font-black uppercase mb-3 flex items-center gap-2 text-black"><Icons.Alert /> {t.reality}</p>
-                                    <p className="text-lg sm:text-xl md:text-2xl font-black leading-tight uppercase tracking-tight italic text-black">
-                                        {tierInfo.reality}
+                                    <p className="text-lg sm:text-xl font-semibold leading-snug text-black">
+                                        {meal[1]}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <footer className="mt-12 pt-8 border-t border-white/10 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center text-xs font-black text-zinc-400 uppercase tracking-widest">
-                        <span>Survival v3.0</span>
-                        <a className="text-cyan-400 normal-case tracking-normal text-sm font-black" href="#guides">{t.guidesLink}</a>
-                        <span>{t.footer}</span>
+                    <footer className="mt-12 pt-8 border-t border-white/10 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center text-sm font-bold text-zinc-300">
+                        <span>Budget Floor</span>
+                        <a className="text-cyan-400 min-h-[44px] inline-flex items-center" href="#guides">{t.guides}</a>
                     </footer>
                 </div>
             );
         };
 
         const root = ReactDOM.createRoot(document.getElementById("main"));
-        root.render(<App />);
+        fetch("/data/prices.json")
+            .then((response) => {
+                if (!response.ok) throw new Error("prices");
+                return response.json();
+            })
+            .then((prices) => {
+                root.render(<App prices={prices} />);
+            })
+            .catch(() => {
+                const lang = window.__bfLang || "en";
+                const message = {
+                    en: "The grocery list did not load. The written guides below still work.",
+                    fr: "La liste d'épicerie n'a pas chargé. Les guides plus bas fonctionnent encore.",
+                    es: "La lista de compras no cargó. Las guías de abajo siguen disponibles."
+                };
+                root.render(
+                    <div className="boot">
+                        <h1>Budget Floor</h1>
+                        <p>{message[lang]}</p>
+                    </div>
+                );
+            });
     </script>
 </body>
 </html>

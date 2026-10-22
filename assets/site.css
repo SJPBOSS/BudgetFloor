@@ -32,8 +32,12 @@ html[lang="fr-CA"] .skip[data-skip="en"],
 html[lang="fr-CA"] .skip[data-skip="es"],
 html[lang="es"] .skip[data-skip="en"],
 html[lang="es"] .skip[data-skip="fr"],
+html[lang="es-MX"] .skip[data-skip="en"],
+html[lang="es-MX"] .skip[data-skip="fr"],
 html[lang="en-CA"] .skip[data-skip="fr"],
 html[lang="en-CA"] .skip[data-skip="es"],
+html[lang="en-US"] .skip[data-skip="fr"],
+html[lang="en-US"] .skip[data-skip="es"],
 html[lang="en"] .skip[data-skip="fr"],
 html[lang="en"] .skip[data-skip="es"] {
     display: none;

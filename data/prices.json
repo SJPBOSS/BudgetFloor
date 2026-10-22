@@ -1,0 +1,648 @@
+{
+  "about": "Mexico prices were read from Soriana search-result tiles on 2026-10-22. The current price is the clevertap sale price when that field was present, otherwise the single shelf price on the tile. A points price was not used. Canada and United States prices are the figures already stored in this project. No store page is on file for them, so they stay estimated. Bananas and cabbage are not given a Canada or United States price, because no store page could be read.",
+  "checked": "2026-10-22",
+  "countries": {
+    "CA": {
+      "currency": "CAD",
+      "budgets": [5, 10, 15, 20, 25, 30],
+      "defaultBudget": 10,
+      "source": {
+        "kind": "estimated",
+        "store": null,
+        "checked": "2026-10-22",
+        "url": null
+      },
+      "items": {
+        "ca_lentils": {
+          "price": "2.25",
+          "estimated": true,
+          "name": {
+            "en": "Dried lentils, 450 g",
+            "fr": "Lentilles sèches, 450 g",
+            "es": "Lentejas secas, 450 g"
+          }
+        },
+        "ca_carrots": {
+          "price": "1.75",
+          "estimated": true,
+          "name": {
+            "en": "Carrots, 2 kg",
+            "fr": "Carottes, 2 kg",
+            "es": "Zanahorias, 2 kg"
+          }
+        },
+        "ca_oil": {
+          "price": "1.00",
+          "estimated": true,
+          "name": {
+            "en": "Vegetable oil, 500 ml",
+            "fr": "Huile végétale, 500 ml",
+            "es": "Aceite vegetal, 500 ml"
+          }
+        },
+        "ca_oats": {
+          "price": "3.25",
+          "estimated": true,
+          "name": {
+            "en": "Oats, 1 kg",
+            "fr": "Gruau, 1 kg",
+            "es": "Avena, 1 kg"
+          }
+        },
+        "ca_eggs": {
+          "price": "2.50",
+          "estimated": true,
+          "name": {
+            "en": "6 large eggs",
+            "fr": "6 gros œufs",
+            "es": "6 huevos grandes"
+          }
+        },
+        "ca_beans": {
+          "price": "1.50",
+          "estimated": true,
+          "name": {
+            "en": "Can of beans",
+            "fr": "Canne de haricots",
+            "es": "Lata de frijoles"
+          }
+        },
+        "ca_spinach": {
+          "price": "2.25",
+          "estimated": true,
+          "name": {
+            "en": "Frozen spinach",
+            "fr": "Épinards surgelés",
+            "es": "Espinaca congelada"
+          }
+        },
+        "ca_bread": {
+          "price": "1.25",
+          "estimated": true,
+          "name": {
+            "en": "White bread",
+            "fr": "Pain blanc",
+            "es": "Pan blanco"
+          }
+        },
+        "ca_pb": {
+          "price": "3.75",
+          "estimated": true,
+          "name": {
+            "en": "Peanut butter, 500 g",
+            "fr": "Beurre d'arachide, 500 g",
+            "es": "Mantequilla de maní, 500 g"
+          }
+        },
+        "ca_rice": {
+          "price": "2.75",
+          "estimated": true,
+          "name": {
+            "en": "Rice, 900 g",
+            "fr": "Riz, 900 g",
+            "es": "Arroz, 900 g"
+          }
+        },
+        "ca_onions": {
+          "price": "2.50",
+          "estimated": true,
+          "name": {
+            "en": "Bag of onions",
+            "fr": "Sac d'oignons",
+            "es": "Bolsa de cebollas"
+          }
+        },
+        "ca_pasta": {
+          "price": "1.75",
+          "estimated": true,
+          "name": {
+            "en": "Pasta, 900 g",
+            "fr": "Pâtes, 900 g",
+            "es": "Pasta, 900 g"
+          }
+        },
+        "ca_sauce": {
+          "price": "1.75",
+          "estimated": true,
+          "name": {
+            "en": "Pasta sauce",
+            "fr": "Sauce à spaghetti",
+            "es": "Salsa para pasta"
+          }
+        },
+        "ca_salt": {
+          "price": "1.50",
+          "estimated": true,
+          "name": {
+            "en": "Salt and pepper",
+            "fr": "Sel et poivre",
+            "es": "Sal y pimienta"
+          }
+        }
+      },
+      "tiers": {
+        "5": ["ca_lentils", "ca_carrots", "ca_oil"],
+        "10": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil"],
+        "15": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread"],
+        "20": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice"],
+        "25": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice", "ca_onions", "ca_pasta"],
+        "30": ["ca_oats", "ca_eggs", "ca_beans", "ca_carrots", "ca_oil", "ca_spinach", "ca_bread", "ca_pb", "ca_rice", "ca_onions", "ca_pasta", "ca_sauce", "ca_lentils", "ca_salt"]
+      }
+    },
+    "US": {
+      "currency": "USD",
+      "budgets": [5, 10, 15, 20, 25, 30],
+      "defaultBudget": 10,
+      "source": {
+        "kind": "estimated",
+        "store": null,
+        "checked": "2026-10-22",
+        "url": null
+      },
+      "items": {
+        "us_beans": {
+          "price": "1.00",
+          "estimated": true,
+          "name": {
+            "en": "Black beans, 1 can",
+            "fr": "Haricots noirs, 1 canne",
+            "es": "Frijoles negros, 1 lata"
+          }
+        },
+        "us_carrots": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Carrots, 2 lb",
+            "fr": "Carottes, 2 lb",
+            "es": "Zanahorias, 2 lb"
+          }
+        },
+        "us_oil": {
+          "price": "1.00",
+          "estimated": true,
+          "name": {
+            "en": "Vegetable oil",
+            "fr": "Huile végétale",
+            "es": "Aceite vegetal"
+          }
+        },
+        "us_oats": {
+          "price": "2.50",
+          "estimated": true,
+          "name": {
+            "en": "Oats, 18 oz",
+            "fr": "Gruau, 18 oz",
+            "es": "Avena, 18 oz"
+          }
+        },
+        "us_eggs": {
+          "price": "3.50",
+          "estimated": true,
+          "name": {
+            "en": "12 eggs",
+            "fr": "12 œufs",
+            "es": "12 huevos"
+          }
+        },
+        "us_veg": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Frozen vegetables",
+            "fr": "Légumes surgelés",
+            "es": "Verdura congelada"
+          }
+        },
+        "us_bread": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Sliced bread",
+            "fr": "Pain tranché",
+            "es": "Pan de molde"
+          }
+        },
+        "us_pb": {
+          "price": "3.50",
+          "estimated": true,
+          "name": {
+            "en": "Peanut butter",
+            "fr": "Beurre d'arachide",
+            "es": "Mantequilla de maní"
+          }
+        },
+        "us_onions": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Yellow onions",
+            "fr": "Oignons jaunes",
+            "es": "Cebollas amarillas"
+          }
+        },
+        "us_rice": {
+          "price": "2.50",
+          "estimated": true,
+          "name": {
+            "en": "White rice, 2 lb",
+            "fr": "Riz blanc, 2 lb",
+            "es": "Arroz blanco, 2 lb"
+          }
+        },
+        "us_lentils": {
+          "price": "2.50",
+          "estimated": true,
+          "name": {
+            "en": "Lentils, 1 lb",
+            "fr": "Lentilles, 1 lb",
+            "es": "Lentejas, 1 lb"
+          }
+        },
+        "us_pasta": {
+          "price": "1.50",
+          "estimated": true,
+          "name": {
+            "en": "Pasta, 1 lb",
+            "fr": "Pâtes, 1 lb",
+            "es": "Pasta, 1 lb"
+          }
+        },
+        "us_sauce": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Marinara sauce",
+            "fr": "Sauce marinara",
+            "es": "Salsa marinara"
+          }
+        },
+        "us_salt": {
+          "price": "2.00",
+          "estimated": true,
+          "name": {
+            "en": "Seasoning salt",
+            "fr": "Sel assaisonné",
+            "es": "Sal sazonada"
+          }
+        }
+      },
+      "tiers": {
+        "5": ["us_beans", "us_carrots", "us_oil"],
+        "10": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil"],
+        "15": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread"],
+        "20": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions"],
+        "25": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions", "us_rice", "us_lentils"],
+        "30": ["us_oats", "us_eggs", "us_beans", "us_carrots", "us_oil", "us_veg", "us_bread", "us_pb", "us_onions", "us_rice", "us_lentils", "us_pasta", "us_sauce", "us_salt"]
+      }
+    },
+    "MX": {
+      "currency": "MXN",
+      "budgets": [100, 200, 300, 500],
+      "defaultBudget": 200,
+      "source": {
+        "kind": "store",
+        "store": "Soriana",
+        "checked": "2026-10-22",
+        "url": "https://www.soriana.com/"
+      },
+      "items": {
+        "mx_tortilla": {
+          "price": "13.90",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Corn tortillas, 1 kg",
+            "fr": "Tortillas de maïs, 1 kg",
+            "es": "Tortilla de maíz blanca, 1 kg"
+          },
+          "product": "Tortilla de Maíz Blanca 1 Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz",
+          "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
+          "checked": "2026-10-22"
+        },
+        "mx_tortilla_2": {
+          "price": "27.80",
+          "estimated": false,
+          "priceKind": "calculated",
+          "calc": "2 × $13.90",
+          "name": {
+            "en": "Corn tortillas, 1 kg × 2 (2 × $13.90)",
+            "fr": "Tortillas de maïs, 1 kg × 2 (2 × 13,90 $)",
+            "es": "Tortilla de maíz blanca, 1 kg × 2 (2 × $13.90)"
+          },
+          "product": "Tortilla de Maíz Blanca 1 Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=tortilla%20maiz",
+          "productUrl": "https://www.soriana.com/tortilla-de-maiz-blanca-1-kg/11557167.html",
+          "checked": "2026-10-22"
+        },
+        "mx_frijol": {
+          "price": "20.00",
+          "estimated": false,
+          "priceKind": "shelf",
+          "note": "The tile also showed $5.00 with points. That points price was not used.",
+          "name": {
+            "en": "Black beans, Precíssimo 908 g",
+            "fr": "Haricots noirs Precíssimo, 908 g",
+            "es": "Frijol negro Precíssimo, 908 g"
+          },
+          "product": "Frijol Negro Precíssimo 908 g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=frijol%20negro",
+          "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
+          "checked": "2026-10-22"
+        },
+        "mx_frijol_2": {
+          "price": "40.00",
+          "estimated": false,
+          "priceKind": "calculated",
+          "calc": "2 × $20.00",
+          "note": "Each bag is $20.00. The $5.00 points price on the tile was not used.",
+          "name": {
+            "en": "Black beans, Precíssimo 908 g × 2 (2 × $20.00)",
+            "fr": "Haricots noirs Precíssimo, 908 g × 2 (2 × 20,00 $)",
+            "es": "Frijol negro Precíssimo, 908 g × 2 (2 × $20.00)"
+          },
+          "product": "Frijol Negro Precíssimo 908 g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=frijol%20negro",
+          "productUrl": "https://www.soriana.com/frijol-negro-precissimo-908-g/11708715.html",
+          "checked": "2026-10-22"
+        },
+        "mx_zanahoria": {
+          "price": "14.80",
+          "estimated": false,
+          "priceKind": "sale",
+          "listPrice": "14.90",
+          "note": "Sale price on the tile. A $8.80 figure on the same tile was not used.",
+          "name": {
+            "en": "Carrots, 1 kg",
+            "fr": "Carottes, 1 kg",
+            "es": "Zanahoria, 1 kg"
+          },
+          "product": "Zanahoria Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=zanahoria",
+          "productUrl": "https://www.soriana.com/zanahoria-kg/515.html",
+          "checked": "2026-10-22"
+        },
+        "mx_platano": {
+          "price": "22.50",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Bananas, 1 kg",
+            "fr": "Bananes, 1 kg",
+            "es": "Plátano, 1 kg"
+          },
+          "product": "Plátano Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=platano",
+          "productUrl": "https://www.soriana.com/platano-kg/456.html",
+          "checked": "2026-10-22"
+        },
+        "mx_platano_2": {
+          "price": "45.00",
+          "estimated": false,
+          "priceKind": "calculated",
+          "calc": "2 × $22.50",
+          "name": {
+            "en": "Bananas, 1 kg × 2 (2 × $22.50)",
+            "fr": "Bananes, 1 kg × 2 (2 × 22,50 $)",
+            "es": "Plátano, 1 kg × 2 (2 × $22.50)"
+          },
+          "product": "Plátano Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=platano",
+          "productUrl": "https://www.soriana.com/platano-kg/456.html",
+          "checked": "2026-10-22"
+        },
+        "mx_aceite_450": {
+          "price": "21.00",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Vegetable oil, Precíssimo 450 ml",
+            "fr": "Huile végétale Precíssimo, 450 ml",
+            "es": "Aceite vegetal Precíssimo, 450 ml"
+          },
+          "product": "Aceite Comestible Vegetal Precíssimo 450 ml",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
+          "productUrl": "https://www.soriana.com/aceite-comestible-vegetal-precissimo-450-ml/11916741.html",
+          "checked": "2026-10-22"
+        },
+        "mx_aceite_850": {
+          "price": "28.50",
+          "estimated": false,
+          "priceKind": "sale",
+          "listPrice": "30.90",
+          "name": {
+            "en": "Vegetable oil, Precíssimo 850 ml",
+            "fr": "Huile végétale Precíssimo, 850 ml",
+            "es": "Aceite vegetal Precíssimo, 850 ml"
+          },
+          "product": "Aceite Vegetal Precíssimo 850 ml",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=aceite%20vegetal",
+          "productUrl": "https://www.soriana.com/aceite-vegetal-precissimo-850-ml/11711965.html",
+          "checked": "2026-10-22"
+        },
+        "mx_huevo_12": {
+          "price": "25.00",
+          "estimated": false,
+          "priceKind": "sale",
+          "listPrice": "33.90",
+          "name": {
+            "en": "White eggs, Precíssimo 12",
+            "fr": "Œufs blancs Precíssimo, 12",
+            "es": "Huevo blanco Precíssimo, 12 piezas"
+          },
+          "product": "Huevo Blanco Precíssimo 12 Piezas",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-12-piezas/11842346.html",
+          "checked": "2026-10-22"
+        },
+        "mx_huevo_30": {
+          "price": "55.90",
+          "estimated": false,
+          "priceKind": "sale",
+          "listPrice": "64.90",
+          "name": {
+            "en": "White eggs, Precíssimo 30",
+            "fr": "Œufs blancs Precíssimo, 30",
+            "es": "Huevo blanco Precíssimo, 30 piezas"
+          },
+          "product": "Huevo Blanco Precíssimo 30 Piezas",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=huevo%20blanco",
+          "productUrl": "https://www.soriana.com/huevo-blanco-precissimo-30-piezas/11834017.html",
+          "checked": "2026-10-22"
+        },
+        "mx_arroz": {
+          "price": "14.90",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Rice, Precíssimo extra 900 g",
+            "fr": "Riz extra Precíssimo, 900 g",
+            "es": "Arroz extra Precíssimo, 900 g"
+          },
+          "product": "Arroz Extra Precíssimo 900g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=arroz",
+          "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
+          "checked": "2026-10-22"
+        },
+        "mx_arroz_2": {
+          "price": "29.80",
+          "estimated": false,
+          "priceKind": "calculated",
+          "calc": "2 × $14.90",
+          "name": {
+            "en": "Rice, Precíssimo extra 900 g × 2 (2 × $14.90)",
+            "fr": "Riz extra Precíssimo, 900 g × 2 (2 × 14,90 $)",
+            "es": "Arroz extra Precíssimo, 900 g × 2 (2 × $14.90)"
+          },
+          "product": "Arroz Extra Precíssimo 900g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=arroz",
+          "productUrl": "https://www.soriana.com/arroz-extra-precissimo-900g/11708712.html",
+          "checked": "2026-10-22"
+        },
+        "mx_jitomate": {
+          "price": "29.90",
+          "estimated": false,
+          "priceKind": "sale",
+          "listPrice": "39.90",
+          "name": {
+            "en": "Saladette tomatoes, 1 kg",
+            "fr": "Tomates saladette (jitomate), 1 kg",
+            "es": "Jitomate saladette, 1 kg"
+          },
+          "product": "Jitomate Huaje Saladette Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=jitomate",
+          "productUrl": "https://www.soriana.com/jitomate-huaje-saladette-kg/480.html",
+          "checked": "2026-10-22"
+        },
+        "mx_cebolla_q": {
+          "price": "17.23",
+          "estimated": false,
+          "priceKind": "calculated",
+          "calc": "0.25 kg × $68.90/kg = $17.225, rounded to $17.23",
+          "note": "Soriana sells this onion by the kilogram. The smallest step on the tile is 0.25 kg.",
+          "name": {
+            "en": "White onion, 0.25 kg (0.25 × $68.90/kg)",
+            "fr": "Oignon blanc, 0,25 kg (0,25 × 68,90 $/kg)",
+            "es": "Cebolla blanca, 0.25 kg (0.25 × $68.90/kg)"
+          },
+          "product": "Cebolla blanca Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca",
+          "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
+          "checked": "2026-10-22"
+        },
+        "mx_cebolla": {
+          "price": "68.90",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "White onion, 1 kg",
+            "fr": "Oignon blanc, 1 kg",
+            "es": "Cebolla blanca, 1 kg"
+          },
+          "product": "Cebolla blanca Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=cebolla%20blanca",
+          "productUrl": "https://www.soriana.com/cebolla-blanca-kg/157.html",
+          "checked": "2026-10-22"
+        },
+        "mx_lenteja": {
+          "price": "15.00",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Lentils, Precíssimo 500 g",
+            "fr": "Lentilles Precíssimo, 500 g",
+            "es": "Lenteja Precíssimo, 500 g"
+          },
+          "product": "Lenteja Precíssimo 500g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=lenteja",
+          "productUrl": "https://www.soriana.com/lenteja-precissimo-500g/11712375.html",
+          "checked": "2026-10-22"
+        },
+        "mx_col": {
+          "price": "25.90",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Green cabbage, 1 kg",
+            "fr": "Chou blanc, 1 kg",
+            "es": "Col blanca, 1 kg"
+          },
+          "product": "Col Blanca Kg",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=repollo",
+          "productUrl": "https://www.soriana.com/col-blanca-kg/159.html",
+          "checked": "2026-10-22"
+        },
+        "mx_avena": {
+          "price": "25.50",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Oats, Granvita integral 700 g",
+            "fr": "Avoine Granvita, 700 g",
+            "es": "Avena integral Granvita, 700 g"
+          },
+          "product": "Avena Integral Granvita 700 Gr Bolsa",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=avena",
+          "productUrl": "https://www.soriana.com/avena-integral-granvita-700-gr-bolsa/11321439.html",
+          "checked": "2026-10-22"
+        },
+        "mx_chicharo": {
+          "price": "39.90",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Frozen peas, Valley Foods 500 g",
+            "fr": "Petits pois surgelés Valley Foods, 500 g",
+            "es": "Chícharos congelados Valley Foods, 500 g"
+          },
+          "product": "Chícharos Congelados Valley Foods Fresh 500 g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=chicharo%20congelado",
+          "productUrl": "https://www.soriana.com/chicharos-congelados-valley-foods-fresh-500-g/11900763.html",
+          "checked": "2026-10-22"
+        },
+        "mx_pasta": {
+          "price": "19.80",
+          "estimated": false,
+          "priceKind": "shelf",
+          "name": {
+            "en": "Spaghetti, Italpasta 500 g",
+            "fr": "Spaghetti Italpasta, 500 g",
+            "es": "Spaghetti Italpasta, 500 g"
+          },
+          "product": "Pasta Italpasta Spaghetti 500 g",
+          "sourceName": "Soriana",
+          "sourceUrl": "https://www.soriana.com/buscar?q=pasta%20spaghetti",
+          "productUrl": "https://www.soriana.com/pasta-italpasta-spaghetti-500-g/11348173.html",
+          "checked": "2026-10-22"
+        }
+      },
+      "tiers": {
+        "100": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450"],
+        "200": ["mx_tortilla", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja"],
+        "300": ["mx_tortilla_2", "mx_frijol", "mx_zanahoria", "mx_platano", "mx_aceite_450", "mx_huevo_12", "mx_arroz", "mx_jitomate", "mx_cebolla_q", "mx_lenteja", "mx_col", "mx_avena", "mx_chicharo"],
+        "500": ["mx_tortilla_2", "mx_frijol_2", "mx_zanahoria", "mx_platano_2", "mx_aceite_850", "mx_huevo_12", "mx_huevo_30", "mx_arroz_2", "mx_jitomate", "mx_cebolla", "mx_lenteja", "mx_col", "mx_avena", "mx_chicharo", "mx_pasta"]
+      }
+    }
+  }
+}
