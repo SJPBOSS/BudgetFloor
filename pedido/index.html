@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taquería La Esquina — arma el pedido</title>
-    <meta name="description" content="Menú de ejemplo. Elige la comida y WhatsApp se abre con el pedido ya escrito.">
+    <title>Taquería La Esquina — ticket para la cocina</title>
+    <meta name="description" content="Menú de ejemplo. El pedido no se envía hasta que el ticket tiene nombre, para aquí o para llevar, y la salsa de cada taco.">
+    <meta name="robots" content="noindex">
     <link rel="canonical" href="https://www.getbudgetfloor.com/pedido/">
     <meta name="theme-color" content="#241610">
-    <meta property="og:title" content="Taquería La Esquina — arma el pedido">
-    <meta property="og:description" content="Menú de ejemplo. WhatsApp se abre con el pedido ya escrito.">
+    <meta property="og:title" content="Taquería La Esquina — ticket para la cocina">
+    <meta property="og:description" content="Menú de ejemplo. WhatsApp se abre con el ticket que lee la cocina.">
     <meta property="og:image" content="https://www.getbudgetfloor.com/og.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -20,6 +21,7 @@
     <a class="skip" href="#menu">Saltar al menú</a>
     <header class="pedido-top">
         <a class="brand" id="back-home" href="/">Budget Floor</a>
+        <p class="shop-brand" id="shop-brand" hidden>Taquería La Esquina</p>
         <div class="seg" role="group" id="languages" aria-label="Language">
             <button type="button" data-lang="es" lang="es" aria-pressed="true">ES</button>
             <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
@@ -30,30 +32,36 @@
         <section>
             <p class="pedido-kicker" id="kicker">Menú de ejemplo</p>
             <h1 id="shop-name">Taquería La Esquina</h1>
-            <p class="pedido-lede" id="lede">Elige la comida. WhatsApp se abre con el pedido ya escrito.</p>
+            <p class="pedido-lede" id="lede">El enlace es de la tienda. El pedido no sale hasta que el ticket está completo.</p>
             <p class="pedido-sample" id="sample">Los precios son un ejemplo. No son de una tienda real.</p>
-            <div class="setup">
+            <div class="setup" id="setup">
                 <label id="setup-label" for="phone">WhatsApp de la tienda</label>
                 <div class="setup-row">
-                    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="52 55 1234 5678">
+                    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="55 1234 5678">
                     <button type="button" id="copy-link">Copiar enlace de la tienda</button>
                 </div>
-                <p class="setup-help" id="setup-help">Pon un número que controles, con clave de país. Diez dígitos de México se completan con 52.</p>
+                <p class="setup-help" id="setup-help">Pon un número que controles, con clave de país. Diez dígitos de México se completan con 52. Quien abre el enlace ya no ve esta casilla.</p>
             </div>
             <div class="menu" id="menu"></div>
         </section>
-        <aside class="ticket">
-            <h2 id="ticket-heading">Tu pedido</h2>
+        <aside class="ticket" id="ticket">
+            <h2 id="ticket-heading">Para la cocina</h2>
+            <p class="ticket-kicker" id="ticket-kicker">El mensaje sale en español.</p>
             <ul id="lines"></ul>
-            <div class="ticket-fields">
+            <div class="ask" id="service-ask"></div>
+            <div class="ask" id="name-ask">
                 <label id="name-label" for="guest">Nombre</label>
-                <input id="guest" name="guest" type="text" maxlength="40" placeholder="Ana">
-                <label id="note-label" for="note">Nota</label>
-                <input id="note" name="note" type="text" maxlength="80" placeholder="Para llevar">
+                <input id="guest" name="guest" type="text" maxlength="40" autocomplete="name" placeholder="Ana">
             </div>
+            <div class="ask" id="note-ask">
+                <label id="note-label" for="note">Nota</label>
+                <input id="note" name="note" type="text" maxlength="80" placeholder="Sin hielo">
+            </div>
+            <p class="ask-label" id="preview-label" hidden>Así lo lee la cocina</p>
             <pre id="preview" hidden></pre>
             <p id="total">Total $0 MXN</p>
             <a id="send" href="#pedido" aria-disabled="true">Enviar por WhatsApp</a>
+            <button type="button" id="copy-ticket" aria-disabled="true">Copiar ticket</button>
             <p id="hint"></p>
             <button type="button" id="clear-order">Vaciar</button>
         </aside>

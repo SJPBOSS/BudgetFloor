@@ -3,6 +3,10 @@ body.pedido {
     color: #f6efe4;
 }
 
+.pedido [hidden] {
+    display: none !important;
+}
+
 .pedido-top,
 .pedido-main {
     max-width: 68rem;
@@ -19,9 +23,25 @@ body.pedido {
     padding-top: 1.15rem;
 }
 
-.pedido-top .brand {
+.pedido-top .brand,
+.shop-brand {
+    margin-top: 0;
+    margin-bottom: 0;
     margin-right: auto;
     color: #f6efe4;
+}
+
+.shop-brand {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    letter-spacing: -0.03em;
+}
+
+.pedido button:focus-visible,
+.pedido a:focus-visible,
+.pedido input:focus-visible {
+    outline: 2px solid #e4b089;
+    outline-offset: 2px;
 }
 
 .pedido-main {
@@ -32,13 +52,21 @@ body.pedido {
     padding-bottom: 3rem;
 }
 
-.pedido-kicker {
+.pedido-kicker,
+.ticket-kicker {
     margin: 0;
-    color: #e4b089;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+}
+
+.pedido-kicker {
+    color: #e4b089;
+}
+
+.ticket-kicker {
+    color: #9c3418;
 }
 
 .pedido-main h1 {
@@ -74,34 +102,54 @@ body.pedido {
     background: rgba(246, 239, 228, 0.04);
 }
 
+body.pedido.is-customer .setup {
+    display: none;
+}
+
 .setup label,
-.ticket label {
+.ask-label,
+.ticket-kicker {
     display: block;
-    margin-bottom: 0.35rem;
+}
+
+.setup label,
+.ask-label {
+    margin: 0 0 0.4rem;
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: #9c3418;
+}
+
+.setup label {
     color: #e4b089;
 }
 
-.setup-row,
-.ticket-fields {
+.ticket-kicker {
+    margin: 0.2rem 0 0.85rem;
+    letter-spacing: 0.08em;
+}
+
+.setup-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem;
 }
 
 .setup input,
-.ticket input {
-    flex: 1 1 12rem;
+.ask input {
     min-height: 48px;
     padding: 0 0.9rem;
     border: 0;
+    font: 600 1rem/1 var(--sans);
+}
+
+.setup input {
+    flex: 1 1 12rem;
     border-radius: 999px;
     background: #f6efe4;
     color: #241610;
-    font: 600 1rem/1 var(--sans);
 }
 
 .setup-help {
@@ -111,9 +159,10 @@ body.pedido {
 
 #copy-link,
 #clear-order,
+#copy-ticket,
 .taco-add,
 .ticket-top button,
-.mod {
+.choice {
     min-height: 44px;
     border: 0;
     border-radius: 999px;
@@ -174,7 +223,7 @@ body.pedido {
 }
 
 .ticket h2 {
-    margin: 0 0 0.7rem;
+    margin: 0;
     font-family: var(--serif);
     font-size: 1.8rem;
     font-weight: 500;
@@ -188,12 +237,17 @@ body.pedido {
 }
 
 .ticket-empty {
+    margin: 0;
     color: #6d5848;
 }
 
 .ticket-line {
-    padding: 0.7rem 0;
+    padding: 0.85rem 0;
     border-top: 1px solid #e4d5c4;
+}
+
+.ticket-line:first-child {
+    border-top: 0;
 }
 
 .ticket-top {
@@ -205,7 +259,8 @@ body.pedido {
 .ticket-top span:nth-child(2) {
     flex: 1;
     font-family: var(--serif);
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
 }
 
 .ticket-top span:last-child {
@@ -213,77 +268,113 @@ body.pedido {
     font-weight: 600;
 }
 
-.mods {
+.line-ask,
+.ask {
+    margin-top: 0.75rem;
+}
+
+.line-ask[data-gap="true"],
+.ask[data-gap="true"] {
+    margin-left: -0.45rem;
+    margin-right: -0.45rem;
+    padding: 0.45rem 0.45rem 0.55rem;
+    border-radius: 0.8rem;
+    background: #f3e1d4;
+}
+
+.choices {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
-    margin-top: 0.55rem;
 }
 
-.mod {
+.choice {
     padding: 0 0.75rem;
-    background: transparent;
-    color: #6d5848;
+    background: #fff;
+    color: #241610;
     box-shadow: inset 0 0 0 1px #e4d5c4;
 }
 
-.mod[aria-pressed="true"] {
+.choice[aria-pressed="true"] {
     background: #241610;
     color: #f6efe4;
     box-shadow: none;
 }
 
-.ticket-fields {
-    margin-top: 0.8rem;
-}
-
-.ticket-fields label {
-    flex: 1 1 100%;
-    margin: 0.35rem 0 0;
-}
-
-.ticket input {
+.ask input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0.7rem;
     background: #fff;
+    color: #241610;
     box-shadow: inset 0 0 0 1px #e4d5c4;
 }
 
+#preview-label {
+    margin-top: 1rem;
+}
+
 #preview {
-    margin: 0.9rem 0 0;
-    padding: 0.85rem 0.9rem;
+    margin: 0;
+    padding: 0.9rem 0.95rem;
     white-space: pre-wrap;
-    background: #fff;
+    background: #fffef8;
     border-radius: 0.8rem;
-    color: #3d3832;
-    font: 0.95rem/1.45 var(--sans);
+    box-shadow: inset 0 0 0 1px #e4d5c4;
+    color: #241610;
+    font: 600 1.02rem/1.45 ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
 }
 
 #total {
-    margin: 0.85rem 0 0.7rem;
+    display: block;
+    margin: 0.9rem 0 0.7rem;
+    padding: 0;
+    background: transparent;
+    color: #241610;
+    border-radius: 0;
     font-family: var(--serif);
     font-size: 1.7rem;
+    font-weight: 500;
     letter-spacing: -0.03em;
 }
 
-#send {
+#send,
+#copy-ticket {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
     min-height: 52px;
+    text-decoration: none;
+}
+
+#send {
     border-radius: 999px;
     background: #9c3418;
     color: #fffaf6;
     font-weight: 600;
-    text-decoration: none;
 }
 
 #send[aria-disabled="true"] {
     opacity: 0.45;
 }
 
+#copy-ticket {
+    margin-top: 0.5rem;
+    background: transparent;
+    color: #241610;
+    box-shadow: inset 0 0 0 1px #c4b49a;
+}
+
+#copy-ticket[aria-disabled="true"] {
+    opacity: 0.45;
+}
+
 #hint {
     margin-top: 0.55rem;
     color: #6d5848;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
 }
 
 #clear-order {
@@ -294,12 +385,7 @@ body.pedido {
 
 @media (min-width: 900px) {
     .pedido-main {
-        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
         align-items: start;
-    }
-
-    .ticket {
-        position: sticky;
-        top: 1rem;
     }
 }
