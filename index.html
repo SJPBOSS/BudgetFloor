@@ -7,6 +7,7 @@
     <meta name="description" content="A one-week grocery list for Canada at $10, not one day. Statistics Canada average retail prices, August 2026.">
     <link rel="canonical" href="https://www.getbudgetfloor.com/">
     <meta name="theme-color" content="#f3efe7">
+    <link rel="manifest" href="/manifest.webmanifest">
     <meta property="og:site_name" content="Budget Floor">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.getbudgetfloor.com/">
@@ -63,6 +64,9 @@
             window.__bfLang = lang;
             window.__bfRegion = region;
             window.__bfBudget = budget;
+            try {
+                if (localStorage.getItem("bf-large") === "1") document.documentElement.classList.add("large-type");
+            } catch (e) {}
             var where = WHERE[lang][region];
             var title = lang === "fr"
                 ? "Budget Floor — Bien manger avec " + budget + " $ cette semaine " + where
@@ -139,18 +143,31 @@
                 <p id="total" class="total" hidden></p>
                 <p id="sum-line" class="sum"></p>
                 <a id="aid" class="help" href="https://www.211.ca/"><span>If this shop is still too much, find food help</span><span class="help-name">211.ca</span></a>
+                <div class="actions">
+                    <button type="button" id="share-btn">Text this list</button>
+                    <button type="button" id="copy-btn">Copy this list</button>
+                    <button type="button" id="print-btn">Print checklist</button>
+                    <button type="button" id="speak-btn">Read aloud</button>
+                    <button type="button" id="large-btn" aria-pressed="false">Large type</button>
+                </div>
+                <p id="action-status" class="action-status" role="status" aria-live="polite"></p>
+                <h3 id="check-heading">Checklist</h3>
+                <ul id="checks" class="checks"></ul>
             </section>
             <section class="week">
                 <h2 id="week-heading">This week</h2>
                 <p id="meal-lead" class="meal-lead"></p>
                 <p id="meal-body" class="meal-body"></p>
+                <h3 id="dinners-heading">Seven dinners</h3>
+                <p id="dinner-note" class="dinner-note"></p>
+                <ol id="dinners" class="dinners"></ol>
             </section>
         </div>
         <p id="boot-msg" class="boot-msg">Loading the grocery list… The written guides further down work even if this list does not.</p>
         <footer class="colophon">
             <span>Budget Floor</span>
             <a id="guides-link" href="#guides">Guides</a>
-            <a href="/pedido/">WhatsApp menu</a>
+            <a id="method-link" href="/about/">How the prices are calculated</a>
         </footer>
     </div>
     <script>
@@ -217,6 +234,11 @@
                     <li><a href="/cheap-meals-under-10-canada/">Cheap meals under $10</a></li>
                     <li><a href="/cheap-grocery-list-mexico/">Cheap grocery list for Mexico</a></li>
                     <li><a href="/budget-meal-plan-week-mexico/">Budget meal plan for a week in Mexico</a></li>
+                    <li><a href="/cheap-grocery-list-united-states/">Cheap grocery list for the United States</a></li>
+                    <li><a href="/grocery-list-under-50-united-states/">Grocery list under $50 a week in the United States</a></li>
+                    <li><a href="/situations/">Students, families, and other situations</a></li>
+                    <li><a href="/cities/">What a city name changes</a></li>
+                    <li><a href="/about/">How the prices are calculated</a></li>
                 </ul>
             </div>
             <div lang="fr">
@@ -229,6 +251,11 @@
                     <li><a href="/fr/repas-pas-chers-canada/">Repas pas chers à moins de 10 $</a></li>
                     <li><a href="/fr/liste-epicerie-pas-chere-mexique/">Liste d'épicerie pas chère au Mexique</a></li>
                     <li><a href="/fr/plan-repas-semaine-mexique/">Plan de repas pour une semaine au Mexique</a></li>
+                    <li><a href="/fr/liste-epicerie-pas-chere-etats-unis/">Liste d'épicerie pas chère aux États-Unis</a></li>
+                    <li><a href="/fr/liste-epicerie-moins-de-50-etats-unis/">Liste à moins de 50 $ par semaine aux États-Unis</a></li>
+                    <li><a href="/fr/situations/">Étudiants, familles et autres situations</a></li>
+                    <li><a href="/fr/villes/">Ce qu'un nom de ville change</a></li>
+                    <li><a href="/fr/a-propos/">Comment les prix sont calculés</a></li>
                 </ul>
             </div>
             <div lang="es">
@@ -241,12 +268,18 @@
                     <li><a href="/es/comidas-baratas-canada/">Comidas baratas por menos de $10</a></li>
                     <li><a href="/es/lista-de-compras-barata-mexico/">Lista de compras barata en México</a></li>
                     <li><a href="/es/plan-comidas-semana-mexico/">Plan de comidas para una semana en México</a></li>
+                    <li><a href="/es/lista-compras-barata-estados-unidos/">Lista de compras barata en Estados Unidos</a></li>
+                    <li><a href="/es/lista-compras-menos-de-50-estados-unidos/">Lista por menos de $50 a la semana en Estados Unidos</a></li>
+                    <li><a href="/es/situaciones/">Estudiantes, familias y otras situaciones</a></li>
+                    <li><a href="/es/ciudades/">Lo que cambia un nombre de ciudad</a></li>
+                    <li><a href="/es/acerca/">Cómo se calculan los precios</a></li>
                 </ul>
             </div>
         </div>
         <h3>Food help</h3>
         <p>If the basket is smaller than the week, these are real directories. Canada: <a href="https://www.211.ca/">211.ca</a> and <a href="https://foodbankscanada.ca/">Food Banks Canada</a>. Quebec: <a href="https://www.211qc.ca/">211 Québec</a> and <a href="https://banquesalimentaires.org/">Banques alimentaires du Québec</a>. United States: <a href="https://www.feedingamerica.org/find-your-local-foodbank">Feeding America</a>. Mexico: <a href="https://bamx.org.mx/">Bancos de Alimentos de México</a> and the <a href="https://bamx.org.mx/donde-estamos/">map of food banks</a>.</p>
     </section>
+    <script src="/assets/dinners.js"></script>
     <script src="/assets/app.js"></script>
 </body>
 </html>

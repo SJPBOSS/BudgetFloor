@@ -3,10 +3,6 @@ const BUDGETS = {
     US: [5, 10, 15, 20, 25, 30, 40, 50, 100],
     MX: [100, 200, 300, 500]
 };
-const AFFILIATE = {
-    walmart: "",
-    instacart: ""
-};
 const DEFAULTS = { CA: 10, US: 10, MX: 200 };
 const WHERE = {
     en: { CA: "in Canada", US: "in the United States", MX: "in Mexico" },
@@ -107,12 +103,16 @@ const COPY = {
         shareCopied: "Copied",
         shareFail: "Select the address in the bar and copy it",
         print: "Print checklist",
+        checklist: "Checklist",
+        speak: "Read aloud",
+        speakStop: "Stop reading",
+        large: "Large type",
+        largeOn: "Large type on",
         dinners: "Seven dinners",
-        dinnersFew: "Dinners from this list",
-        dinnerNote: "Water is assumed. Salt is not on the list. Add it only if you already have it.",
-        shopWalmart: "Find at Walmart",
-        shopInstacart: "Find on Instacart",
-        shopNote: "Opens a search for these foods. Not a paid placement.",
+        dinnerNote: "Water is assumed. Salt is not on this list. These steps use only foods in the basket. They are cooking directions, not medical advice.",
+        dinnerRepeat: "The same foods come back on later nights because the basket does not get bigger.",
+        noOil: "This list has no oil, so the dinners are boiled, dry-cooked, or eaten as they are.",
+        night: function (n) { return "Night " + n; },
         help: "If this shop is still too much, find food help",
         equal: (total, cur) => "These foods add up to $" + total + " " + cur + " for the week.",
         under: (total, cur, budget) => "These foods add up to $" + total + " " + cur + " for the week, inside the $" + budget + " cap.",
@@ -164,13 +164,29 @@ const COPY = {
         week: "Cette semaine",
         total: "Total de la liste",
         guides: "Guides",
+        method: "Comment les prix sont calculés",
+        share: "Envoyer cette liste",
+        shareCopy: "Copier cette liste",
+        shareCopied: "Copié",
+        shareFail: "Sélectionnez l'adresse dans la barre et copiez-la",
+        print: "Imprimer la liste",
+        checklist: "Liste à cocher",
+        speak: "Lire à voix haute",
+        speakStop: "Arrêter la lecture",
+        large: "Gros caractères",
+        largeOn: "Gros caractères activés",
+        dinners: "Sept soupers",
+        dinnerNote: "L'eau est prise pour acquise. Le sel n'est pas sur cette liste. Ces étapes n'utilisent que les aliments du panier. Ce sont des consignes de cuisine, pas un avis médical.",
+        dinnerRepeat: "Les mêmes aliments reviennent les soirs suivants, parce que le panier ne grossit pas.",
+        noOil: "Cette liste n'a pas d'huile, alors les soupers sont bouillis, cuits à sec, ou mangés tels quels.",
+        night: function (n) { return "Soir " + n; },
         help: "Si cette épicerie est encore trop juste, trouvez de l'aide",
         equal: (total, cur) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + " pour la semaine.",
         under: (total, cur, budget) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + " pour la semaine, sous le plafond de " + budget + " $.",
         source: {
-            CA: "Statistique Canada, moyenne du Canada, août 2026.",
-            US: "Bureau of Labor Statistics, moyenne des villes américaines, septembre 2026.",
-            MX: "Profeco, Mexico, octobre 2026."
+            CA: "Prix revus en octobre 2026. Source : Statistique Canada, moyenne du Canada, août 2026.",
+            US: "Prix revus en octobre 2026. Source : Bureau of Labor Statistics, moyenne des villes américaines, septembre 2026.",
+            MX: "Prix revus en octobre 2026. Source : Profeco, Mexico, octobre 2026."
         },
         heading: (budget, region) => "Bien manger avec " + budget + " $ cette semaine " + WHERE.fr[region],
         meals: {
@@ -215,13 +231,29 @@ const COPY = {
         week: "Esta semana",
         total: "Total de la lista",
         guides: "Guías",
+        method: "Cómo se calculan los precios",
+        share: "Enviar esta lista",
+        shareCopy: "Copiar esta lista",
+        shareCopied: "Copiado",
+        shareFail: "Seleccione la dirección en la barra y cópiela",
+        print: "Imprimir la lista",
+        checklist: "Lista para marcar",
+        speak: "Leer en voz alta",
+        speakStop: "Detener la lectura",
+        large: "Letra grande",
+        largeOn: "Letra grande activada",
+        dinners: "Siete cenas",
+        dinnerNote: "Se asume el agua. La sal no está en esta lista. Estos pasos usan solo los alimentos de la canasta. Son instrucciones de cocina, no un consejo médico.",
+        dinnerRepeat: "Los mismos alimentos vuelven las noches siguientes, porque la canasta no crece.",
+        noOil: "Esta lista no trae aceite, así que las cenas se hierven, se cocinan en seco, o se comen como están.",
+        night: function (n) { return "Noche " + n; },
         help: "Si esta compra todavía no alcanza, busque ayuda",
         equal: (total, cur) => "Estos alimentos suman $" + total + " " + cur + " para la semana.",
         under: (total, cur, budget) => "Estos alimentos suman $" + total + " " + cur + " para la semana, dentro del tope de $" + budget + ".",
         source: {
-            CA: "Statistics Canada, promedio de Canadá, agosto de 2026.",
-            US: "Bureau of Labor Statistics, promedio de las ciudades de EE. UU., septiembre de 2026.",
-            MX: "Profeco, Ciudad de México, octubre de 2026."
+            CA: "Precios revisados en octubre de 2026. Fuente: Statistics Canada, promedio de Canadá, agosto de 2026.",
+            US: "Precios revisados en octubre de 2026. Fuente: Bureau of Labor Statistics, promedio de las ciudades de EE. UU., septiembre de 2026.",
+            MX: "Precios revisados en octubre de 2026. Fuente: Profeco, Ciudad de México, octubre de 2026."
         },
         heading: (budget, region) => "Comer bien con $" + budget + " esta semana " + WHERE.es[region],
         meals: {
@@ -379,6 +411,11 @@ function paintStory() {
     document.getElementById("meal-lead").textContent = meal[0];
     document.getElementById("meal-body").textContent = meal[1];
     document.getElementById("guides-link").textContent = t.guides;
+    const method = document.getElementById("method-link");
+    if (method) {
+        method.textContent = t.method;
+        method.href = lang === "fr" ? "/fr/a-propos/" : (lang === "es" ? "/es/acerca/" : "/about/");
+    }
     const aid = AID[region];
     const link = document.getElementById("aid");
     link.href = aid.href;
@@ -440,15 +477,232 @@ function paintList() {
     figure.textContent = "$" + total + " " + country.currency;
     totalEl.append(label, figure);
     sumEl.textContent = totalThousandths === capThousandths ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
+    currentItems = items.map((item, index) => ({ id: ids[index], name: item.name, price: item.price }));
+    currentTotal = total;
+    currentCurrency = country.currency;
+    paintChecklist();
+    paintDinners(ids);
+}
+
+let currentItems = [];
+let currentTotal = "";
+let currentCurrency = "";
+let speaking = false;
+let statusKey = "";
+
+function setStatus(message) {
+    const el = document.getElementById("action-status");
+    if (el) el.textContent = message || "";
+}
+
+function shareUrl() {
+    const url = new URL("/", location.origin);
+    url.searchParams.set("lang", lang);
+    url.searchParams.set("region", region);
+    url.searchParams.set("budget", String(budget));
+    return url.toString();
+}
+
+function shareText() {
+    const t = COPY[lang];
+    const aid = AID[region];
+    const lines = currentItems.map((item) => "- " + item.name[lang] + " — $" + item.price);
+    return [
+        t.heading(budget, region),
+        t.weekNote,
+        t.source[region],
+        lines.join("\n"),
+        t.total + ": $" + currentTotal + " " + currentCurrency,
+        t.help + ": " + aid.name + " " + aid.href,
+        shareUrl()
+    ].join("\n");
+}
+
+function paintActions() {
+    const t = COPY[lang];
+    const labels = {
+        "share-btn": t.share,
+        "copy-btn": t.shareCopy,
+        "print-btn": t.print,
+        "large-btn": document.documentElement.classList.contains("large-type") ? t.largeOn : t.large
+    };
+    Object.keys(labels).forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = labels[id];
+    });
+    const largeBtn = document.getElementById("large-btn");
+    if (largeBtn) largeBtn.setAttribute("aria-pressed", document.documentElement.classList.contains("large-type") ? "true" : "false");
+    const ready = currentItems.length > 0;
+    ["share-btn", "copy-btn", "print-btn"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.disabled = !ready;
+    });
+    const speakBtn = document.getElementById("speak-btn");
+    if (speakBtn) {
+        speakBtn.hidden = !window.speechSynthesis;
+        speakBtn.disabled = !ready;
+        speakBtn.textContent = speaking ? t.speakStop : t.speak;
+    }
+    const checkHeading = document.getElementById("check-heading");
+    if (checkHeading) checkHeading.textContent = t.checklist;
+}
+
+function checksKey() {
+    return "bf-checks-" + region + "-" + budget;
+}
+
+function readChecks() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(checksKey()) || "[]");
+        return Array.isArray(saved) ? saved : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function paintChecklist() {
+    const box = document.getElementById("checks");
+    if (!box) return;
+    const saved = new Set(readChecks());
+    box.replaceChildren();
+    currentItems.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "check";
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = saved.has(item.id);
+        input.addEventListener("change", () => {
+            const next = new Set(readChecks());
+            if (input.checked) next.add(item.id);
+            else next.delete(item.id);
+            try {
+                localStorage.setItem(checksKey(), JSON.stringify(Array.from(next)));
+            } catch (e) {}
+        });
+        const name = document.createElement("span");
+        name.textContent = item.name[lang];
+        label.append(input, name);
+        const price = document.createElement("span");
+        price.className = "item-price";
+        price.textContent = "$" + item.price;
+        li.append(label, price);
+        box.appendChild(li);
+    });
+}
+
+function paintDinners(ids) {
+    const heading = document.getElementById("dinners-heading");
+    const note = document.getElementById("dinner-note");
+    const list = document.getElementById("dinners");
+    if (!heading || !note || !list) return;
+    const t = COPY[lang];
+    heading.textContent = t.dinners;
+    if (!window.budgetFloorDinners) {
+        note.textContent = "";
+        list.replaceChildren();
+        return;
+    }
+    const result = window.budgetFloorDinners(ids, lang);
+    const bits = [t.dinnerNote];
+    if (result.noOil) bits.push(t.noOil);
+    if (result.repeated) bits.push(t.dinnerRepeat);
+    note.textContent = bits.join(" ");
+    list.replaceChildren();
+    result.dinners.forEach((dinner, index) => {
+        const li = document.createElement("li");
+        const title = document.createElement("span");
+        title.className = "dinner-name";
+        title.textContent = t.night(index + 1) + ". " + dinner.title;
+        const body = document.createElement("span");
+        body.className = "dinner-body";
+        body.textContent = dinner.body;
+        li.append(title, body);
+        list.appendChild(li);
+    });
+}
+
+async function textList() {
+    const text = shareText();
+    if (navigator.share) {
+        try {
+            await navigator.share({ title: document.title, text: text, url: shareUrl() });
+            return;
+        } catch (err) {
+            if (err && err.name === "AbortError") return;
+        }
+    }
+    try {
+        await navigator.clipboard.writeText(text);
+        setStatus(COPY[lang].shareCopied);
+    } catch (e) {
+        setStatus(COPY[lang].shareFail);
+    }
+}
+
+async function copyList() {
+    try {
+        await navigator.clipboard.writeText(shareText());
+        setStatus(COPY[lang].shareCopied);
+    } catch (e) {
+        setStatus(COPY[lang].shareFail);
+    }
+}
+
+function toggleSpeak() {
+    const t = COPY[lang];
+    if (!window.speechSynthesis) return;
+    if (speaking) {
+        window.speechSynthesis.cancel();
+        speaking = false;
+        paintActions();
+        return;
+    }
+    const result = window.budgetFloorDinners ? window.budgetFloorDinners(currentItems.map((item) => item.id), lang) : { dinners: [] };
+    const spoken = [
+        COPY[lang].heading(budget, region),
+        COPY[lang].weekNote,
+        currentItems.map((item) => item.name[lang]).join(". "),
+        result.dinners.map((dinner) => dinner.title + ". " + dinner.body).join(" ")
+    ].join(". ");
+    const utter = new SpeechSynthesisUtterance(spoken);
+    utter.lang = htmlLang(lang, region);
+    utter.onend = () => {
+        speaking = false;
+        paintActions();
+    };
+    speaking = true;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+    paintActions();
+}
+
+function toggleLarge() {
+    const on = !document.documentElement.classList.contains("large-type");
+    document.documentElement.classList.toggle("large-type", on);
+    try {
+        localStorage.setItem("bf-large", on ? "1" : "0");
+    } catch (e) {}
+    paintActions();
 }
 
 function render() {
+    const key = lang + ":" + region + ":" + budget;
+    if (key !== statusKey) {
+        statusKey = key;
+        setStatus("");
+        if (speaking && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            speaking = false;
+        }
+    }
     syncChrome();
     paintLanguages();
     paintCountry();
     paintAmounts();
     paintStory();
     paintList();
+    paintActions();
 }
 
 function showFailure() {
@@ -475,8 +729,24 @@ document.getElementById("country").addEventListener("change", (event) => {
     if (!BUDGETS[region].includes(budget)) budget = DEFAULTS[region];
     render();
 });
+const shareBtn = document.getElementById("share-btn");
+if (shareBtn) shareBtn.addEventListener("click", () => { textList(); });
+const copyBtn = document.getElementById("copy-btn");
+if (copyBtn) copyBtn.addEventListener("click", () => { copyList(); });
+const printBtn = document.getElementById("print-btn");
+if (printBtn) printBtn.addEventListener("click", () => { window.print(); });
+const speakBtn = document.getElementById("speak-btn");
+if (speakBtn) speakBtn.addEventListener("click", () => { toggleSpeak(); });
+const largeBtn = document.getElementById("large-btn");
+if (largeBtn) largeBtn.addEventListener("click", () => { toggleLarge(); });
 
 render();
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
+    });
+}
 
 fetch("/data/prices.json")
     .then((response) => {
