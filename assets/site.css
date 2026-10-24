@@ -795,6 +795,143 @@ body.guide {
     }
 }
 
+.basket h3,
+.week h3 {
+    margin: 1.5rem 0 0.55rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.actions button {
+    min-height: 44px;
+    padding: 0 1rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--raised);
+    color: var(--pine);
+    font: 600 0.95rem/1 var(--sans);
+    cursor: pointer;
+}
+
+.actions button[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--raised);
+}
+
+.actions button[hidden] {
+    display: none;
+}
+
+.action-status {
+    min-height: 1.4rem;
+    margin: 0.45rem 0 0;
+    color: var(--pine);
+    font-weight: 600;
+}
+
+.checks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.check {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.35rem 1rem;
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+}
+
+.check label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    min-width: 0;
+}
+
+.check input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--pine);
+    flex: 0 0 auto;
+}
+
+.dinner-note {
+    margin: 0.4rem 0 0.2rem;
+    color: var(--soft);
+}
+
+.dinners {
+    margin: 0.4rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.dinners li {
+    margin: 0.85rem 0;
+}
+
+.dinner-name {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+}
+
+.dinner-body {
+    display: block;
+    color: var(--soft);
+}
+
+html.large-type {
+    font-size: 20px;
+}
+
+@media print {
+    .controls,
+    .actions,
+    .site-guides,
+    .colophon,
+    .boot-msg {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .shell {
+        max-width: none;
+        padding: 0;
+    }
+
+    .item,
+    .check,
+    .dinners li {
+        break-inside: avoid;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .rise,
     .amount,
