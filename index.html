@@ -6,6 +6,10 @@
     <title>Budget Floor — Eat well on $10 this week in Canada</title>
     <meta name="description" content="A one-week grocery list for Canada at $10, not one day. Statistics Canada average retail prices, August 2026.">
     <link rel="canonical" href="https://www.getbudgetfloor.com/">
+    <link rel="alternate" hreflang="en" href="https://www.getbudgetfloor.com/">
+    <link rel="alternate" hreflang="fr" href="https://www.getbudgetfloor.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://www.getbudgetfloor.com/es/">
+    <link rel="alternate" hreflang="x-default" href="https://www.getbudgetfloor.com/">
     <meta name="theme-color" content="#f3efe7">
     <meta property="og:site_name" content="Budget Floor">
     <meta property="og:type" content="website">
@@ -42,6 +46,18 @@
                 fr: { CA: "au Canada", US: "aux États-Unis", MX: "au Mexique" },
                 es: { CA: "en Canadá", US: "en Estados Unidos", MX: "en México" }
             };
+            function pathLang() {
+                var path = location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "") || "/";
+                if (path === "/fr") return "fr";
+                if (path === "/es") return "es";
+                if (path === "/") return "en";
+                return null;
+            }
+            function languageHome(code) {
+                if (code === "fr") return "/fr/";
+                if (code === "es") return "/es/";
+                return "/";
+            }
             function allowed(name, values) {
                 var q = new URLSearchParams(location.search).get(name);
                 if (q && values.indexOf(q) !== -1) return q;
@@ -51,11 +67,20 @@
                 } catch (e) {}
                 return null;
             }
+            var fromPath = pathLang();
+            var earlyParams = new URLSearchParams(location.search);
+            var qLang = (earlyParams.get("lang") || "").toLowerCase();
+            if (fromPath && (qLang === "en" || qLang === "fr" || qLang === "es") && qLang !== fromPath) {
+                earlyParams.delete("lang");
+                var nextQ = earlyParams.toString();
+                location.replace(languageHome(qLang) + (nextQ ? "?" + nextQ : "") + location.hash);
+                return;
+            }
             function setContent(selector, value) {
                 var el = document.querySelector(selector);
                 if (el) el.setAttribute("content", value);
             }
-            var lang = allowed("lang", ["en", "fr", "es"]) || "en";
+            var lang = fromPath || "en";
             var region = allowed("region", ["CA", "US", "MX"]) || "CA";
             var budgetQ = parseInt(new URLSearchParams(location.search).get("budget"), 10);
             var budgetSaved = parseInt(allowed("budget", ["5", "10", "15", "20", "25", "30", "40", "50", "100", "200", "300", "500"]) || "", 10);
@@ -90,7 +115,7 @@
                         : "A one-week grocery list for Canada at $" + budget + ", not one day. Statistics Canada average retail prices, August 2026.");
             }
             var htmlLang = lang === "fr" ? "fr-CA" : (lang === "es" ? (region === "MX" ? "es-MX" : "es") : (region === "US" ? "en-US" : (region === "MX" ? "en" : "en-CA")));
-            var ogLocale = htmlLang === "fr-CA" ? "fr_CA" : (htmlLang === "es-MX" || htmlLang === "es" ? "es_MX" : (htmlLang === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA")));
+            var ogLocale = htmlLang === "fr-CA" ? "fr_CA" : (htmlLang === "es-MX" ? "es_MX" : (htmlLang === "es" ? "es_419" : (htmlLang === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA"))));
             document.documentElement.lang = htmlLang;
             document.title = title;
             setContent('meta[name="description"]', desc);
@@ -112,11 +137,11 @@
             <h1 id="hero-title">Eat well on $10 this week in Canada</h1>
             <p class="source" id="price-source">Statistics Canada, Canada average, August 2026.</p>
             <div class="controls">
-                <div class="seg" role="group" id="languages" aria-label="Language">
-                    <button type="button" data-lang="en" lang="en" id="lang-en" aria-pressed="true">EN</button>
-                    <button type="button" data-lang="fr" lang="fr" id="lang-fr" aria-pressed="false">FR</button>
-                    <button type="button" data-lang="es" lang="es" id="lang-es" aria-pressed="false">ES</button>
-                </div>
+                <nav class="seg" id="languages" aria-label="Language">
+                    <a href="/" hreflang="en" lang="en" data-lang="en" aria-current="page">EN</a>
+                    <a href="/fr/" hreflang="fr" lang="fr" data-lang="fr">FR</a>
+                    <a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a>
+                </nav>
                 <label class="country">
                     <span id="country-label">Country</span>
                     <select id="country">
@@ -147,11 +172,6 @@
             </section>
         </div>
         <p id="boot-msg" class="boot-msg">Loading the grocery list… The written guides further down work even if this list does not.</p>
-        <footer class="colophon">
-            <span>Budget Floor</span>
-            <a id="guides-link" href="#guides">Guides</a>
-            <a href="/pedido/">WhatsApp menu</a>
-        </footer>
     </div>
     <script>
         (function () {
@@ -247,6 +267,13 @@
         <h3>Food help</h3>
         <p>If the basket is smaller than the week, these are real directories. Canada: <a href="https://www.211.ca/">211.ca</a> and <a href="https://foodbankscanada.ca/">Food Banks Canada</a>. Quebec: <a href="https://www.211qc.ca/">211 Québec</a> and <a href="https://banquesalimentaires.org/">Banques alimentaires du Québec</a>. United States: <a href="https://www.feedingamerica.org/find-your-local-foodbank">Feeding America</a>. Mexico: <a href="https://bamx.org.mx/">Bancos de Alimentos de México</a> and the <a href="https://bamx.org.mx/donde-estamos/">map of food banks</a>.</p>
     </section>
+    <footer class="colophon">
+        <span>Budget Floor</span>
+        <nav aria-label="Footer">
+            <a id="guides-link" href="#guides">Guides</a>
+            <a id="about-link" href="/about/">About</a>
+        </nav>
+    </footer>
     <script src="/assets/app.js"></script>
 </body>
 </html>

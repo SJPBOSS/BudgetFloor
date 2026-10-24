@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Budget Floor — Bien manger avec 10 $ cette semaine au Canada</title>
+    <meta name="description" content="Liste d'épicerie pour une semaine au Canada à 10 $, pas pour une journée. Prix moyens de Statistique Canada, août 2026.">
+    <link rel="canonical" href="https://www.getbudgetfloor.com/fr/">
+    <link rel="alternate" hreflang="en" href="https://www.getbudgetfloor.com/">
+    <link rel="alternate" hreflang="fr" href="https://www.getbudgetfloor.com/fr/">
+    <link rel="alternate" hreflang="es" href="https://www.getbudgetfloor.com/es/">
+    <link rel="alternate" hreflang="x-default" href="https://www.getbudgetfloor.com/">
+    <meta name="theme-color" content="#f3efe7">
+    <meta property="og:site_name" content="Budget Floor">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.getbudgetfloor.com/fr/">
+    <meta property="og:title" content="Budget Floor — Bien manger avec 10 $ cette semaine au Canada">
+    <meta property="og:description" content="Liste d'épicerie pour une semaine au Canada à 10 $, pas pour une journée. Prix moyens de Statistique Canada, août 2026.">
+    <meta property="og:image" content="https://www.getbudgetfloor.com/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Budget Floor : bien manger avec une petite liste d'épicerie">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:locale:alternate" content="en_CA">
+    <meta property="og:locale:alternate" content="es_MX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Budget Floor — Bien manger avec 10 $ cette semaine au Canada">
+    <meta name="twitter:description" content="Liste d'épicerie pour une semaine au Canada à 10 $, pas pour une journée. Prix moyens de Statistique Canada, août 2026.">
+    <meta name="twitter:image" content="https://www.getbudgetfloor.com/og.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preload" href="/assets/fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/sourcesans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/site.css">
+    <script>
+        (function () {
+            var BUDGETS = {
+                CA: [5, 10, 15, 20, 25, 30, 40, 50, 100],
+                US: [5, 10, 15, 20, 25, 30, 40, 50, 100],
+                MX: [100, 200, 300, 500]
+            };
+            var DEFAULTS = { CA: 10, US: 10, MX: 200 };
+            var WHERE = {
+                en: { CA: "in Canada", US: "in the United States", MX: "in Mexico" },
+                fr: { CA: "au Canada", US: "aux États-Unis", MX: "au Mexique" },
+                es: { CA: "en Canadá", US: "en Estados Unidos", MX: "en México" }
+            };
+            function pathLang() {
+                var path = location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "") || "/";
+                if (path === "/fr") return "fr";
+                if (path === "/es") return "es";
+                if (path === "/") return "en";
+                return null;
+            }
+            function languageHome(code) {
+                if (code === "fr") return "/fr/";
+                if (code === "es") return "/es/";
+                return "/";
+            }
+            function allowed(name, values) {
+                var q = new URLSearchParams(location.search).get(name);
+                if (q && values.indexOf(q) !== -1) return q;
+                try {
+                    var saved = localStorage.getItem("bf-" + name);
+                    if (saved && values.indexOf(saved) !== -1) return saved;
+                } catch (e) {}
+                return null;
+            }
+            var fromPath = pathLang();
+            var earlyParams = new URLSearchParams(location.search);
+            var qLang = (earlyParams.get("lang") || "").toLowerCase();
+            if (fromPath && (qLang === "en" || qLang === "fr" || qLang === "es") && qLang !== fromPath) {
+                earlyParams.delete("lang");
+                var nextQ = earlyParams.toString();
+                location.replace(languageHome(qLang) + (nextQ ? "?" + nextQ : "") + location.hash);
+                return;
+            }
+            function setContent(selector, value) {
+                var el = document.querySelector(selector);
+                if (el) el.setAttribute("content", value);
+            }
+            var lang = fromPath || "en";
+            var region = allowed("region", ["CA", "US", "MX"]) || "CA";
+            var budgetQ = parseInt(new URLSearchParams(location.search).get("budget"), 10);
+            var budgetSaved = parseInt(allowed("budget", ["5", "10", "15", "20", "25", "30", "40", "50", "100", "200", "300", "500"]) || "", 10);
+            var budget = BUDGETS[region].indexOf(budgetQ) !== -1 ? budgetQ : (BUDGETS[region].indexOf(budgetSaved) !== -1 ? budgetSaved : DEFAULTS[region]);
+            window.__bfLang = lang;
+            window.__bfRegion = region;
+            window.__bfBudget = budget;
+            var where = WHERE[lang][region];
+            var title = lang === "fr"
+                ? "Budget Floor — Bien manger avec " + budget + " $ cette semaine " + where
+                : (lang === "es"
+                    ? "Budget Floor — Comer bien con $" + budget + " esta semana " + where
+                    : "Budget Floor — Eat well on $" + budget + " this week " + where);
+            var desc;
+            if (region === "MX") {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie pour une semaine au Mexique à " + budget + " $ MXN, pas pour une journée. Prix Profeco pour Mexico, octobre 2026."
+                    : (lang === "es"
+                        ? "Lista de compras para una semana en México por $" + budget + " MXN, no para un día. Precios de Profeco para la Ciudad de México, octubre de 2026."
+                        : "A one-week grocery list for Mexico at $" + budget + " MXN, not one day. Profeco prices for Mexico City, October 2026.");
+            } else if (region === "US") {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie pour une semaine aux États-Unis à " + budget + " $, pas pour une journée. Prix moyens du Bureau of Labor Statistics, septembre 2026."
+                    : (lang === "es"
+                        ? "Lista de compras para una semana en Estados Unidos por $" + budget + ", no para un día. Precios promedio del Bureau of Labor Statistics, septiembre de 2026."
+                        : "A one-week grocery list for the United States at $" + budget + ", not one day. Bureau of Labor Statistics average prices, September 2026.");
+            } else {
+                desc = lang === "fr"
+                    ? "Liste d'épicerie pour une semaine au Canada à " + budget + " $, pas pour une journée. Prix moyens de Statistique Canada, août 2026."
+                    : (lang === "es"
+                        ? "Lista de compras para una semana en Canadá por $" + budget + ", no para un día. Precios promedio de Statistics Canada, agosto de 2026."
+                        : "A one-week grocery list for Canada at $" + budget + ", not one day. Statistics Canada average retail prices, August 2026.");
+            }
+            var htmlLang = lang === "fr" ? "fr-CA" : (lang === "es" ? (region === "MX" ? "es-MX" : "es") : (region === "US" ? "en-US" : (region === "MX" ? "en" : "en-CA")));
+            var ogLocale = htmlLang === "fr-CA" ? "fr_CA" : (htmlLang === "es-MX" ? "es_MX" : (htmlLang === "es" ? "es_419" : (htmlLang === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA"))));
+            document.documentElement.lang = htmlLang;
+            document.title = title;
+            setContent('meta[name="description"]', desc);
+            setContent('meta[property="og:title"]', title);
+            setContent('meta[property="og:description"]', desc);
+            setContent('meta[property="og:locale"]', ogLocale);
+            setContent('meta[name="twitter:title"]', title);
+            setContent('meta[name="twitter:description"]', desc);
+        })();
+    </script>
+</head>
+<body>
+    <a class="skip" href="#main" data-skip="en">Skip to content</a>
+    <a class="skip" href="#main" data-skip="fr" lang="fr">Aller au contenu</a>
+    <a class="skip" href="#main" data-skip="es" lang="es">Saltar al contenido</a>
+    <div id="main" class="shell" tabindex="-1">
+        <header class="hero">
+            <p class="eyebrow">Budget Floor</p>
+            <h1 id="hero-title">Bien manger avec 10 $ cette semaine au Canada</h1>
+            <p class="source" id="price-source">Statistique Canada, moyenne du Canada, août 2026.</p>
+            <div class="controls">
+                <nav class="seg" id="languages" aria-label="Langue">
+                    <a href="/" hreflang="en" lang="en" data-lang="en">EN</a>
+                    <a href="/fr/" hreflang="fr" lang="fr" data-lang="fr" aria-current="page">FR</a>
+                    <a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a>
+                </nav>
+                <label class="country">
+                    <span id="country-label">Pays</span>
+                    <select id="country">
+                        <option value="CA">Canada</option>
+                        <option value="US">États-Unis</option>
+                        <option value="MX">Mexique</option>
+                    </select>
+                </label>
+            </div>
+        </header>
+        <section class="picker">
+            <h2 id="amount-heading">Choisissez une semaine · CAD</h2>
+            <p id="week-note" class="week-note">Chaque montant couvre sept jours d'épicerie, pas une journée.</p>
+            <div id="amounts" class="amounts amounts-many" role="group" aria-labelledby="amount-heading"></div>
+        </section>
+        <div class="stage">
+            <section class="basket">
+                <h2 id="list-heading">La liste de la semaine</h2>
+                <ul id="list" class="items" aria-live="polite"></ul>
+                <p id="total" class="total" hidden></p>
+                <p id="sum-line" class="sum"></p>
+                <a id="aid" class="help" href="https://www.211.ca/"><span>Si cette épicerie est encore trop juste, trouvez de l'aide</span><span class="help-name">211.ca</span></a>
+            </section>
+            <section class="week">
+                <h2 id="week-heading">Cette semaine</h2>
+                <p id="meal-lead" class="meal-lead"></p>
+                <p id="meal-body" class="meal-body"></p>
+            </section>
+        </div>
+        <p id="boot-msg" class="boot-msg">Chargement de la liste d'épicerie… Les guides plus bas restent lisibles si la liste ne s'affiche pas.</p>
+    </div>
+    <script>
+        (function () {
+            var boot = {
+                en: "Loading the grocery list… The written guides further down work even if this list does not.",
+                fr: "Chargement de la liste d'épicerie… Les guides plus bas restent lisibles si la liste ne s'affiche pas.",
+                es: "Cargando la lista de compras… Las guías de más abajo se leen aunque esta lista no cargue."
+            };
+            var el = document.getElementById("boot-msg");
+            if (el && boot[window.__bfLang]) el.textContent = boot[window.__bfLang];
+            var where = {
+                en: { CA: "in Canada", US: "in the United States", MX: "in Mexico" },
+                fr: { CA: "au Canada", US: "aux États-Unis", MX: "au Mexique" },
+                es: { CA: "en Canadá", US: "en Estados Unidos", MX: "en México" }
+            };
+            var lang = window.__bfLang || "en";
+            var region = window.__bfRegion || "CA";
+            var budget = window.__bfBudget || 10;
+            var place = where[lang][region];
+            var h1 = document.getElementById("hero-title");
+            if (h1) {
+                h1.textContent = lang === "fr"
+                    ? "Bien manger avec " + budget + " $ cette semaine " + place
+                    : (lang === "es"
+                        ? "Comer bien con $" + budget + " esta semana " + place
+                        : "Eat well on $" + budget + " this week " + place);
+            }
+            var source = document.getElementById("price-source");
+            if (source) {
+                if (region === "MX") {
+                    source.textContent = lang === "fr"
+                        ? "Profeco, Mexico, octobre 2026."
+                        : (lang === "es" ? "Profeco, Ciudad de México, octubre de 2026." : "Profeco, Mexico City, October 2026.");
+                } else if (region === "US") {
+                    source.textContent = lang === "fr"
+                        ? "Bureau of Labor Statistics, moyenne des villes américaines, septembre 2026."
+                        : (lang === "es"
+                            ? "Bureau of Labor Statistics, promedio de las ciudades de EE. UU., septiembre de 2026."
+                            : "Bureau of Labor Statistics, U.S. city average, September 2026.");
+                } else if (lang === "fr") {
+                    source.textContent = "Statistique Canada, moyenne du Canada, août 2026.";
+                } else if (lang === "es") {
+                    source.textContent = "Statistics Canada, promedio de Canadá, agosto de 2026.";
+                } else {
+                    source.textContent = "Statistics Canada, Canada average, August 2026.";
+                }
+            }
+        })();
+    </script>
+    <section class="site-guides" id="guides" aria-labelledby="guides-heading">
+        <h2 id="guides-heading">Guides</h2>
+        <p lang="fr">Budget Floor est une liste d'épicerie gratuite pour les semaines serrées, au Canada, aux États-Unis et au Mexique. Choisissez un pays et un montant pour sept jours. Le chiffre est la semaine entière, pas une journée. Les prix du Canada sont les moyennes de Statistique Canada d'août 2026. Les prix des États-Unis sont les moyennes du Bureau of Labor Statistics de septembre 2026. Les prix du Mexique sont des observations de Profeco pour Mexico, en octobre 2026. Les guides ont chacun leur adresse.</p>
+        <p lang="en">Budget Floor is a free grocery list for tight weeks in Canada, the United States, and Mexico. Pick a country and an amount for seven days. The figure is the whole week, not one day. Canada prices are Statistics Canada averages for August 2026. United States prices are Bureau of Labor Statistics averages for September 2026. Mexico prices are Profeco observations for Mexico City in October 2026. The guides below keep their own addresses.</p>
+        <p lang="es">Budget Floor es una lista de compras gratuita para las semanas ajustadas, en Canadá, Estados Unidos y México. Elija un país y un monto para siete días. La cifra es la semana entera, no un día. Los precios de Canadá son los promedios de Statistics Canada de agosto de 2026. Los de Estados Unidos son los promedios del Bureau of Labor Statistics de septiembre de 2026. Los de México son observaciones de Profeco para la Ciudad de México, en octubre de 2026. Cada guía tiene su propia dirección.</p>
+        <div class="guide-cols">
+            <div lang="en">
+                <h3>English</h3>
+                <ul>
+                    <li><a href="/cheap-grocery-list-canada/">Cheap grocery list for Canada</a></li>
+                    <li><a href="/budget-meal-plan-week-canada/">Budget meal plan for a week</a></li>
+                    <li><a href="/grocery-budget-one-person-canada/">Grocery budget for one person</a></li>
+                    <li><a href="/grocery-budget-family-canada/">Grocery budget for a family</a></li>
+                    <li><a href="/cheap-meals-under-10-canada/">Cheap meals under $10</a></li>
+                    <li><a href="/cheap-grocery-list-mexico/">Cheap grocery list for Mexico</a></li>
+                    <li><a href="/budget-meal-plan-week-mexico/">Budget meal plan for a week in Mexico</a></li>
+                </ul>
+            </div>
+            <div lang="fr">
+                <h3>Français</h3>
+                <ul>
+                    <li><a href="/fr/liste-epicerie-pas-chere-canada/">Liste d'épicerie pas chère au Canada</a></li>
+                    <li><a href="/fr/plan-repas-semaine-canada/">Plan de repas pour une semaine</a></li>
+                    <li><a href="/fr/budget-epicerie-une-personne-canada/">Budget d'épicerie pour une personne</a></li>
+                    <li><a href="/fr/budget-epicerie-famille-canada/">Budget d'épicerie pour une famille</a></li>
+                    <li><a href="/fr/repas-pas-chers-canada/">Repas pas chers à moins de 10 $</a></li>
+                    <li><a href="/fr/liste-epicerie-pas-chere-mexique/">Liste d'épicerie pas chère au Mexique</a></li>
+                    <li><a href="/fr/plan-repas-semaine-mexique/">Plan de repas pour une semaine au Mexique</a></li>
+                </ul>
+            </div>
+            <div lang="es">
+                <h3>Español</h3>
+                <ul>
+                    <li><a href="/es/lista-compras-barata-canada/">Lista de compras barata para Canadá</a></li>
+                    <li><a href="/es/plan-comidas-semana-canada/">Plan de comidas para una semana</a></li>
+                    <li><a href="/es/presupuesto-comida-una-persona-canada/">Presupuesto de comida para una persona</a></li>
+                    <li><a href="/es/presupuesto-comida-familia-canada/">Presupuesto de comida para una familia</a></li>
+                    <li><a href="/es/comidas-baratas-canada/">Comidas baratas por menos de $10</a></li>
+                    <li><a href="/es/lista-de-compras-barata-mexico/">Lista de compras barata en México</a></li>
+                    <li><a href="/es/plan-comidas-semana-mexico/">Plan de comidas para una semana en México</a></li>
+                </ul>
+            </div>
+        </div>
+        <h3>Aide alimentaire</h3>
+        <p>Si le panier est plus petit que la semaine, voici de vrais répertoires. Canada : <a href="https://www.211.ca/">211.ca</a> et <a href="https://foodbankscanada.ca/">Food Banks Canada</a>. Québec : <a href="https://www.211qc.ca/">211 Québec</a> et <a href="https://banquesalimentaires.org/">Banques alimentaires du Québec</a>. États-Unis : <a href="https://www.feedingamerica.org/find-your-local-foodbank">Feeding America</a>. Mexique : <a href="https://bamx.org.mx/">Bancos de Alimentos de México</a> et la <a href="https://bamx.org.mx/donde-estamos/">carte des banques alimentaires</a>.</p>
+    </section>
+    <footer class="colophon">
+        <span>Budget Floor</span>
+        <nav aria-label="Pied de page">
+            <a id="guides-link" href="#guides">Guides</a>
+            <a id="about-link" href="/fr/a-propos/">À propos</a>
+        </nav>
+    </footer>
+    <script src="/assets/app.js"></script>
+</body>
+</html>
