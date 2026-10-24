@@ -31,6 +31,29 @@
       osc.stop(now + duration + 0.02);
     },
     tap() { this.unlock(); this.tone(420, 0.06, "triangle", 0.03); },
+    approach() { this.unlock(); this.tone(130, 0.28, "sine", 0.028); },
+    snuff() { this.unlock(); this.tone(210, 0.18, "triangle", 0.04); this.tone(90, 0.28, "sine", 0.03); },
+    listen(kind) {
+      this.unlock();
+      if (kind === "cellar") {
+        this.tone(55, 0.55, "sawtooth", 0.045);
+        this.tone(82, 0.4, "triangle", 0.03);
+      } else if (kind === "lock") {
+        this.tone(180, 0.07, "square", 0.02);
+        this.tone(90, 0.14, "triangle", 0.035);
+      } else if (kind === "search") {
+        this.tone(320, 0.05, "triangle", 0.03);
+        this.tone(480, 0.08, "sine", 0.02);
+      } else if (kind === "hide") {
+        this.tone(660, 0.35, "sine", 0.012);
+      } else if (kind === "accuse") {
+        this.tone(720, 0.07, "square", 0.028);
+        this.tone(240, 0.16, "sawtooth", 0.02);
+      } else if (kind === "stay") {
+        this.tone(392, 0.14, "sine", 0.03);
+        this.tone(494, 0.2, "sine", 0.022);
+      } else this.approach();
+    },
     paper() { this.unlock(); this.tone(660, 0.12, "sine", 0.03); this.tone(440, 0.2, "sine", 0.02); },
     death() {
       this.unlock();

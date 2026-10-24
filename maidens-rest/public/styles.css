@@ -76,7 +76,8 @@ button:focus-visible, input:focus-visible {
 
 .screen { padding: 28px 22px 40px; }
 
-.screen > .kicker {
+.screen > .kicker,
+.sheet-up > .kicker {
   position: sticky;
   top: 0;
   z-index: 2;
@@ -309,7 +310,7 @@ input::placeholder { color: #6f675c; opacity: 1; }
 }
 
 .room {
-  min-height: 96px;
+  min-height: 84px;
   border: 1px solid var(--line);
   background: #14110e;
   padding: 12px;
@@ -331,6 +332,129 @@ input::placeholder { color: #6f675c; opacity: 1; }
 }
 .room.here small, .room[aria-pressed="true"] small { color: #5c5348; }
 .room:disabled { opacity: 1; }
+.room.armed { border-color: var(--cream); background: #211c17; color: var(--cream); }
+.room.armed small { color: var(--cream-dim); }
+.room.listening { background: #2a1814; }
+.room:active { transform: scale(0.98); }
+
+.primary:disabled {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.night.screen { padding: 0 0 28px; }
+.night .night-still {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1080 / 600;
+  object-fit: fill;
+  cursor: pointer;
+}
+.night .sheet-up { padding: 4px 22px 28px; }
+.night h1 { font-size: 40px; margin: 6px 0 8px; }
+
+.pips { display: flex; gap: 6px; margin: 0 0 8px; }
+.pips i { flex: 1; height: 4px; background: #4a433a; display: block; }
+.pips i.done { background: #a39888; }
+.pips i.now { background: var(--cream); }
+
+.candles {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin: 4px 0 12px;
+  padding-bottom: 2px;
+}
+.candle { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 52px; }
+.candle .wick { width: 7px; height: 20px; background: #2a241c; position: relative; }
+.candle .flame {
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 10px;
+  height: 14px;
+  margin-left: -5px;
+  border-radius: 50% 50% 45% 45%;
+  background: #f3ead7;
+  box-shadow: 0 0 10px 2px rgba(243, 180, 90, 0.75);
+  animation: flicker 1.3s infinite;
+}
+.candle.out, .candle.dead { opacity: 0.45; }
+.candle.out .flame, .candle.dead .flame { display: none; }
+.candle .name {
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.candle.you .name { color: var(--cream); }
+.candle.dead .name { text-decoration: line-through; }
+
+.whisper {
+  min-height: 3.6em;
+  margin: 8px 0 12px;
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-weight: 450;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--cream-dim);
+}
+
+.ticks { display: flex; gap: 6px; padding: 0 22px 4px; }
+.tick {
+  flex: 1;
+  height: 28px;
+  border: none;
+  background: transparent;
+  padding: 12px 0;
+  background-image: linear-gradient(#3a342c, #3a342c);
+  background-size: 100% 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.tick[aria-current="true"] {
+  background-image: linear-gradient(#f3ead7, #f3ead7);
+  background-size: 100% 6px;
+}
+
+.broadcast .still { cursor: pointer; }
+.tap-hint { margin: 10px 0 0; }
+
+.strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+}
+.strip button {
+  flex: 0 0 156px;
+  scroll-snap-align: start;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 8px;
+}
+.strip button.on { background: var(--ink); color: var(--cream); }
+.strip b { display: block; letter-spacing: 0.12em; font-size: 12px; text-transform: uppercase; }
+.strip small {
+  display: block;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 16px;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@keyframes flicker {
+  50% { transform: scale(0.82); opacity: 0.72; }
+}
 
 .still {
   display: block;

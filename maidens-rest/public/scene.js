@@ -73,7 +73,7 @@
         ctx.fill();
       }
     };
-    const lit = shot !== "empty";
+    const lit = shot !== "empty" && shot !== "hide";
     win(left + houseW * 0.14, base - wallH * 0.72, lit && shot !== "pointed", false);
     win(left + houseW * 0.68, base - wallH * 0.72, lit, shot === "cellar" || shot === "hands");
 
@@ -119,6 +119,32 @@
         ctx.lineTo(targetX, targetY);
         ctx.stroke();
       });
+    }
+
+    if (shot === "hide") {
+      ctx.fillStyle = "#070605";
+      ctx.fillRect(doorX + doorW * 0.62, base - doorH * 0.94, doorW * 0.14, doorH * 0.94);
+    }
+    if (shot === "kept") {
+      ctx.fillStyle = "rgba(243,220,170,0.28)";
+      ctx.beginPath();
+      ctx.moveTo(doorX, base - doorH);
+      ctx.lineTo(doorX - houseW * 0.1, base);
+      ctx.lineTo(doorX + doorW + houseW * 0.1, base);
+      ctx.lineTo(doorX + doorW, base - doorH);
+      ctx.closePath();
+      ctx.fill();
+    }
+    if (edition.frame === 1 && (shot === "morning" || shot === "lock" || shot === "kept")) {
+      ctx.fillStyle = "rgba(243,220,170,0.8)";
+      ctx.fillRect(doorX + doorW * 0.62, base - doorH * 0.48, doorW * 0.16, doorH * 0.07);
+    }
+    if (edition.frame === 2) {
+      const dawn = ctx.createLinearGradient(0, h * 0.58, 0, h * 0.78);
+      dawn.addColorStop(0, "rgba(243,234,215,0)");
+      dawn.addColorStop(1, "rgba(243,234,215,0.14)");
+      ctx.fillStyle = dawn;
+      ctx.fillRect(0, h * 0.58, w, h * 0.2);
     }
 
     for (let i = 0; i < 900; i += 1) {
