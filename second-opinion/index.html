@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Second Opinion — what’s solid, what’s missing, what’s a sales trick</title>
+    <meta name="description" content="Paste advice from an AI, a pamphlet, a landlord, or a salesperson. See what holds up, what was left out, which line is a sales trick, and the question to ask next.">
+    <link rel="canonical" href="https://www.getbudgetfloor.com/second-opinion/">
+    <meta name="theme-color" content="#f3efe7">
+    <meta property="og:site_name" content="Budget Floor">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.getbudgetfloor.com/second-opinion/">
+    <meta property="og:title" content="Second Opinion">
+    <meta property="og:description" content="Paste the advice. See what holds up, what was left out, which line is a sales trick, and the question to ask next.">
+    <meta property="og:locale" content="en_CA">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Second Opinion">
+    <meta name="twitter:description" content="Paste the advice. See what holds up, what was left out, which line is a sales trick, and the question to ask next.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preload" href="/assets/fonts/newsreader-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/sourcesans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+    <a class="skip" href="#advice">Skip to the advice</a>
+    <div class="page">
+        <header>
+            <p class="eyebrow"><a href="/">Budget Floor</a> · Second Opinion</p>
+            <h1>Paste the advice. Keep the useful part.</h1>
+            <p class="lead">Paste what an AI, a pamphlet, a landlord, or a salesperson told you. You get four things: what holds up, what was left out, which line is a sales trick, and the question to ask next.</p>
+        </header>
+        <main>
+            <form id="checker">
+                <label for="advice">The advice</label>
+                <textarea id="advice" name="advice" placeholder="Paste the paragraph here."></textarea>
+                <div class="actions">
+                    <button class="check" type="submit">Check this</button>
+                    <button class="clear" type="button" id="clear">Clear</button>
+                </div>
+                <div class="examples" role="group" aria-label="Examples"></div>
+                <p class="privacy">Nothing you paste is sent anywhere. The check runs in this browser. It does not ask another chatbot. Where a sentence bumps into a public rule, the page names the rule and the day it was read.</p>
+            </form>
+            <div id="results" class="results" hidden></div>
+            <noscript>
+                <p>Turn JavaScript on to run the check. It still stays in this browser.</p>
+            </noscript>
+        </main>
+        <footer class="foot">
+            <p>This is a reading tool. It is not a doctor, a lawyer, or the Landlord and Tenant Board. If the paragraph is about your health, your lease, or your money, the person who can see the real file outranks a webpage.</p>
+            <p>The wording checks are in English. Public rules named here were read 23 October 2026. They can change. The link is the check.</p>
+            <p><a href="/">Back to Budget Floor</a></p>
+        </footer>
+    </div>
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
