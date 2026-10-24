@@ -1,0 +1,305 @@
+body.pedido {
+    background: #241610;
+    color: #f6efe4;
+}
+
+.pedido-top,
+.pedido-main {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.pedido-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    align-items: center;
+    padding-top: 1.15rem;
+}
+
+.pedido-top .brand {
+    margin-right: auto;
+    color: #f6efe4;
+}
+
+.pedido-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-top: 1.4rem;
+    padding-bottom: 3rem;
+}
+
+.pedido-kicker {
+    margin: 0;
+    color: #e4b089;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.pedido-main h1 {
+    margin: 0.35rem 0 0.55rem;
+    max-width: 12ch;
+    color: #f6efe4;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+}
+
+.pedido-lede,
+.pedido-sample,
+.setup-help,
+#hint {
+    margin: 0;
+    color: #eadfce;
+    font-size: 1.08rem;
+}
+
+.pedido-sample {
+    margin-top: 0.45rem;
+    color: #cbbba6;
+}
+
+.setup {
+    margin-top: 1.3rem;
+    padding: 1rem 1rem 1.05rem;
+    border: 1px solid rgba(246, 239, 228, 0.16);
+    border-radius: 1rem;
+    background: rgba(246, 239, 228, 0.04);
+}
+
+.setup label,
+.ticket label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e4b089;
+}
+
+.setup-row,
+.ticket-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.setup input,
+.ticket input {
+    flex: 1 1 12rem;
+    min-height: 48px;
+    padding: 0 0.9rem;
+    border: 0;
+    border-radius: 999px;
+    background: #f6efe4;
+    color: #241610;
+    font: 600 1rem/1 var(--sans);
+}
+
+.setup-help {
+    margin-top: 0.65rem;
+    font-size: 0.98rem;
+}
+
+#copy-link,
+#clear-order,
+.taco-add,
+.ticket-top button,
+.mod {
+    min-height: 44px;
+    border: 0;
+    border-radius: 999px;
+    font: 600 0.95rem/1 var(--sans);
+    cursor: pointer;
+}
+
+#copy-link,
+#clear-order {
+    padding: 0 1rem;
+    background: transparent;
+    color: #f6efe4;
+    box-shadow: inset 0 0 0 1px rgba(246, 239, 228, 0.35);
+}
+
+.menu h2 {
+    margin: 1.5rem 0 0.35rem;
+    color: #e4b089;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.taco {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(246, 239, 228, 0.14);
+}
+
+.taco-name {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    letter-spacing: -0.02em;
+}
+
+.taco-price {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.taco-add,
+.ticket-top button {
+    width: 44px;
+    background: #f6efe4;
+    color: #241610;
+    font-size: 1.3rem;
+}
+
+.ticket {
+    padding: 1.15rem 1rem 1.2rem;
+    background: #f6efe4;
+    color: #241610;
+    border-radius: 1.2rem;
+}
+
+.ticket h2 {
+    margin: 0 0 0.7rem;
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+#lines {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ticket-empty {
+    color: #6d5848;
+}
+
+.ticket-line {
+    padding: 0.7rem 0;
+    border-top: 1px solid #e4d5c4;
+}
+
+.ticket-top {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.ticket-top span:nth-child(2) {
+    flex: 1;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+}
+
+.ticket-top span:last-child {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.mods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.55rem;
+}
+
+.mod {
+    padding: 0 0.75rem;
+    background: transparent;
+    color: #6d5848;
+    box-shadow: inset 0 0 0 1px #e4d5c4;
+}
+
+.mod[aria-pressed="true"] {
+    background: #241610;
+    color: #f6efe4;
+    box-shadow: none;
+}
+
+.ticket-fields {
+    margin-top: 0.8rem;
+}
+
+.ticket-fields label {
+    flex: 1 1 100%;
+    margin: 0.35rem 0 0;
+}
+
+.ticket input {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #e4d5c4;
+}
+
+#preview {
+    margin: 0.9rem 0 0;
+    padding: 0.85rem 0.9rem;
+    white-space: pre-wrap;
+    background: #fff;
+    border-radius: 0.8rem;
+    color: #3d3832;
+    font: 0.95rem/1.45 var(--sans);
+}
+
+#total {
+    margin: 0.85rem 0 0.7rem;
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    letter-spacing: -0.03em;
+}
+
+#send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    border-radius: 999px;
+    background: #9c3418;
+    color: #fffaf6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#send[aria-disabled="true"] {
+    opacity: 0.45;
+}
+
+#hint {
+    margin-top: 0.55rem;
+    color: #6d5848;
+    font-size: 0.95rem;
+}
+
+#clear-order {
+    margin-top: 0.7rem;
+    color: #6d5848;
+    box-shadow: inset 0 0 0 1px #e4d5c4;
+}
+
+@media (min-width: 900px) {
+    .pedido-main {
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        align-items: start;
+    }
+
+    .ticket {
+        position: sticky;
+        top: 1rem;
+    }
+}
