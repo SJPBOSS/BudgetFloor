@@ -295,6 +295,11 @@ function send(res, status, body) {
 }
 
 function serveFile(req, res, pathname) {
+  if (pathname === "/favicon.ico") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
   const file = pathname.startsWith("/fonts/")
     ? path.join(fontDir, path.basename(pathname))
     : path.join(publicDir, pathname === "/" ? "index.html" : pathname);

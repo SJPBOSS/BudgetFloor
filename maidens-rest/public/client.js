@@ -1,18 +1,10 @@
 const app = document.querySelector("#app");
-const ui = { mode: null, action: null, error: "", reading: null };
+const ui = { mode: null, action: null, error: "", reading: null, place: "go", filmEdition: null, reelIndex: 0 };
+let filmTimer = 0;
 let house = null;
 let token = "";
 let lastSig = "";
 let pollTimer = 0;
-
-const choices = [
-  ["hide", "Hide", "Stay still. Make no sound."],
-  ["search", "Search", "Look for what the house is doing."],
-  ["lock", "Lock the door", "The night gets safer. It remembers you."],
-  ["stay", "Stay with someone", "Do not be alone in it."],
-  ["accuse", "Point at someone", "The house listens if enough of you agree."],
-  ["cellar", "Open the cellar", "Someone should. It should not be you."],
-];
 
 boot();
 
@@ -119,9 +111,17 @@ function adopt(next) {
   const changed = !house || house.phase !== next.phase || house.night !== next.night || house.week !== next.week;
   house = next;
   if (changed) {
-    ui.mode = null;
     ui.action = null;
     ui.reading = null;
+    ui.place = "go";
+    clearTimeout(filmTimer);
+    const quiet = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!quiet && (next.phase === "morning" || next.phase === "finale") && next.edition) {
+      ui.mode = "film";
+      ui.filmEdition = next.edition;
+    } else {
+      ui.mode = null;
+    }
   }
   document.title = house.edition ? house.edition.headline : "Maiden's Rest";
   paint(changed);
@@ -164,7 +164,9 @@ function paint(force) {
   if (!force && sig === lastSig) return;
   lastSig = sig;
   if (!house) return;
-  if (house.phase === "lobby") drawLobby();
+  if (ui.mode === "film") drawFilm(ui.filmEdition, false);
+  else if (ui.mode === "reel") drawFilm(house.archive[ui.reelIndex], true);
+  else if (house.phase === "lobby") drawLobby();
   else if (house.phase === "night") drawNight();
   else drawPaper();
 }
@@ -172,7 +174,7 @@ function paint(force) {
 function signature() {
   if (!house) return "gate";
   const people = (house.players || []).map((p) => `${p.id}${p.alive}${p.moved}`).join("");
-  return [house.phase, house.week, house.night, house.you?.moved, house.you?.alive, house.edition?.headline, people, ui.mode, ui.action, ui.reading, ui.error].join("|");
+  return [house.phase, house.week, house.night, house.you?.moved, house.you?.alive, house.you?.move?.action, house.edition?.headline, people, ui.mode, ui.place, ui.action, ui.reading, ui.reelIndex, ui.error].join("|");
 }
 
 function drawLobby() {
@@ -246,19 +248,12 @@ function drawNight() {
     } else {
       body.push(el("p", {}, "An empty turn, tonight, goes searching. The paper writes it down."));
     }
-    body.push(el("div", { class: "stack" }, choices.map(([action, label, help]) =>
-      el("button", {
-        class: "choice",
-        onclick: () => {
-          if (action === "stay" || action === "accuse") {
-            ui.action = action;
-            paint(true);
-          } else {
-            act("move", { action });
-          }
-        },
-      }, [el("b", {}, label), el("small", {}, help)]),
-    )));
+    body.push(placeSwitcher());
+    body.push(ui.place === "go" ? roomPlan(false) : peoplePlan(ui.place));
+  }
+  if (you.moved && you.move) {
+    body.push(roomPlan(true));
+    body.push(el("p", {}, whereYouAre(you)));
   }
   if (last) body.push(el("p", { class: "quiet" }, last));
   const othersOut = waiting.filter((p) => p.id !== you.id);
@@ -269,15 +264,130 @@ function drawNight() {
     body.push(el("button", { class: "text-button", onclick: () => { ui.mode = "confirm"; paint(true); } }, "Let the house take my hands"));
   }
   if (ui.error) body.push(el("p", { class: "error" }, ui.error));
+  body.unshift(muteButton());
   app.replaceChildren(el("main", { class: "screen" }, body));
+}
+
+function placeSwitcher() {
+  const others = house.players.some((p) => p.alive && p.id !== house.you.id);
+  const button = (id, label) => el("button", {
+    "aria-pressed": ui.place === id ? "true" : "false",
+    disabled: id !== "go" && !others ? "true" : null,
+    onclick: () => {
+      ui.place = id;
+      MaidenSound.tap();
+      paint(true);
+    },
+  }, label);
+  return el("div", { class: "modes" }, [button("go", "Go"), button("with", "Stay"), button("point", "Point")]);
+}
+
+function roomPlan(locked) {
+  const here = locked ? house.you?.move?.action : null;
+  const rooms = [
+    ["lock", "Front door", "Lock the door.", "wide"],
+    ["hide", "Hall", "Hide. Make no sound.", ""],
+    ["search", "Kitchen", "Search the drawers.", ""],
+    ["cellar", "Cellar", "Open the cellar.", "cellar wide"],
+  ];
+  return el("div", { class: "plan" }, rooms.map(([action, title, help, kind]) => el("button", {
+    class: `room ${kind}${here === action ? " here" : ""}`.trim(),
+    "aria-pressed": here === action ? "true" : "false",
+    disabled: locked ? "true" : null,
+    onclick: locked ? null : () => {
+      MaidenSound.tap();
+      act("move", { action });
+    },
+  }, [el("b", {}, title), el("small", {}, help)])));
+}
+
+function peoplePlan(place) {
+  const action = place === "point" ? "accuse" : "stay";
+  const others = house.players.filter((p) => p.alive && p.id !== house.you.id);
+  if (!others.length) return el("p", {}, "No one else is still inside.");
+  return el("div", { class: "plan" }, others.map((p) => el("button", {
+    class: "room wide",
+    onclick: () => {
+      MaidenSound.tap();
+      act("move", { action, targetId: p.id });
+    },
+  }, [el("b", {}, p.name), el("small", {}, action === "stay" ? "Stay with them." : "Point at them.")])));
+}
+
+function whereYouAre(you) {
+  const move = you.move;
+  if (!move) return "You moved.";
+  const other = house.players.find((p) => p.id === move.targetId);
+  if (move.action === "hide") return "You are in the hall.";
+  if (move.action === "search") return "You are in the kitchen.";
+  if (move.action === "lock") return "You are at the front door.";
+  if (move.action === "cellar") return "You opened the cellar.";
+  if (move.action === "stay") return other ? `You stayed with ${other.name}.` : "You stayed.";
+  if (move.action === "accuse") return other ? `You pointed at ${other.name}.` : "You pointed.";
+  return "You moved.";
+}
+
+function muteButton() {
+  return el("button", {
+    class: "mute",
+    onclick: (event) => {
+      const muted = MaidenSound.toggle();
+      event.currentTarget.textContent = muted ? "Sound" : "Mute";
+    },
+  }, MaidenSound.muted ? "Sound" : "Mute");
+}
+
+function drawFilm(edition, reel) {
+  clearTimeout(filmTimer);
+  if (!edition) {
+    ui.mode = null;
+    drawPaper();
+    return;
+  }
+  const frame = el("canvas", { class: "still", width: "1080", height: "1080", "aria-hidden": "true" });
+  const last = reel && ui.reelIndex >= house.archive.length - 1;
+  app.replaceChildren(el("section", { class: "film" }, [
+    muteButton(),
+    frame,
+    el("div", { class: "film-copy" }, [
+      el("div", { class: "live" }, reel ? `Night ${edition.night} of 7` : (edition.finale ? "Final edition" : "Broadcast")),
+      el("h2", { class: "headline" }, edition.headline),
+      el("p", { class: "deck" }, edition.deck),
+      reel ? el("p", { class: "reel-count" }, `${ui.reelIndex + 1} of ${house.archive.length}`) : null,
+      el("button", { class: "text-button", onclick: () => (reel ? stepReel() : endFilm()) }, last || !reel ? "The paper" : "Next night"),
+    ]),
+  ]));
+  MaidenScene.paint(frame, edition);
+  if (["empty", "hands", "cellar", "pointed", "search", "kept"].includes(edition.shot)) MaidenSound.death();
+  else MaidenSound.paper();
+  filmTimer = setTimeout(() => (reel ? stepReel() : endFilm()), reel ? 2600 : 6800);
+}
+
+function endFilm() {
+  clearTimeout(filmTimer);
+  ui.mode = null;
+  paint(true);
+}
+
+function stepReel() {
+  clearTimeout(filmTimer);
+  if (ui.reelIndex >= house.archive.length - 1) {
+    ui.mode = null;
+    paint(true);
+    return;
+  }
+  ui.reelIndex += 1;
+  paint(true);
 }
 
 function drawPaper() {
   const edition = ui.reading != null ? house.archive[ui.reading] : house.edition;
   if (!edition) return;
   const already = (edition.fallen || []).filter((name) => !(edition.deadTonight || []).includes(name));
+  const frame = el("canvas", { class: "still", width: "1080", height: "1080", "aria-hidden": "true" });
   app.replaceChildren(
     el("header", { class: "broadcast" }, [
+      frame,
       el("div", { class: "live" }, edition.finale ? "FINAL EDITION" : "BROADCAST"),
       el("div", { class: "kicker" }, edition.kicker),
       el("h2", { class: "headline" }, edition.headline),
@@ -297,7 +407,13 @@ function drawPaper() {
       ]),
       ui.error ? el("p", { class: "error" }, ui.error) : null,
       el("div", { class: "stack" }, [
-        el("button", { class: "primary", onclick: () => shareEdition(edition) }, "Send this to the group"),
+        el("button", { class: "primary", onclick: () => shareEdition(edition) }, "Send the broadcast"),
+        house.phase === "finale" && ui.reading == null && house.archive.length > 1
+          ? el("button", { class: "ghost", onclick: () => { ui.reelIndex = 0; ui.mode = "reel"; paint(true); } }, "Play the week")
+          : null,
+        ui.reading != null
+          ? el("button", { class: "ghost", onclick: () => { ui.filmEdition = edition; ui.mode = "film"; paint(true); } }, "Play this night")
+          : null,
         ui.reading != null
           ? el("button", { class: "ghost", onclick: () => { ui.reading = null; paint(true); } }, "Back to tonight")
           : el("button", { class: "ghost", onclick: () => act("advance") }, house.phase === "finale" ? "Start another week" : `Wake for night ${house.night + 1}`),
@@ -310,6 +426,7 @@ function drawPaper() {
       ]) : null,
     ]),
   );
+  MaidenScene.paint(frame, edition);
 }
 
 function roll(label, people, gone) {
@@ -342,7 +459,30 @@ async function sendInvite() {
 
 async function shareEdition(edition) {
   const url = `${location.origin}${location.pathname}?code=${house.code}`;
-  await shareOrCopy(`${edition.shareText}\n\n${url}`, edition.headline);
+  const text = `${edition.shareText}\n\n${url}`;
+  let file = null;
+  try {
+    const blob = await MaidenScene.card(edition);
+    if (blob) file = new File([blob], "maidens-rest.png", { type: "image/png" });
+  } catch (error) {
+    file = null;
+  }
+  if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ title: edition.headline, text, files: [file] });
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+  if (file) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(file);
+    link.download = "maidens-rest.png";
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 4000);
+  }
+  await shareOrCopy(text, edition.headline);
 }
 
 async function shareOrCopy(text, title) {

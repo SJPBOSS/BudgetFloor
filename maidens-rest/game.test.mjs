@@ -21,6 +21,7 @@ test("a cellar on night 1 kills, and a lock saves them", () => {
   state = closeNight(state);
   assert.equal(state.players.find((p) => p.id === "p0").alive, false);
   assert.equal(state.edition.headline, "Sam opened the cellar.");
+  assert.equal(state.edition.shot, "cellar");
   assert.equal(state.phase, "morning");
 
   state = house(["Sam", "Alex"]);
@@ -63,6 +64,7 @@ test("from night 3 an empty turn opens the cellar and kills", () => {
   const alex = state.players.find((p) => p.id === "p1");
   assert.equal(alex.alive, false);
   assert.equal(state.edition.headline, "The house used Alex's hands.");
+  assert.equal(state.edition.shot, "hands");
   assert.match(state.edition.shareText, /empty turn belonged to Alex/);
 });
 

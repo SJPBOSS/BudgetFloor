@@ -67,6 +67,7 @@ button:focus-visible, input:focus-visible {
 }
 
 #app {
+  position: relative;
   width: min(440px, 100%);
   min-height: 100dvh;
   margin: 0 auto;
@@ -277,6 +278,110 @@ input::placeholder { color: #6f675c; opacity: 1; }
   line-height: 1.15;
 }
 
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.modes button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: transparent;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.modes button[aria-pressed="true"] {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
+
+.plan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.room {
+  min-height: 96px;
+  border: 1px solid var(--line);
+  background: #14110e;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.room.wide { grid-column: 1 / -1; }
+.room b { letter-spacing: 0.1em; text-transform: uppercase; font-size: 15px; }
+.room small { color: var(--cream-dim); font-size: 14px; letter-spacing: 0; text-transform: none; }
+.room.cellar { border-color: #6a2a24; }
+.room.here, .room[aria-pressed="true"] {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
+.room.here small, .room[aria-pressed="true"] small { color: #5c5348; }
+.room:disabled { opacity: 1; }
+
+.still {
+  display: block;
+  width: 100%;
+  height: 46dvh;
+  background: #070605;
+  object-fit: cover;
+}
+
+.film {
+  position: relative;
+  min-height: 100dvh;
+  background: #070605;
+  display: flex;
+  flex-direction: column;
+}
+
+.film .still { height: 58dvh; animation: drift 8s ease-out both; }
+.film-copy { padding: 8px 22px 28px; }
+.film .headline { font-size: 36px; }
+
+.reel-count {
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@keyframes drift {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+.mute {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  z-index: 3;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--cream);
+  min-height: 36px;
+  width: auto;
+  padding: 6px 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.screen { position: relative; }
+
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }

@@ -49,6 +49,25 @@ export function composePaper(facts) {
   }
 
   const paragraphs = story(facts);
+  const shot = living.length === 0
+    ? "empty"
+    : hands
+      ? "hands"
+      : cellar
+        ? "cellar"
+        : pointed
+          ? "pointed"
+          : searched
+            ? "search"
+            : other
+              ? "kept"
+              : facts.finale
+                ? "dawn"
+                : taken.length
+                  ? "missed"
+                  : facts.locked
+                    ? "lock"
+                    : "morning";
   const edition = {
     week: facts.week,
     night: facts.night,
@@ -64,6 +83,7 @@ export function composePaper(facts) {
     living,
     deadTonight,
     fallen: facts.fallen || deadTonight,
+    shot,
     shareText: "",
   };
   edition.shareText = renderShare(edition);
