@@ -439,6 +439,20 @@ html[lang="en"] .skip[data-skip="es"] {
     font-size: 0.95rem;
 }
 
+.colophon-brand {
+    margin: 0;
+    line-height: 1.35;
+}
+
+#studio-credit {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
 .colophon nav {
     display: flex;
     flex-wrap: wrap;
@@ -786,6 +800,13 @@ body.guide {
 .guide footer h2 {
     margin-top: 1.4rem;
     font-size: 1.45rem;
+}
+
+.byline {
+    margin: 0 0 0.4rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
 }
 
 .guide ul,

@@ -173,7 +173,7 @@ FLAGS = {
 def flag_guides():
     count = 0
     for path in ROOT.glob("**/*.html"):
-        if path.name == "404.html" or path.parent.name in {"about", "a-propos", "acerca"}:
+        if path.name == "404.html" or path.parent.name in {"about", "a-propos", "acerca", "privacy", "confidentialite", "privacidad"}:
             continue
         text = path.read_text()
         if 'class="guide"' not in text or 'class="week-flag"' in text:
