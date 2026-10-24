@@ -27,12 +27,37 @@ function stored(name, values) {
     return null;
 }
 
-function initialState() {
+function pathLang() {
+    const path = location.pathname.replace(/\/index\.html$/, "").replace(/\/+$/, "") || "/";
+    if (path === "/fr") return "fr";
+    if (path === "/es") return "es";
+    if (path === "/") return "en";
+    return null;
+}
+
+function languageHome(code) {
+    if (code === "fr") return "/fr/";
+    if (code === "es") return "/es/";
+    return "/";
+}
+
+function legacyLangRedirect() {
+    const fromPath = pathLang();
+    if (!fromPath) return false;
     const params = new URLSearchParams(location.search);
     const langQ = (params.get("lang") || "").toLowerCase();
+    if (!["en", "fr", "es"].includes(langQ) || langQ === fromPath) return false;
+    params.delete("lang");
+    const q = params.toString();
+    location.replace(languageHome(langQ) + (q ? "?" + q : "") + location.hash);
+    return true;
+}
+
+function initialState() {
+    const params = new URLSearchParams(location.search);
     const regionQ = (params.get("region") || "").toUpperCase();
     const budgetQ = parseInt(params.get("budget"), 10);
-    const lang = ["en", "fr", "es"].includes(langQ) ? langQ : (stored("lang", ["en", "fr", "es"]) || "en");
+    const lang = pathLang() || "en";
     const region = ["CA", "US", "MX"].includes(regionQ) ? regionQ : (stored("region", ["CA", "US", "MX"]) || "CA");
     const budgetSaved = parseInt(stored("budget", ["5", "10", "15", "20", "25", "30", "40", "50", "100", "200", "300", "500"]), 10);
     const budget = BUDGETS[region].includes(budgetQ) ? budgetQ : (BUDGETS[region].includes(budgetSaved) ? budgetSaved : DEFAULTS[region]);
@@ -101,6 +126,9 @@ const COPY = {
         week: "This week",
         total: "List total",
         guides: "Guides",
+        about: "About",
+        privacy: "Privacy",
+        studio: "by VELLURA Studios",
         method: "How the prices are calculated",
         share: "Text this list",
         shareCopy: "Copy this list",
@@ -164,6 +192,9 @@ const COPY = {
         week: "Cette semaine",
         total: "Total de la liste",
         guides: "Guides",
+        about: "À propos",
+        privacy: "Confidentialité",
+        studio: "par VELLURA Studios",
         help: "Si cette épicerie est encore trop juste, trouvez de l'aide",
         equal: (total, cur) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + " pour la semaine.",
         under: (total, cur, budget) => "Ces aliments font " + total.replace(".", ",") + " $ " + cur + " pour la semaine, sous le plafond de " + budget + " $.",
@@ -207,7 +238,7 @@ const COPY = {
     es: {
         language: "Idioma",
         country: "País",
-        choose: "Elija una semana",
+        choose: "Elijan una semana",
         perWeek: "semana",
         forWeek: "para la semana",
         weekNote: "Cada monto cubre siete días de compras, no un día.",
@@ -215,7 +246,10 @@ const COPY = {
         week: "Esta semana",
         total: "Total de la lista",
         guides: "Guías",
-        help: "Si esta compra todavía no alcanza, busque ayuda",
+        about: "Acerca de",
+        privacy: "Privacidad",
+        studio: "por VELLURA Studios",
+        help: "Si esta compra todavía no alcanza, busquen ayuda",
         equal: (total, cur) => "Estos alimentos suman $" + total + " " + cur + " para la semana.",
         under: (total, cur, budget) => "Estos alimentos suman $" + total + " " + cur + " para la semana, dentro del tope de $" + budget + ".",
         source: {
@@ -227,17 +261,17 @@ const COPY = {
         meals: {
             CA: {
                 5: ["Plátano, col y aceite.", "Un kilo de plátano, medio kilo de col y 500 ml de aceite. La col se publica a $2.63 el kilo, así que esta lista usa la mitad, $1.32. Los alimentos suman $4.85."],
-                10: ["Lentejas con col, plátano y aceite.", "Cocine las lentejas con un kilo de col y un poco de aceite. El plátano es la fruta. Esta compra suma $9.79, dentro de los $10."],
+                10: ["Lentejas con col, plátano y aceite.", "Cocinen las lentejas con un kilo de col y un poco de aceite. El plátano es la fruta. Esta compra suma $9.79, dentro de los $10."],
                 15: ["Una lata de frijoles y espinaca congelada.", "Los frijoles y la espinaca van a la olla con las lentejas y la col. El desayuno puede ser plátano. La lista suma $13.74."],
                 20: ["Zanahorias y tomates en lata.", "La cena es lentejas, frijoles, col, espinaca, zanahoria y tomate, cocidos con aceite, y plátano al lado. Esta compra suma $19.81."],
-                25: ["Una docena de huevos en la semana.", "Siga con la misma olla. Los huevos acompañan el plato algunas noches. No son toda la cena. Los alimentos suman $24.64."],
+                25: ["Una docena de huevos en la semana.", "Sigan con la misma olla. Los huevos acompañan el plato algunas noches. No son toda la cena. Los alimentos suman $24.64."],
                 30: ["El pan blanco de 675 g.", "Plátano y pan tostado en el desayuno. La cena sigue siendo la olla de lentejas con las verduras. El pan está al precio publicado, $3.63. La lista suma $28.27 para la semana."],
                 40: ["Otra bolsa de lentejas, frijoles, col y espinaca.", "Otros 900 g de lentejas, otra lata de frijoles, otro kilo de col y otros 300 g de espinaca. El saco de arroz blanco de 2 kg está publicado a $9.73 y no cabe bajo $40 en la semana. Esta compra suma $38.48."],
                 50: ["Arroz blanco y un litro de aceite.", "El saco de 2 kg de arroz blanco está al precio publicado, $9.73. El aceite son dos líneas de 500 ml, $3.28. Otro kilo de plátano a $1.89 pasaría de $50 en la semana, así que el plátano se queda en 1 kg. Los alimentos suman $49.85."],
                 100: ["Arroz, mantequilla de maní, cebollas, pasta y otra vuelta de los básicos.", "La compra de $50, más la mantequilla de maní, las cebollas, la pasta, la salsa y el cereal al precio publicado, y luego más huevos, zanahorias, tomates, pan, plátano, col, espinaca, lentejas, frijoles y 500 ml de aceite. El arroz integral se queda afuera. Los alimentos suman $99.61 para la semana, dentro de $100."]
             },
             US: {
-                5: ["Papas, plátano, frijoles secos y lechuga.", "Cocine los frijoles con papa y lechuga, y coma un plátano. Son promedios por libra. Las líneas suman $4.95, dentro de los $5."],
+                5: ["Papas, plátano, frijoles secos y lechuga.", "Cocinen los frijoles con papa y lechuga, y coman un plátano. Son promedios por libra. Las líneas suman $4.95, dentro de los $5."],
                 10: ["Huevos, arroz y espagueti.", "El desayuno puede ser huevos o un plátano. La cena es frijoles y papa, o espagueti, con lechuga. La lista suma $9.715."],
                 15: ["Pan, tomates y harina.", "Una tostada con el desayuno. Los tomates van con los frijoles. Una libra de harina sirve para una masa sencilla. Esta compra suma $14.082."],
                 20: ["Pollo, naranjas y otra libra de frijoles.", "Pollo con papa, tomate y lechuga. Las naranjas y el plátano son la fruta. Dos libras de frijoles secos son el doble del promedio por libra. Los alimentos suman $19.538."],
@@ -248,7 +282,7 @@ const COPY = {
                 100: ["Dos veces la lista de $50.", "Cada línea se duplica al mismo precio por libra. Los alimentos suman $99.628 para la semana. El azúcar sigue sin caber, y el precio no se recortó."]
             },
             MX: {
-                100: ["Tortillas, frijoles, zanahoria y plátano.", "Cocine los frijoles con zanahoria y acompáñelos con tortilla. El plátano es la fruta. Un litro de aceite sale en $43 en estas observaciones, así que el aceite espera al siguiente monto. Esta lista suma $89.90, dentro de $100 MXN."],
+                100: ["Tortillas, frijoles, zanahoria y plátano.", "Cocinen los frijoles con zanahoria y acompáñenlos con tortilla. El plátano es la fruta. Un litro de aceite sale en $43 en estas observaciones, así que el aceite espera al siguiente monto. Esta lista suma $89.90, dentro de $100 MXN."],
                 200: ["Aceite, huevo, avena y un poco de cebolla.", "En el desayuno, huevo con tortilla, o avena y plátano. Después, frijoles con zanahoria y cebolla, cocidos con aceite. La cebolla es un cuarto de kilo a $67 el kilo. La lista suma $194.65."],
                 300: ["Jitomate, lenteja, arroz y chícharos en lata.", "La olla puede ser frijoles y arroz con jitomate, lenteja y chícharos. La col está en $31 el kilo y no cabe junto al arroz. Los alimentos suman $297.95."],
                 500: ["Una compra más grande para compartir.", "Otro kilo de tortilla, frijol y plátano, otra bolsa de avena, un cartón de 30 huevos, col y pasta. La cebolla se queda en un cuarto de kilo, porque un kilo completo son $67. La lista suma $498.85."]
@@ -284,8 +318,7 @@ function syncChrome() {
         localStorage.setItem("bf-budget", String(budget));
     } catch (e) {}
     const url = new URL(location.href);
-    if (lang === "en") url.searchParams.delete("lang");
-    else url.searchParams.set("lang", lang);
+    url.searchParams.delete("lang");
     if (region === "CA") url.searchParams.delete("region");
     else url.searchParams.set("region", region);
     if (budget === DEFAULTS[region]) url.searchParams.delete("budget");
@@ -303,16 +336,28 @@ function syncChrome() {
     setContent('meta[property="og:description"]', desc);
     setContent('meta[name="twitter:title"]', title);
     setContent('meta[name="twitter:description"]', desc);
-    const ogLocale = langTag === "fr-CA" ? "fr_CA" : (langTag === "es" || langTag === "es-MX" ? "es_MX" : (langTag === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA")));
+    const ogLocale = langTag === "fr-CA" ? "fr_CA" : (langTag === "es-MX" ? "es_MX" : (langTag === "es" ? "es_419" : (langTag === "en-US" ? "en_US" : (region === "MX" ? "en_MX" : "en_CA"))));
     setContent('meta[property="og:locale"]', ogLocale);
+}
+
+function homeQuery() {
+    const params = new URLSearchParams();
+    if (region !== "CA") params.set("region", region);
+    if (budget !== DEFAULTS[region]) params.set("budget", String(budget));
+    const q = params.toString();
+    return q ? "?" + q : "";
 }
 
 function paintLanguages() {
     const t = COPY[lang];
     const group = document.getElementById("languages");
     group.setAttribute("aria-label", t.language);
-    group.querySelectorAll("button").forEach((btn) => {
-        btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
+    const query = homeQuery();
+    group.querySelectorAll("a[data-lang]").forEach((link) => {
+        const code = link.dataset.lang;
+        link.href = languageHome(code) + query;
+        if (code === lang) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
     });
 }
 
@@ -379,6 +424,18 @@ function paintStory() {
     document.getElementById("meal-lead").textContent = meal[0];
     document.getElementById("meal-body").textContent = meal[1];
     document.getElementById("guides-link").textContent = t.guides;
+    const about = document.getElementById("about-link");
+    if (about) {
+        about.textContent = t.about;
+        about.href = lang === "fr" ? "/fr/a-propos/" : (lang === "es" ? "/es/acerca/" : "/about/");
+    }
+    const privacy = document.getElementById("privacy-link");
+    if (privacy) {
+        privacy.textContent = t.privacy;
+        privacy.href = lang === "fr" ? "/fr/confidentialite/" : (lang === "es" ? "/es/privacidad/" : "/privacy/");
+    }
+    const studio = document.getElementById("studio-credit");
+    if (studio) studio.textContent = t.studio;
     const aid = AID[region];
     const link = document.getElementById("aid");
     link.href = aid.href;
@@ -459,34 +516,30 @@ function showFailure() {
     }
 }
 
-const start = initialState();
-lang = start.lang;
-region = start.region;
-budget = start.budget;
+if (!legacyLangRedirect()) {
+    const start = initialState();
+    lang = start.lang;
+    region = start.region;
+    budget = start.budget;
 
-document.getElementById("languages").addEventListener("click", (event) => {
-    const btn = event.target.closest("button[data-lang]");
-    if (!btn) return;
-    lang = btn.dataset.lang;
-    render();
-});
-document.getElementById("country").addEventListener("change", (event) => {
-    region = event.target.value;
-    if (!BUDGETS[region].includes(budget)) budget = DEFAULTS[region];
-    render();
-});
-
-render();
-
-fetch("/data/prices.json")
-    .then((response) => {
-        if (!response.ok) throw new Error("prices");
-        return response.json();
-    })
-    .then((data) => {
-        prices = data;
+    document.getElementById("country").addEventListener("change", (event) => {
+        region = event.target.value;
+        if (!BUDGETS[region].includes(budget)) budget = DEFAULTS[region];
         render();
-    })
-    .catch(() => {
-        showFailure();
     });
+
+    render();
+
+    fetch("/data/prices.json")
+        .then((response) => {
+            if (!response.ok) throw new Error("prices");
+            return response.json();
+        })
+        .then((data) => {
+            prices = data;
+            render();
+        })
+        .catch(() => {
+            showFailure();
+        });
+}

@@ -81,6 +81,8 @@ body {
     transform: none;
 }
 
+html[lang="fr"] .skip[data-skip="en"],
+html[lang="fr"] .skip[data-skip="es"],
 html[lang="fr-CA"] .skip[data-skip="en"],
 html[lang="fr-CA"] .skip[data-skip="es"],
 html[lang="es"] .skip[data-skip="en"],
@@ -171,7 +173,8 @@ html[lang="en"] .skip[data-skip="es"] {
     background: var(--raised);
 }
 
-.seg button {
+.seg button,
+.seg a {
     min-width: 44px;
     min-height: 44px;
     padding: 0 0.85rem;
@@ -182,9 +185,14 @@ html[lang="en"] .skip[data-skip="es"] {
     font: 600 0.82rem/1 var(--sans);
     letter-spacing: 0.08em;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.seg button[aria-pressed="true"] {
+.seg button[aria-pressed="true"],
+.seg a[aria-current="page"] {
     background: var(--ink);
     color: var(--raised);
 }
@@ -421,12 +429,34 @@ html[lang="en"] .skip[data-skip="es"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     gap: 0.75rem 1.5rem;
-    margin-top: 3rem;
-    padding-top: 1.25rem;
+    max-width: 72rem;
+    margin: 1.5rem auto 0;
+    padding: 1.25rem 1.25rem 3rem;
     border-top: 1px solid var(--line);
     color: var(--muted);
     font-size: 0.95rem;
+}
+
+.colophon-brand {
+    margin: 0;
+    line-height: 1.35;
+}
+
+#studio-credit {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.colophon nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
 }
 
 .colophon a {
@@ -454,6 +484,7 @@ html[lang="en"] .skip[data-skip="es"] {
 
 .amount,
 .seg button,
+.seg a,
 .help,
 .country select {
     transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
@@ -497,7 +528,7 @@ html[lang="en"] .skip[data-skip="es"] {
 .site-guides {
     max-width: 72rem;
     margin: 0 auto;
-    padding: 0.5rem 1.25rem 4.5rem;
+    padding: 0.5rem 1.25rem 0.5rem;
 }
 
 .site-guides h2,
@@ -771,6 +802,13 @@ body.guide {
     font-size: 1.45rem;
 }
 
+.byline {
+    margin: 0 0 0.4rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+}
+
 .guide ul,
 .guide ol {
     padding-left: 1.15rem;
@@ -785,7 +823,8 @@ body.guide {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .site-guides {
+    .site-guides,
+    .colophon {
         padding-left: 2rem;
         padding-right: 2rem;
     }
@@ -799,6 +838,7 @@ body.guide {
     .rise,
     .amount,
     .seg button,
+    .seg a,
     .help,
     .country select {
         animation: none !important;
