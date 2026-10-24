@@ -1,6 +1,6 @@
 {
-  "about": "Canada prices are Statistics Canada table 18-10-0245-01, Canada average, August 2026. United States prices are Bureau of Labor Statistics CPI average prices, U.S. city average, September 2026. Mexico prices are Profeco Quién es Quién en los Precios observations for Mexico City, October 2026. A line that is part of a published package, or a whole number of pounds, keeps the published rate. No price was lowered to fit a cap.",
-  "checked": "2026-10-22",
+  "about": "Canada prices are Statistics Canada table 18-10-0245-01, Canada average, August 2026. United States prices are Bureau of Labor Statistics CPI average prices, U.S. city average, September 2026. Mexico prices are Profeco Quién es Quién en los Precios observations for Mexico City, October 2026. Every amount is one week of shopping, not one day. A line that is part of a published package, or a whole number of pounds, keeps the published rate. No price was lowered to fit a cap.",
+  "checked": "2026-10-23",
   "countries": {
     "CA": {
       "currency": "CAD",
@@ -10,7 +10,10 @@
         15,
         20,
         25,
-        30
+        30,
+        40,
+        50,
+        100
       ],
       "defaultBudget": 10,
       "source": {
@@ -233,6 +236,420 @@
           "geography": "Canada",
           "publishedValue": "3.63",
           "publishedUnit": "675 grams"
+        },
+        "ca_rice": {
+          "price": "9.73",
+          "estimated": false,
+          "name": {
+            "en": "White rice, 2 kg",
+            "fr": "Riz blanc, 2 kg",
+            "es": "Arroz blanco, 2 kg"
+          },
+          "product": "White rice, 2 kilograms",
+          "unit": "2 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869937",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "9.73",
+          "publishedUnit": "2 kilograms"
+        },
+        "ca_pb": {
+          "price": "5.95",
+          "estimated": false,
+          "name": {
+            "en": "Peanut butter, 1 kg",
+            "fr": "Beurre d'arachide, 1 kg",
+            "es": "Mantequilla de maní, 1 kg"
+          },
+          "product": "Peanut butter, 1 kilogram",
+          "unit": "1 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834338",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "5.95",
+          "publishedUnit": "1 kilogram"
+        },
+        "ca_onions": {
+          "price": "4.58",
+          "estimated": false,
+          "name": {
+            "en": "Onions, 1.36 kg",
+            "fr": "Oignons, 1,36 kg",
+            "es": "Cebollas, 1.36 kg"
+          },
+          "product": "Onions, 1.36 kilograms",
+          "unit": "1.36 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834305",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.58",
+          "publishedUnit": "1.36 kilograms"
+        },
+        "ca_pasta": {
+          "price": "3.37",
+          "estimated": false,
+          "name": {
+            "en": "Dry or fresh pasta, 500 g",
+            "fr": "Pâtes sèches ou fraîches, 500 g",
+            "es": "Pasta seca o fresca, 500 g"
+          },
+          "product": "Dry or fresh pasta, 500 grams",
+          "unit": "500 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834327",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.37",
+          "publishedUnit": "500 grams"
+        },
+        "ca_sauce": {
+          "price": "3.42",
+          "estimated": false,
+          "name": {
+            "en": "Pasta sauce, 650 ml",
+            "fr": "Sauce à spaghetti, 650 ml",
+            "es": "Salsa para pasta, 650 ml"
+          },
+          "product": "Pasta sauce, 650 millilitres",
+          "unit": "650 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869925",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.42",
+          "publishedUnit": "650 millilitres"
+        },
+        "ca_cereal": {
+          "price": "4.17",
+          "estimated": false,
+          "name": {
+            "en": "Cereal, 400 g",
+            "fr": "Céréales, 400 g",
+            "es": "Cereal, 400 g"
+          },
+          "product": "Cereal, 400 grams",
+          "unit": "400 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834328",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.17",
+          "publishedUnit": "400 grams"
+        },
+        "ca_lentils_2": {
+          "price": "7.260",
+          "estimated": false,
+          "name": {
+            "en": "Dried lentils, 900 g × 2 (2 × $3.63)",
+            "fr": "Lentilles sèches, 900 g × 2 (2 × 3,63 $)",
+            "es": "Lentejas secas, 900 g × 2 (2 × $3.63)"
+          },
+          "product": "Dried lentils, 900 grams",
+          "unit": "900 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834344",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.63",
+          "publishedUnit": "900 grams",
+          "calc": "2 × 3.63 = 7.260"
+        },
+        "ca_beans_2": {
+          "price": "3.400",
+          "estimated": false,
+          "name": {
+            "en": "Canned beans and lentils, 540 ml × 2 (2 × $1.70)",
+            "fr": "Haricots et lentilles en canne, 540 ml × 2 (2 × 1,70 $)",
+            "es": "Frijoles y lentejas en lata, 540 ml × 2 (2 × $1.70)"
+          },
+          "product": "Canned beans and lentils, 540 millilitres",
+          "unit": "540 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834343",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "1.70",
+          "publishedUnit": "540 millilitres",
+          "calc": "2 × 1.70 = 3.400"
+        },
+        "ca_cabbage_2": {
+          "price": "5.260",
+          "estimated": false,
+          "name": {
+            "en": "Cabbage, 2 kg (2 × $2.63)",
+            "fr": "Chou, 2 kg (2 × 2,63 $)",
+            "es": "Col, 2 kg (2 × $2.63)"
+          },
+          "product": "Cabbage, per kilogram",
+          "unit": "1 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834302",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.63",
+          "publishedUnit": "per kilogram",
+          "calc": "2 × 2.63 = 5.260"
+        },
+        "ca_spinach_2": {
+          "price": "4.500",
+          "estimated": false,
+          "name": {
+            "en": "Frozen spinach, 300 g × 2 (2 × $2.25)",
+            "fr": "Épinards surgelés, 300 g × 2 (2 × 2,25 $)",
+            "es": "Espinaca congelada, 300 g × 2 (2 × $2.25)"
+          },
+          "product": "Frozen spinach, 300 grams",
+          "unit": "300 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869916",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.25",
+          "publishedUnit": "300 grams",
+          "calc": "2 × 2.25 = 4.500"
+        },
+        "ca_oil_2": {
+          "price": "3.280",
+          "estimated": false,
+          "name": {
+            "en": "Vegetable oil, 500 ml × 2 (2 × $1.64)",
+            "fr": "Huile végétale, 500 ml × 2 (2 × 1,64 $)",
+            "es": "Aceite vegetal, 500 ml × 2 (2 × $1.64)"
+          },
+          "product": "Vegetable oil, 3 litres",
+          "unit": "500 ml",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834336",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "9.82",
+          "publishedUnit": "3 litres",
+          "calc": "2 × 1.64 = 3.280"
+        },
+        "ca_lentils_3": {
+          "price": "10.890",
+          "estimated": false,
+          "name": {
+            "en": "Dried lentils, 900 g × 3 (3 × $3.63)",
+            "fr": "Lentilles sèches, 900 g × 3 (3 × 3,63 $)",
+            "es": "Lentejas secas, 900 g × 3 (3 × $3.63)"
+          },
+          "product": "Dried lentils, 900 grams",
+          "unit": "900 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834344",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.63",
+          "publishedUnit": "900 grams",
+          "calc": "3 × 3.63 = 10.890"
+        },
+        "ca_beans_3": {
+          "price": "5.100",
+          "estimated": false,
+          "name": {
+            "en": "Canned beans and lentils, 540 ml × 3 (3 × $1.70)",
+            "fr": "Haricots et lentilles en canne, 540 ml × 3 (3 × 1,70 $)",
+            "es": "Frijoles y lentejas en lata, 540 ml × 3 (3 × $1.70)"
+          },
+          "product": "Canned beans and lentils, 540 millilitres",
+          "unit": "540 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834343",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "1.70",
+          "publishedUnit": "540 millilitres",
+          "calc": "3 × 1.70 = 5.100"
+        },
+        "ca_cabbage_3": {
+          "price": "7.890",
+          "estimated": false,
+          "name": {
+            "en": "Cabbage, 3 kg (3 × $2.63)",
+            "fr": "Chou, 3 kg (3 × 2,63 $)",
+            "es": "Col, 3 kg (3 × $2.63)"
+          },
+          "product": "Cabbage, per kilogram",
+          "unit": "1 kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834302",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.63",
+          "publishedUnit": "per kilogram",
+          "calc": "3 × 2.63 = 7.890"
+        },
+        "ca_spinach_3": {
+          "price": "6.750",
+          "estimated": false,
+          "name": {
+            "en": "Frozen spinach, 300 g × 3 (3 × $2.25)",
+            "fr": "Épinards surgelés, 300 g × 3 (3 × 2,25 $)",
+            "es": "Espinaca congelada, 300 g × 3 (3 × $2.25)"
+          },
+          "product": "Frozen spinach, 300 grams",
+          "unit": "300 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1458869916",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.25",
+          "publishedUnit": "300 grams",
+          "calc": "3 × 2.25 = 6.750"
+        },
+        "ca_carrots_2": {
+          "price": "7.780",
+          "estimated": false,
+          "name": {
+            "en": "Carrots, 1.36 kg × 2 (2 × $3.89)",
+            "fr": "Carottes, 1,36 kg × 2 (2 × 3,89 $)",
+            "es": "Zanahorias, 1.36 kg × 2 (2 × $3.89)"
+          },
+          "product": "Carrots, 1.36 kilograms",
+          "unit": "1.36 kilograms",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834303",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.89",
+          "publishedUnit": "1.36 kilograms",
+          "calc": "2 × 3.89 = 7.780"
+        },
+        "ca_tomatoes_2": {
+          "price": "4.360",
+          "estimated": false,
+          "name": {
+            "en": "Canned tomatoes, 796 ml × 2 (2 × $2.18)",
+            "fr": "Tomates en conserve, 796 ml × 2 (2 × 2,18 $)",
+            "es": "Tomates en lata, 796 ml × 2 (2 × $2.18)"
+          },
+          "product": "Canned tomatoes, 796 millilitres",
+          "unit": "796 millilitres",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834341",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "2.18",
+          "publishedUnit": "796 millilitres",
+          "calc": "2 × 2.18 = 4.360"
+        },
+        "ca_eggs_2": {
+          "price": "9.660",
+          "estimated": false,
+          "name": {
+            "en": "Eggs, 2 dozen (2 × $4.83)",
+            "fr": "Œufs, 2 douzaines (2 × 4,83 $)",
+            "es": "Huevos, 2 docenas (2 × $4.83)"
+          },
+          "product": "Eggs, 1 dozen",
+          "unit": "1 dozen",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834290",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "4.83",
+          "publishedUnit": "1 dozen",
+          "calc": "2 × 4.83 = 9.660"
+        },
+        "ca_bread_2": {
+          "price": "7.260",
+          "estimated": false,
+          "name": {
+            "en": "White bread, 675 g × 2 (2 × $3.63)",
+            "fr": "Pain blanc, 675 g × 2 (2 × 3,63 $)",
+            "es": "Pan blanco, 675 g × 2 (2 × $3.63)"
+          },
+          "product": "White bread, 675 grams",
+          "unit": "675 grams",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834326",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "3.63",
+          "publishedUnit": "675 grams",
+          "calc": "2 × 3.63 = 7.260"
+        },
+        "ca_bananas_2": {
+          "price": "3.780",
+          "estimated": false,
+          "name": {
+            "en": "Bananas, 2 kg (2 × $1.89)",
+            "fr": "Bananes, 2 kg (2 × 1,89 $)",
+            "es": "Plátanos, 2 kg (2 × $1.89)"
+          },
+          "product": "Bananas, per kilogram",
+          "unit": "per kilogram",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834294",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "1.89",
+          "publishedUnit": "per kilogram",
+          "calc": "2 × 1.89 = 3.780"
+        },
+        "ca_oil_3": {
+          "price": "4.920",
+          "estimated": false,
+          "name": {
+            "en": "Vegetable oil, 500 ml × 3 (3 × $1.64)",
+            "fr": "Huile végétale, 500 ml × 3 (3 × 1,64 $)",
+            "es": "Aceite vegetal, 500 ml × 3 (3 × $1.64)"
+          },
+          "product": "Vegetable oil, 3 litres",
+          "unit": "500 ml",
+          "sourceName": "Statistics Canada",
+          "sourceTable": "18-10-0245-01",
+          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
+          "series": "v1353834336",
+          "month": "2026-08",
+          "geography": "Canada",
+          "publishedValue": "9.82",
+          "publishedUnit": "3 litres",
+          "calc": "3 × 1.64 = 4.920"
         }
       },
       "tiers": {
@@ -287,29 +704,52 @@
           "ca_bread",
           "ca_bananas",
           "ca_oil"
+        ],
+        "40": [
+          "ca_lentils_2",
+          "ca_beans_2",
+          "ca_cabbage_2",
+          "ca_spinach_2",
+          "ca_carrots",
+          "ca_tomatoes",
+          "ca_eggs",
+          "ca_bread",
+          "ca_bananas",
+          "ca_oil"
+        ],
+        "50": [
+          "ca_rice",
+          "ca_lentils_2",
+          "ca_beans_2",
+          "ca_cabbage_2",
+          "ca_spinach_2",
+          "ca_carrots",
+          "ca_tomatoes",
+          "ca_eggs",
+          "ca_bread",
+          "ca_bananas",
+          "ca_oil_2"
+        ],
+        "100": [
+          "ca_rice",
+          "ca_lentils_3",
+          "ca_beans_3",
+          "ca_cabbage_3",
+          "ca_spinach_3",
+          "ca_carrots_2",
+          "ca_tomatoes_2",
+          "ca_eggs_2",
+          "ca_bread_2",
+          "ca_bananas_2",
+          "ca_oil_3",
+          "ca_onions",
+          "ca_pasta",
+          "ca_sauce",
+          "ca_pb",
+          "ca_cereal"
         ]
       },
       "confirmedNotListed": [
-        {
-          "price": "9.73",
-          "estimated": false,
-          "name": {
-            "en": "White rice, 2 kg",
-            "fr": "Riz blanc, 2 kg",
-            "es": "Arroz blanco, 2 kg"
-          },
-          "product": "White rice, 2 kilograms",
-          "unit": "2 kilograms",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1458869937",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "9.73",
-          "publishedUnit": "2 kilograms",
-          "reason": "The published 2 kg bag does not fit under $30 once eggs and the 675 g loaf are on the list. The price was not cut."
-        },
         {
           "price": "5.87",
           "estimated": false,
@@ -328,107 +768,7 @@
           "geography": "Canada",
           "publishedValue": "5.87",
           "publishedUnit": "900 grams",
-          "reason": "A different product from white rice. The 900 g bag does not fit the $30 list with eggs and bread. The price was not cut."
-        },
-        {
-          "price": "5.95",
-          "estimated": false,
-          "name": {
-            "en": "Peanut butter, 1 kg",
-            "fr": "Beurre d'arachide, 1 kg",
-            "es": "Mantequilla de maní, 1 kg"
-          },
-          "product": "Peanut butter, 1 kilogram",
-          "unit": "1 kilogram",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1353834338",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "5.95",
-          "publishedUnit": "1 kilogram",
-          "reason": "The published 1 kg jar does not fit under $30 with the loaf and the eggs. The price was not cut."
-        },
-        {
-          "price": "4.58",
-          "estimated": false,
-          "name": {
-            "en": "Onions, 1.36 kg",
-            "fr": "Oignons, 1,36 kg",
-            "es": "Cebollas, 1.36 kg"
-          },
-          "product": "Onions, 1.36 kilograms",
-          "unit": "1.36 kilograms",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1353834305",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "4.58",
-          "publishedUnit": "1.36 kilograms",
-          "reason": "The published 1.36 kg bag does not fit the $30 list. The price was not cut."
-        },
-        {
-          "price": "3.37",
-          "estimated": false,
-          "name": {
-            "en": "Dry or fresh pasta, 500 g",
-            "fr": "Pâtes sèches ou fraîches, 500 g",
-            "es": "Pasta seca o fresca, 500 g"
-          },
-          "product": "Dry or fresh pasta, 500 grams",
-          "unit": "500 grams",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1353834327",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "3.37",
-          "publishedUnit": "500 grams",
-          "reason": "The published 500 g package does not fit the $30 list. The price was not cut."
-        },
-        {
-          "price": "3.42",
-          "estimated": false,
-          "name": {
-            "en": "Pasta sauce, 650 ml",
-            "fr": "Sauce à spaghetti, 650 ml",
-            "es": "Salsa para pasta, 650 ml"
-          },
-          "product": "Pasta sauce, 650 millilitres",
-          "unit": "650 millilitres",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1458869925",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "3.42",
-          "publishedUnit": "650 millilitres",
-          "reason": "The published 650 ml jar does not fit the $30 list. The price was not cut."
-        },
-        {
-          "price": "4.17",
-          "estimated": false,
-          "name": {
-            "en": "Cereal, 400 g",
-            "fr": "Céréales, 400 g",
-            "es": "Cereal, 400 g"
-          },
-          "product": "Cereal, 400 grams",
-          "unit": "400 grams",
-          "sourceName": "Statistics Canada",
-          "sourceTable": "18-10-0245-01",
-          "sourceUrl": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501",
-          "series": "v1353834328",
-          "month": "2026-08",
-          "geography": "Canada",
-          "publishedValue": "4.17",
-          "publishedUnit": "400 grams",
-          "reason": "Rolled oats are not in this table. The published cereal box does not fit the $30 list. The price was not cut."
+          "reason": "A different product from the white rice on the $50 and $100 weekly lists. It is not swapped in. The price was not cut."
         }
       ]
     },
@@ -440,7 +780,10 @@
         15,
         20,
         25,
-        30
+        30,
+        40,
+        50,
+        100
       ],
       "defaultBudget": 10,
       "source": {
@@ -880,6 +1223,552 @@
           "publishedValue": "1.723",
           "publishedUnit": "2 pounds",
           "calc": "2 × 1.723 = 3.446"
+        },
+        "us_potatoes_3": {
+          "price": "2.967",
+          "estimated": false,
+          "name": {
+            "en": "Potatoes, 3 lb (3 × $0.989)",
+            "fr": "Pommes de terre, 3 lb (3 × 0,989 $)",
+            "es": "Papas, 3 lb (3 × $0.989)"
+          },
+          "product": "Potatoes, white, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712112",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712112",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.989",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 0.989 = 2.967"
+        },
+        "us_eggs_2": {
+          "price": "4.544",
+          "estimated": false,
+          "name": {
+            "en": "Eggs, 2 dozen (2 × $2.272)",
+            "fr": "Œufs, 2 douzaines (2 × 2,272 $)",
+            "es": "Huevos, 2 docenas (2 × $2.272)"
+          },
+          "product": "Eggs, grade A, large, per doz.",
+          "unit": "1 dozen",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000708111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000708111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.272",
+          "publishedUnit": "1 dozen",
+          "calc": "2 × 2.272 = 4.544"
+        },
+        "us_rice_3": {
+          "price": "3.354",
+          "estimated": false,
+          "name": {
+            "en": "White rice, 3 lb (3 × $1.118)",
+            "fr": "Riz blanc, 3 lb (3 × 1,118 $)",
+            "es": "Arroz blanco, 3 lb (3 × $1.118)"
+          },
+          "product": "Rice, white, long grain, uncooked, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701312",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701312",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.118",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 1.118 = 3.354"
+        },
+        "us_pasta_3": {
+          "price": "4.125",
+          "estimated": false,
+          "name": {
+            "en": "Spaghetti, 3 lb (3 × $1.375)",
+            "fr": "Spaghetti, 3 lb (3 × 1,375 $)",
+            "es": "Espagueti, 3 lb (3 × $1.375)"
+          },
+          "product": "Spaghetti and macaroni, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701322",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701322",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.375",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 1.375 = 4.125"
+        },
+        "us_bread_3": {
+          "price": "5.490",
+          "estimated": false,
+          "name": {
+            "en": "White bread, 3 lb (3 × $1.830)",
+            "fr": "Pain blanc, 3 lb (3 × 1,830 $)",
+            "es": "Pan blanco, 3 lb (3 × $1.830)"
+          },
+          "product": "Bread, white, pan, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000702111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000702111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.830",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 1.830 = 5.490"
+        },
+        "us_chicken_3": {
+          "price": "6.192",
+          "estimated": false,
+          "name": {
+            "en": "Whole chicken, 3 lb (3 × $2.064)",
+            "fr": "Poulet entier, 3 lb (3 × 2,064 $)",
+            "es": "Pollo entero, 3 lb (3 × $2.064)"
+          },
+          "product": "Chicken, fresh, whole, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000706111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000706111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.064",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 2.064 = 6.192"
+        },
+        "us_potatoes_4": {
+          "price": "3.956",
+          "estimated": false,
+          "name": {
+            "en": "Potatoes, 4 lb (4 × $0.989)",
+            "fr": "Pommes de terre, 4 lb (4 × 0,989 $)",
+            "es": "Papas, 4 lb (4 × $0.989)"
+          },
+          "product": "Potatoes, white, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712112",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712112",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.989",
+          "publishedUnit": "1 pound",
+          "calc": "4 × 0.989 = 3.956"
+        },
+        "us_lettuce_2": {
+          "price": "3.272",
+          "estimated": false,
+          "name": {
+            "en": "Iceberg lettuce, 2 lb (2 × $1.636)",
+            "fr": "Laitue iceberg, 2 lb (2 × 1,636 $)",
+            "es": "Lechuga iceberg, 2 lb (2 × $1.636)"
+          },
+          "product": "Lettuce, iceberg, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.636",
+          "publishedUnit": "1 pound",
+          "calc": "2 × 1.636 = 3.272"
+        },
+        "us_bananas_3": {
+          "price": "1.968",
+          "estimated": false,
+          "name": {
+            "en": "Bananas, 3 lb (3 × $0.656)",
+            "fr": "Bananes, 3 lb (3 × 0,656 $)",
+            "es": "Plátano, 3 lb (3 × $0.656)"
+          },
+          "product": "Bananas, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.656",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 0.656 = 1.968"
+        },
+        "us_beans_3": {
+          "price": "5.007",
+          "estimated": false,
+          "name": {
+            "en": "Dried beans, 3 lb (3 × $1.669)",
+            "fr": "Haricots secs, 3 lb (3 × 1,669 $)",
+            "es": "Frijoles secos, 3 lb (3 × $1.669)"
+          },
+          "product": "Beans, dried, any type, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000714233",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000714233",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.669",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 1.669 = 5.007"
+        },
+        "us_rice_4": {
+          "price": "4.472",
+          "estimated": false,
+          "name": {
+            "en": "White rice, 4 lb (4 × $1.118)",
+            "fr": "Riz blanc, 4 lb (4 × 1,118 $)",
+            "es": "Arroz blanco, 4 lb (4 × $1.118)"
+          },
+          "product": "Rice, white, long grain, uncooked, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701312",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701312",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.118",
+          "publishedUnit": "1 pound",
+          "calc": "4 × 1.118 = 4.472"
+        },
+        "us_tomatoes_2": {
+          "price": "3.984",
+          "estimated": false,
+          "name": {
+            "en": "Tomatoes, 2 lb (2 × $1.992)",
+            "fr": "Tomates, 2 lb (2 × 1,992 $)",
+            "es": "Tomates, 2 lb (2 × $1.992)"
+          },
+          "product": "Tomatoes, field grown, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.992",
+          "publishedUnit": "1 pound",
+          "calc": "2 × 1.992 = 3.984"
+        },
+        "us_flour_3": {
+          "price": "1.635",
+          "estimated": false,
+          "name": {
+            "en": "White flour, 3 lb (3 × $0.545)",
+            "fr": "Farine blanche, 3 lb (3 × 0,545 $)",
+            "es": "Harina blanca, 3 lb (3 × $0.545)"
+          },
+          "product": "Flour, white, all purpose, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.545",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 0.545 = 1.635"
+        },
+        "us_oranges_3": {
+          "price": "5.169",
+          "estimated": false,
+          "name": {
+            "en": "Navel oranges, 3 lb (3 × $1.723)",
+            "fr": "Oranges navel, 3 lb (3 × 1,723 $)",
+            "es": "Naranjas navel, 3 lb (3 × $1.723)"
+          },
+          "product": "Oranges, navel, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.723",
+          "publishedUnit": "1 pound",
+          "calc": "3 × 1.723 = 5.169"
+        },
+        "us_potatoes_8": {
+          "price": "7.912",
+          "estimated": false,
+          "name": {
+            "en": "Potatoes, 8 lb (8 × $0.989)",
+            "fr": "Pommes de terre, 8 lb (8 × 0,989 $)",
+            "es": "Papas, 8 lb (8 × $0.989)"
+          },
+          "product": "Potatoes, white, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712112",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712112",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.989",
+          "publishedUnit": "1 pound",
+          "calc": "8 × 0.989 = 7.912"
+        },
+        "us_lettuce_4": {
+          "price": "6.544",
+          "estimated": false,
+          "name": {
+            "en": "Iceberg lettuce, 4 lb (4 × $1.636)",
+            "fr": "Laitue iceberg, 4 lb (4 × 1,636 $)",
+            "es": "Lechuga iceberg, 4 lb (4 × $1.636)"
+          },
+          "product": "Lettuce, iceberg, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.636",
+          "publishedUnit": "1 pound",
+          "calc": "4 × 1.636 = 6.544"
+        },
+        "us_bananas_6": {
+          "price": "3.936",
+          "estimated": false,
+          "name": {
+            "en": "Bananas, 6 lb (6 × $0.656)",
+            "fr": "Bananes, 6 lb (6 × 0,656 $)",
+            "es": "Plátano, 6 lb (6 × $0.656)"
+          },
+          "product": "Bananas, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711211",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711211",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.656",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 0.656 = 3.936"
+        },
+        "us_beans_6": {
+          "price": "10.014",
+          "estimated": false,
+          "name": {
+            "en": "Dried beans, 6 lb (6 × $1.669)",
+            "fr": "Haricots secs, 6 lb (6 × 1,669 $)",
+            "es": "Frijoles secos, 6 lb (6 × $1.669)"
+          },
+          "product": "Beans, dried, any type, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000714233",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000714233",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.669",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 1.669 = 10.014"
+        },
+        "us_eggs_4": {
+          "price": "9.088",
+          "estimated": false,
+          "name": {
+            "en": "Eggs, 4 dozen (4 × $2.272)",
+            "fr": "Œufs, 4 douzaines (4 × 2,272 $)",
+            "es": "Huevos, 4 docenas (4 × $2.272)"
+          },
+          "product": "Eggs, grade A, large, per doz.",
+          "unit": "1 dozen",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000708111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000708111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.272",
+          "publishedUnit": "1 dozen",
+          "calc": "4 × 2.272 = 9.088"
+        },
+        "us_rice_8": {
+          "price": "8.944",
+          "estimated": false,
+          "name": {
+            "en": "White rice, 8 lb (8 × $1.118)",
+            "fr": "Riz blanc, 8 lb (8 × 1,118 $)",
+            "es": "Arroz blanco, 8 lb (8 × $1.118)"
+          },
+          "product": "Rice, white, long grain, uncooked, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701312",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701312",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.118",
+          "publishedUnit": "1 pound",
+          "calc": "8 × 1.118 = 8.944"
+        },
+        "us_pasta_6": {
+          "price": "8.250",
+          "estimated": false,
+          "name": {
+            "en": "Spaghetti, 6 lb (6 × $1.375)",
+            "fr": "Spaghetti, 6 lb (6 × 1,375 $)",
+            "es": "Espagueti, 6 lb (6 × $1.375)"
+          },
+          "product": "Spaghetti and macaroni, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701322",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701322",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.375",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 1.375 = 8.250"
+        },
+        "us_bread_6": {
+          "price": "10.980",
+          "estimated": false,
+          "name": {
+            "en": "White bread, 6 lb (6 × $1.830)",
+            "fr": "Pain blanc, 6 lb (6 × 1,830 $)",
+            "es": "Pan blanco, 6 lb (6 × $1.830)"
+          },
+          "product": "Bread, white, pan, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000702111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000702111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.830",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 1.830 = 10.980"
+        },
+        "us_tomatoes_4": {
+          "price": "7.968",
+          "estimated": false,
+          "name": {
+            "en": "Tomatoes, 4 lb (4 × $1.992)",
+            "fr": "Tomates, 4 lb (4 × 1,992 $)",
+            "es": "Tomates, 4 lb (4 × $1.992)"
+          },
+          "product": "Tomatoes, field grown, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000712311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000712311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.992",
+          "publishedUnit": "1 pound",
+          "calc": "4 × 1.992 = 7.968"
+        },
+        "us_flour_6": {
+          "price": "3.270",
+          "estimated": false,
+          "name": {
+            "en": "White flour, 6 lb (6 × $0.545)",
+            "fr": "Farine blanche, 6 lb (6 × 0,545 $)",
+            "es": "Harina blanca, 6 lb (6 × $0.545)"
+          },
+          "product": "Flour, white, all purpose, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000701111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000701111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "0.545",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 0.545 = 3.270"
+        },
+        "us_chicken_6": {
+          "price": "12.384",
+          "estimated": false,
+          "name": {
+            "en": "Whole chicken, 6 lb (6 × $2.064)",
+            "fr": "Poulet entier, 6 lb (6 × 2,064 $)",
+            "es": "Pollo entero, 6 lb (6 × $2.064)"
+          },
+          "product": "Chicken, fresh, whole, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000706111",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000706111",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "2.064",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 2.064 = 12.384"
+        },
+        "us_oranges_6": {
+          "price": "10.338",
+          "estimated": false,
+          "name": {
+            "en": "Navel oranges, 6 lb (6 × $1.723)",
+            "fr": "Oranges navel, 6 lb (6 × 1,723 $)",
+            "es": "Naranjas navel, 6 lb (6 × $1.723)"
+          },
+          "product": "Oranges, navel, per lb.",
+          "unit": "1 pound",
+          "sourceName": "Bureau of Labor Statistics",
+          "sourceTable": "CPI Average Price Data",
+          "sourceUrl": "https://data.bls.gov/timeseries/APU0000711311",
+          "factSheet": "https://www.bls.gov/cpi/factsheets/average-prices.htm",
+          "series": "APU0000711311",
+          "month": "2026-09",
+          "geography": "U.S. city average",
+          "publishedValue": "1.723",
+          "publishedUnit": "1 pound",
+          "calc": "6 × 1.723 = 10.338"
         }
       },
       "tiers": {
@@ -951,6 +1840,48 @@
           "us_flour_2",
           "us_chicken_2",
           "us_oranges_2"
+        ],
+        "40": [
+          "us_potatoes_3",
+          "us_lettuce",
+          "us_bananas_2",
+          "us_beans_2",
+          "us_eggs_2",
+          "us_rice_3",
+          "us_pasta_3",
+          "us_bread_3",
+          "us_tomatoes",
+          "us_flour_2",
+          "us_chicken_3",
+          "us_oranges_2"
+        ],
+        "50": [
+          "us_potatoes_4",
+          "us_lettuce_2",
+          "us_bananas_3",
+          "us_beans_3",
+          "us_eggs_2",
+          "us_rice_4",
+          "us_pasta_3",
+          "us_bread_3",
+          "us_tomatoes_2",
+          "us_flour_3",
+          "us_chicken_3",
+          "us_oranges_3"
+        ],
+        "100": [
+          "us_potatoes_8",
+          "us_lettuce_4",
+          "us_bananas_6",
+          "us_beans_6",
+          "us_eggs_4",
+          "us_rice_8",
+          "us_pasta_6",
+          "us_bread_6",
+          "us_tomatoes_4",
+          "us_flour_6",
+          "us_chicken_6",
+          "us_oranges_6"
         ]
       },
       "confirmedNotListed": [
@@ -973,7 +1904,7 @@
           "geography": "U.S. city average",
           "publishedValue": "1.019",
           "publishedUnit": "1 pound",
-          "reason": "Published and unused. The lists already hold a vegetable and fruit under each cap."
+          "reason": "A pound is $1.019. Added to the $50 weekly list it would pass $50, and added to the $100 weekly list it would pass $100. The price was not cut."
         }
       ]
     },

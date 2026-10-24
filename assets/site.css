@@ -236,6 +236,11 @@ html[lang="en"] .skip[data-skip="es"] {
 }
 
 .amount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.05rem;
     min-height: 64px;
     border: 1px solid var(--line);
     border-radius: 1rem;
@@ -246,6 +251,28 @@ html[lang="en"] .skip[data-skip="es"] {
     font-weight: 500;
     letter-spacing: -0.03em;
     cursor: pointer;
+}
+
+.amount-unit {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.amount[aria-pressed="true"] .amount-unit {
+    color: inherit;
+}
+
+.week-note,
+.week-flag {
+    margin: 0.85rem 0 0;
+    max-width: 38rem;
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .amount[aria-pressed="true"] {
@@ -437,7 +464,8 @@ html[lang="en"] .skip[data-skip="es"] {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .amounts-six {
+    .amounts-six,
+    .amounts-many {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
@@ -453,6 +481,10 @@ html[lang="en"] .skip[data-skip="es"] {
 @media (min-width: 980px) {
     .amounts-six {
         grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .amounts-many {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .stage {
