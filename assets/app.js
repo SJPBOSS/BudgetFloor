@@ -220,13 +220,145 @@ const AID = {
     MX: { href: "https://bamx.org.mx/donde-estamos/", name: "Bancos de Alimentos de México" }
 };
 
+const HANDOUT = {
+    en: {
+        open: "Print or send this list",
+        kicker: "This week's list",
+        print: "Print",
+        copy: "Copy",
+        copied: "Copied",
+        loading: "Loading the grocery list…",
+        whatsapp: "WhatsApp",
+        back: "Back to the list",
+        totalLabel: "Total",
+        prepared: "Prepared for ",
+        scope: {
+            CA: "Canada-wide average for August 2026. This is not the price at a store in your city.",
+            US: "U.S. city average for September 2026. This is not this week's flyer price.",
+            MX: "Profeco observations for Mexico City, October 2026. This is not a national average."
+        }
+    },
+    fr: {
+        open: "Imprimer ou envoyer cette liste",
+        kicker: "La liste de cette semaine",
+        print: "Imprimer",
+        copy: "Copier",
+        copied: "Copié",
+        loading: "Chargement de la liste d'épicerie…",
+        whatsapp: "WhatsApp",
+        back: "Retour à la liste",
+        totalLabel: "Total",
+        prepared: "Préparé pour ",
+        scope: {
+            CA: "Moyenne pour l'ensemble du Canada, août 2026. Ce n'est pas le prix dans une épicerie de votre ville.",
+            US: "Moyenne des villes américaines, septembre 2026. Ce n'est pas le prix du circulaire de cette semaine.",
+            MX: "Observations de Profeco pour Mexico, octobre 2026. Ce n'est pas une moyenne nationale."
+        }
+    },
+    es: {
+        open: "Imprimir o enviar esta lista",
+        kicker: "La lista de esta semana",
+        print: "Imprimir",
+        copy: "Copiar",
+        copied: "Copiado",
+        loading: "Cargando la lista de compras…",
+        whatsapp: "WhatsApp",
+        back: "Volver a la lista",
+        totalLabel: "Total",
+        prepared: "Hecho para ",
+        scope: {
+            CA: "Promedio de todo Canadá, agosto de 2026. No es el precio en una tienda de su ciudad.",
+            US: "Promedio de las ciudades de EE. UU., septiembre de 2026. No es el precio del folleto de esta semana.",
+            MX: "Observaciones de Profeco para la Ciudad de México, octubre de 2026. No es un promedio nacional."
+        }
+    }
+};
+
+const POSTER_LEVELS = {
+    small: { CA: 10, US: 10, MX: 100 },
+    week: { CA: 20, US: 20, MX: 200 },
+    full: { CA: 30, US: 30, MX: 500 }
+};
+
+const POSTER = {
+    en: {
+        open: "Three countries",
+        levelsLabel: "Size of the shop",
+        kicker: "Three official lists",
+        title: "A tight week of food",
+        deck: "Canada, the United States, and Mexico City. The foods are different. The prices stay in their own currency.",
+        levels: { small: "Smaller", week: "A week", full: "Fuller" },
+        places: { CA: "Canada", US: "United States", MX: "Mexico City" },
+        when: { CA: "August 2026", US: "September 2026", MX: "October 2026" },
+        scope: { CA: "Canada-wide average", US: "U.S. city average", MX: "Mexico City observations" },
+        inside: (budget, currency) => "Inside $" + budget + " " + currency
+    },
+    fr: {
+        open: "Trois pays",
+        levelsLabel: "Taille de l'épicerie",
+        kicker: "Trois listes officielles",
+        title: "Une semaine serrée",
+        deck: "Le Canada, les États-Unis et Mexico. Les aliments diffèrent. Les prix restent dans leur devise.",
+        levels: { small: "Plus petite", week: "Une semaine", full: "Plus pleine" },
+        places: { CA: "Canada", US: "États-Unis", MX: "Mexico" },
+        when: { CA: "août 2026", US: "septembre 2026", MX: "octobre 2026" },
+        scope: { CA: "Moyenne du Canada", US: "Moyenne des villes américaines", MX: "Observations à Mexico" },
+        inside: (budget, currency) => "Sous " + budget + " $ " + currency
+    },
+    es: {
+        open: "Tres países",
+        levelsLabel: "Tamaño de la compra",
+        kicker: "Tres listas oficiales",
+        title: "Una semana ajustada",
+        deck: "Canadá, Estados Unidos y la Ciudad de México. Los alimentos son distintos. Los precios siguen en su moneda.",
+        levels: { small: "Más corta", week: "Una semana", full: "Más llena" },
+        places: { CA: "Canadá", US: "Estados Unidos", MX: "Ciudad de México" },
+        when: { CA: "agosto de 2026", US: "septiembre de 2026", MX: "octubre de 2026" },
+        scope: { CA: "Promedio de Canadá", US: "Promedio de ciudades de EE. UU.", MX: "Observaciones en la Ciudad de México" },
+        inside: (budget, currency) => "Dentro de $" + budget + " " + currency
+    }
+};
+
 const LANG_ATTR = { en: "en", fr: "fr", es: "es" };
 
 let prices = null;
 let lang;
 let region;
 let budget;
+let orgName = "";
+let level = "week";
 let amountKey = "";
+
+function cleanOrg(value) {
+    return String(value || "").replace(/[\u0000-\u001f<>]/g, "").trim().slice(0, 80);
+}
+
+function formatSheetAmount(language, price) {
+    if (language === "fr") return String(price).replace(".", ",") + " $";
+    return "$" + price;
+}
+
+function formatSheetTotal(language, total, currency) {
+    return formatSheetAmount(language, total) + " " + currency;
+}
+
+function sheetQuery(language, place, amount, org) {
+    const params = new URLSearchParams();
+    params.set("lang", language);
+    params.set("region", place);
+    params.set("budget", String(amount));
+    if (org) params.set("org", org);
+    return "/handout/?" + params.toString();
+}
+
+function publicOrigin() {
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return "https://www.getbudgetfloor.com";
+    return location.origin;
+}
+
+function sheetAbsolute() {
+    return publicOrigin() + sheetQuery(lang, region, budget, orgName);
+}
 
 const FAIL = {
     en: "The grocery list did not load. The written guides below still work.",
@@ -381,6 +513,16 @@ function paintList() {
     figure.textContent = "$" + total + " " + country.currency;
     totalEl.append(label, figure);
     sumEl.textContent = totalThousandths === capThousandths ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
+    const sheetLink = document.getElementById("handout-link");
+    if (sheetLink) {
+        sheetLink.href = sheetQuery(lang, region, budget, "");
+        sheetLink.textContent = HANDOUT[lang].open;
+    }
+    const posterLink = document.getElementById("poster-link");
+    if (posterLink) {
+        posterLink.href = "/compare/?lang=" + lang + "&level=week";
+        posterLink.textContent = POSTER[lang].open;
+    }
 }
 
 function render() {
@@ -400,34 +542,335 @@ function showFailure() {
     }
 }
 
+function sheetMessage(items, total, currency, sourceUrl) {
+    const sheet = HANDOUT[lang];
+    const meal = COPY[lang].meals[region][budget];
+    const lines = ["Budget Floor", COPY[lang].heading(budget, region), sheet.scope[region], ""];
+    if (orgName) lines.push(sheet.prepared + orgName, "");
+    lines.push(meal[0], "");
+    items.forEach((item) => {
+        lines.push(item.name[lang] + " — " + formatSheetAmount(lang, item.price));
+    });
+    lines.push(
+        "",
+        sheet.totalLabel + ": " + formatSheetTotal(lang, total, currency),
+        "",
+        COPY[lang].source[region],
+        sourceUrl,
+        "",
+        sheetAbsolute()
+    );
+    return lines.join("\n");
+}
+
+function renderSheet() {
+    const sheet = HANDOUT[lang];
+    document.documentElement.lang = htmlLang(lang, region);
+    document.title = COPY[lang].heading(budget, region);
+    paintLanguages();
+    const printBtn = document.getElementById("print-sheet");
+    const copyBtn = document.getElementById("copy-sheet");
+    const whatsBtn = document.getElementById("whatsapp-sheet");
+    const back = document.getElementById("back-sheet");
+    if (printBtn) printBtn.textContent = sheet.print;
+    if (copyBtn && copyBtn.dataset.state !== "copied") copyBtn.textContent = sheet.copy;
+    if (whatsBtn) whatsBtn.textContent = sheet.whatsapp;
+    if (back) {
+        back.textContent = sheet.back;
+        const home = new URLSearchParams();
+        home.set("lang", lang);
+        home.set("region", region);
+        home.set("budget", String(budget));
+        back.href = "/?" + home.toString();
+    }
+    document.getElementById("sheet-kicker").textContent = sheet.kicker;
+    document.getElementById("sheet-title").textContent = COPY[lang].heading(budget, region);
+    document.getElementById("sheet-scope").textContent = sheet.scope[region];
+    const orgEl = document.getElementById("sheet-org");
+    if (orgName) {
+        orgEl.hidden = false;
+        orgEl.textContent = sheet.prepared + orgName;
+    } else {
+        orgEl.hidden = true;
+        orgEl.textContent = "";
+    }
+    const meal = COPY[lang].meals[region][budget];
+    document.getElementById("meal-lead").textContent = meal[0];
+    document.getElementById("meal-body").textContent = meal[1];
+    const list = document.getElementById("list");
+    const totalEl = document.getElementById("total");
+    const sumEl = document.getElementById("sum-line");
+    const urlEl = document.getElementById("sheet-url");
+    urlEl.textContent = sheetAbsolute().replace(/^https?:\/\//, "");
+    const ready = Boolean(prices);
+    if (printBtn) printBtn.disabled = !ready;
+    if (copyBtn) copyBtn.disabled = !ready;
+    if (whatsBtn) whatsBtn.setAttribute("aria-disabled", ready ? "false" : "true");
+    if (!prices) {
+        list.replaceChildren();
+        totalEl.hidden = true;
+        sumEl.textContent = "";
+        const waiting = document.getElementById("boot-msg");
+        if (waiting) {
+            waiting.hidden = false;
+            waiting.textContent = sheet.loading;
+        }
+        return;
+    }
+    const boot = document.getElementById("boot-msg");
+    if (boot) boot.hidden = true;
+    const country = prices.countries[region];
+    const ids = country.tiers[String(budget)];
+    if (!ids) {
+        showFailure();
+        return;
+    }
+    const items = ids.map((id) => country.items[id]).filter(Boolean);
+    const totalThousandths = items.reduce((sum, item) => sum + thousandths(item.price), 0);
+    const total = formatMoney(totalThousandths);
+    const capThousandths = budget * 1000;
+    const t = COPY[lang];
+    list.replaceChildren();
+    items.forEach((item) => {
+        const li = document.createElement("li");
+        const name = document.createElement("span");
+        name.textContent = item.name[lang];
+        const price = document.createElement("span");
+        price.textContent = formatSheetAmount(lang, item.price);
+        li.append(name, price);
+        list.appendChild(li);
+    });
+    totalEl.hidden = false;
+    totalEl.replaceChildren();
+    const label = document.createElement("span");
+    label.textContent = sheet.totalLabel;
+    const figure = document.createElement("span");
+    figure.textContent = formatSheetTotal(lang, total, country.currency);
+    totalEl.append(label, figure);
+    sumEl.textContent = totalThousandths === capThousandths ? t.equal(total, country.currency) : t.under(total, country.currency, budget);
+    const sourceEl = document.getElementById("sheet-source");
+    sourceEl.replaceChildren();
+    sourceEl.append(document.createTextNode(t.source[region] + " "));
+    const sourceLink = document.createElement("a");
+    sourceLink.href = country.source.url;
+    sourceLink.textContent = country.source.table;
+    sourceEl.append(sourceLink);
+    const aid = AID[region];
+    const help = document.getElementById("sheet-help");
+    help.replaceChildren();
+    const helpLead = document.createElement("span");
+    helpLead.textContent = t.help + " ";
+    const helpLink = document.createElement("a");
+    helpLink.href = aid.href;
+    helpLink.textContent = aid.name;
+    help.append(helpLead, helpLink);
+    const message = sheetMessage(items, total, country.currency, country.source.url);
+    if (whatsBtn) whatsBtn.href = "https://wa.me/?text=" + encodeURIComponent(message);
+    if (copyBtn) copyBtn.dataset.message = message;
+    const params = new URLSearchParams(location.search);
+    params.set("lang", lang);
+    params.set("region", region);
+    params.set("budget", String(budget));
+    if (orgName) params.set("org", orgName);
+    else params.delete("org");
+    const next = location.pathname + "?" + params.toString();
+    if (next !== location.pathname + location.search) history.replaceState(null, "", next);
+}
+
+function posterName(name) {
+    return String(name).replace(/\s+\([^)]*\)\s*$/, "");
+}
+
+function renderPoster() {
+    const copy = POSTER[lang];
+    const amounts = POSTER_LEVELS[level];
+    document.documentElement.lang = lang === "fr" ? "fr-CA" : (lang === "es" ? "es-MX" : "en-CA");
+    document.title = copy.title + " — Budget Floor";
+    paintLanguages();
+    document.getElementById("poster-kicker").textContent = copy.kicker;
+    document.getElementById("poster-title").textContent = copy.title;
+    document.getElementById("poster-deck").textContent = copy.deck;
+    document.getElementById("levels").setAttribute("aria-label", copy.levelsLabel);
+    document.querySelectorAll("#levels button").forEach((btn) => {
+        btn.textContent = copy.levels[btn.dataset.level];
+        btn.setAttribute("aria-pressed", btn.dataset.level === level ? "true" : "false");
+    });
+    const back = document.getElementById("poster-back");
+    if (back) {
+        back.textContent = HANDOUT[lang].back;
+        back.href = "/?lang=" + lang;
+    }
+    const board = document.getElementById("poster-board");
+    board.replaceChildren();
+    if (!prices) {
+        const waiting = document.getElementById("boot-msg");
+        if (waiting) {
+            waiting.hidden = false;
+            waiting.textContent = HANDOUT[lang].loading;
+        }
+        return;
+    }
+    const boot = document.getElementById("boot-msg");
+    if (boot) boot.hidden = true;
+    ["CA", "US", "MX"].forEach((code) => {
+        const country = prices.countries[code];
+        const amount = amounts[code];
+        const ids = country.tiers[String(amount)] || [];
+        const items = ids.map((id) => country.items[id]).filter(Boolean);
+        const totalThousandths = items.reduce((sum, item) => sum + thousandths(item.price), 0);
+        const total = formatMoney(totalThousandths);
+        const meal = COPY[lang].meals[code][amount];
+        const card = document.createElement("article");
+        card.className = "poster-card";
+        const place = document.createElement("p");
+        place.className = "poster-place";
+        place.textContent = copy.places[code];
+        const when = document.createElement("p");
+        when.className = "poster-when";
+        when.textContent = copy.when[code] + " · " + copy.scope[code];
+        const figure = document.createElement("p");
+        figure.className = "poster-amount";
+        figure.textContent = formatSheetTotal(lang, total, country.currency);
+        const cap = document.createElement("p");
+        cap.className = "poster-cap";
+        cap.textContent = copy.inside(amount, country.currency);
+        const lead = document.createElement("p");
+        lead.className = "poster-meal";
+        lead.textContent = meal[0];
+        const list = document.createElement("ul");
+        items.forEach((item) => {
+            const li = document.createElement("li");
+            const name = document.createElement("span");
+            name.textContent = posterName(item.name[lang]);
+            const price = document.createElement("span");
+            price.textContent = formatSheetAmount(lang, item.price);
+            li.append(name, price);
+            list.appendChild(li);
+        });
+        const source = document.createElement("a");
+        source.className = "poster-source";
+        source.href = country.source.url;
+        source.textContent = country.source.name + " · " + country.source.table;
+        card.append(place, when, figure, cap, lead, list, source);
+        board.appendChild(card);
+    });
+    const params = new URLSearchParams(location.search);
+    params.set("lang", lang);
+    params.set("level", level);
+    params.delete("region");
+    params.delete("budget");
+    const next = location.pathname + "?" + params.toString();
+    if (next !== location.pathname + location.search) history.replaceState(null, "", next);
+}
+
+function initPoster() {
+    const levelQ = new URLSearchParams(location.search).get("level");
+    if (["small", "week", "full"].includes(levelQ)) level = levelQ;
+    document.getElementById("languages").addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-lang]");
+        if (!btn) return;
+        lang = btn.dataset.lang;
+        renderPoster();
+    });
+    document.getElementById("levels").addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-level]");
+        if (!btn) return;
+        level = btn.dataset.level;
+        renderPoster();
+    });
+    renderPoster();
+    fetch("/data/prices.json")
+        .then((response) => {
+            if (!response.ok) throw new Error("prices");
+            return response.json();
+        })
+        .then((data) => {
+            prices = data;
+            renderPoster();
+        })
+        .catch(() => {
+            showFailure();
+        });
+}
+
+function initHandout() {
+    orgName = cleanOrg(new URLSearchParams(location.search).get("org") || "");
+    document.getElementById("languages").addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-lang]");
+        if (!btn) return;
+        lang = btn.dataset.lang;
+        renderSheet();
+    });
+    document.getElementById("print-sheet").addEventListener("click", () => window.print());
+    document.getElementById("copy-sheet").addEventListener("click", async (event) => {
+        const btn = event.currentTarget;
+        const message = btn.dataset.message || "";
+        try {
+            await navigator.clipboard.writeText(message);
+        } catch (e) {
+            const area = document.createElement("textarea");
+            area.value = message;
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+        }
+        btn.dataset.state = "copied";
+        btn.textContent = HANDOUT[lang].copied;
+        window.setTimeout(() => {
+            btn.dataset.state = "";
+            btn.textContent = HANDOUT[lang].copy;
+        }, 2000);
+    });
+    renderSheet();
+    fetch("/data/prices.json")
+        .then((response) => {
+            if (!response.ok) throw new Error("prices");
+            return response.json();
+        })
+        .then((data) => {
+            prices = data;
+            renderSheet();
+        })
+        .catch(() => {
+            showFailure();
+        });
+}
+
 const start = initialState();
 lang = start.lang;
 region = start.region;
 budget = start.budget;
 
-document.getElementById("languages").addEventListener("click", (event) => {
-    const btn = event.target.closest("button[data-lang]");
-    if (!btn) return;
-    lang = btn.dataset.lang;
-    render();
-});
-document.getElementById("country").addEventListener("change", (event) => {
-    region = event.target.value;
-    if (!BUDGETS[region].includes(budget)) budget = DEFAULTS[region];
-    render();
-});
-
-render();
-
-fetch("/data/prices.json")
-    .then((response) => {
-        if (!response.ok) throw new Error("prices");
-        return response.json();
-    })
-    .then((data) => {
-        prices = data;
+if (document.body.dataset.page === "handout") {
+    initHandout();
+} else if (document.body.dataset.page === "poster") {
+    initPoster();
+} else {
+    document.getElementById("languages").addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-lang]");
+        if (!btn) return;
+        lang = btn.dataset.lang;
         render();
-    })
-    .catch(() => {
-        showFailure();
     });
+    document.getElementById("country").addEventListener("change", (event) => {
+        region = event.target.value;
+        if (!BUDGETS[region].includes(budget)) budget = DEFAULTS[region];
+        render();
+    });
+
+    render();
+
+    fetch("/data/prices.json")
+        .then((response) => {
+            if (!response.ok) throw new Error("prices");
+            return response.json();
+        })
+        .then((data) => {
+            prices = data;
+            render();
+        })
+        .catch(() => {
+            showFailure();
+        });
+}

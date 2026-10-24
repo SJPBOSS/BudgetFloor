@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>This week's list | Budget Floor</title>
+    <meta name="description" content="A one-page grocery list with the total, the price date, and the source. Print it or send it.">
+    <link rel="canonical" href="https://www.getbudgetfloor.com/handout/">
+    <meta name="theme-color" content="#f3efe7">
+    <meta property="og:site_name" content="Budget Floor">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.getbudgetfloor.com/handout/">
+    <meta property="og:title" content="This week's list | Budget Floor">
+    <meta property="og:description" content="A one-page grocery list with the total, the price date, and the source. Print it or send it.">
+    <meta property="og:image" content="https://www.getbudgetfloor.com/og.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="sheet" data-page="handout">
+    <a class="skip" href="#sheet" data-skip="en">Skip to content</a>
+    <a class="skip" href="#sheet" data-skip="fr" lang="fr">Aller au contenu</a>
+    <a class="skip" href="#sheet" data-skip="es" lang="es">Saltar al contenido</a>
+    <div class="sheet-actions">
+        <div class="seg" role="group" id="languages" aria-label="Language">
+            <button type="button" data-lang="en" lang="en" id="lang-en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="fr" lang="fr" id="lang-fr" aria-pressed="false">FR</button>
+            <button type="button" data-lang="es" lang="es" id="lang-es" aria-pressed="false">ES</button>
+        </div>
+        <button type="button" id="print-sheet">Print</button>
+        <button type="button" id="copy-sheet">Copy</button>
+        <a id="whatsapp-sheet" href="https://wa.me/" aria-disabled="true">WhatsApp</a>
+        <a id="back-sheet" href="/?lang=en&amp;region=CA&amp;budget=10">Back to the list</a>
+    </div>
+    <article class="sheet-page" id="sheet" tabindex="-1">
+        <p class="eyebrow">Budget Floor</p>
+        <p class="sheet-kicker" id="sheet-kicker">This week's list</p>
+        <h1 id="sheet-title">Eat well on $10 this week in Canada</h1>
+        <p class="sheet-scope" id="sheet-scope">Canada-wide average for August 2026. This is not the price at a store in your city.</p>
+        <p class="sheet-org" id="sheet-org" hidden></p>
+        <p id="meal-lead" class="meal-lead"></p>
+        <p id="meal-body" class="meal-body"></p>
+        <ul id="list" class="sheet-items"></ul>
+        <p id="total" class="sheet-total" hidden></p>
+        <p id="sum-line" class="sheet-sum"></p>
+        <p class="sheet-source" id="sheet-source"></p>
+        <p class="sheet-help" id="sheet-help"></p>
+        <p class="sheet-url" id="sheet-url"></p>
+        <p id="boot-msg" class="boot-msg">Loading the grocery list…</p>
+    </article>
+    <script src="/assets/app.js"></script>
+</body>
+</html>
