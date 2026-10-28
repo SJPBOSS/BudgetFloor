@@ -1,2 +1,4 @@
 maidens-rest/data/*.json
+maidens-rest/itch-build/
+maidens-rest/MaidensRest-itch.zip
 node_modules/

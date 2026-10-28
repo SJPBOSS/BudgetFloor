@@ -110,6 +110,7 @@ function drawGate(code) {
       el("li", {}, "Miss a night and the house uses your hands."),
       el("li", {}, "On the seventh morning, the paper prints every name."),
     ]),
+    window.MAIDEN_LOCAL ? el("p", {}, "On this copy, everyone plays on this phone. Add them inside, then pass it.") : null,
     ui.error ? el("p", { class: "error" }, ui.error) : null,
     field("Your name", "name", named, ""),
     field("House code", "code", code, code ? "" : "If someone sent you one"),
@@ -178,6 +179,58 @@ function remember(result) {
   localStorage.setItem("mr-name", result.house.you.name);
   localStorage.setItem("mr-last", result.house.code);
   localStorage.setItem(`mr:${result.house.code}`, token);
+  if (window.MAIDEN_LOCAL) {
+    const all = seats();
+    const room = all[result.house.code] || {};
+    room[result.house.you.name] = result.token;
+    all[result.house.code] = room;
+    localStorage.setItem("mr-seats", JSON.stringify(all));
+  }
+}
+
+function seats() {
+  try {
+    return JSON.parse(localStorage.getItem("mr-seats") || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function seatBar() {
+  if (!window.MAIDEN_LOCAL || !house?.code) return null;
+  const room = seats()[house.code] || {};
+  const names = Object.keys(room);
+  if (names.length < 2) return null;
+  return el("div", { class: "seats" }, names.map((name) => el("button", {
+    class: name === house.you?.name ? "on" : "",
+    onclick: () => sitAs(name),
+  }, name)));
+}
+
+function sitAs(name) {
+  const room = seats()[house.code] || {};
+  if (!room[name]) return;
+  token = room[name];
+  localStorage.setItem(`mr:${house.code}`, token);
+  localStorage.setItem("mr-name", name);
+  ui.preview = null;
+  ui.whisper = "";
+  ui.mode = null;
+  ui.place = "go";
+  refresh();
+}
+
+async function addSeat() {
+  const name = valueOf("seat");
+  ui.error = "";
+  try {
+    const result = await api(`/api/houses/${encodeURIComponent(house.code)}/join`, { method: "POST", body: { name } });
+    remember(result);
+    adopt(result.house);
+  } catch (error) {
+    ui.error = error.message;
+    paint(true);
+  }
 }
 
 function adopt(next) {
@@ -259,7 +312,7 @@ function paint(force) {
 function signature() {
   if (!house) return "gate";
   const people = (house.players || []).map((p) => `${p.id}${p.alive}${p.moved}`).join("");
-  return [house.phase, house.week, house.night, house.you?.moved, house.you?.alive, house.you?.move?.action, house.edition?.headline, people, ui.mode, ui.place, ui.action, ui.reading, ui.reelIndex, ui.error].join("|");
+  return [house.phase, house.week, house.night, house.you?.id, house.you?.moved, house.you?.alive, house.you?.move?.action, house.edition?.headline, people, ui.mode, ui.place, ui.action, ui.reading, ui.reelIndex, ui.error].join("|");
 }
 
 function drawLobby() {
@@ -278,10 +331,17 @@ function drawLobby() {
       el("span", {}, p.name),
       el("span", { class: "mark ok" }, p.id === house.you.id ? "You" : "Inside"),
     ]))),
-    el("div", { class: "stack" }, [
-      el("button", { class: "primary", onclick: () => sendInvite() }, "Send the code"),
-      el("button", { class: "ghost", onclick: () => act("begin") }, house.players.length > 1 ? "Start night 1" : "Start anyway, alone"),
-    ]),
+    seatBar(),
+    el("div", { class: "stack" }, window.MAIDEN_LOCAL
+      ? [
+          field("Add on this phone", "seat", "", "Their name"),
+          el("button", { class: "ghost", onclick: () => addSeat() }, "Add them"),
+          el("button", { class: "primary", onclick: () => act("begin") }, house.players.length > 1 ? "Start night 1" : "Start anyway, alone"),
+        ]
+      : [
+          el("button", { class: "primary", onclick: () => sendInvite() }, "Send the code"),
+          el("button", { class: "ghost", onclick: () => act("begin") }, house.players.length > 1 ? "Start night 1" : "Start anyway, alone"),
+        ]),
   ]));
 }
 
@@ -310,6 +370,7 @@ function drawNight() {
     weekPips(),
     el("h1", { class: "night-title" }, choosing ? titleFor(ui.preview) : (you.alive ? "You moved." : "The house already has you.")),
     candleRow(),
+    seatBar(),
   ];
   if (!you.alive) {
     sheet.push(el("p", {}, "You come back if the group starts another week. You can still end the night for the others."));
@@ -803,6 +864,7 @@ function drawPaper() {
         el("span", {}, "The evening edition"),
         el("strong", {}, "Maiden's Rest"),
       ]),
+      seatBar(),
       ...edition.paragraphs.map((paragraph) => el("p", {}, paragraph)),
       el("div", { class: "roll" }, [
         roll("Taken tonight", edition.deadTonight, true),

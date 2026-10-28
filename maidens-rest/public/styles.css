@@ -261,6 +261,22 @@ input::placeholder { color: #6f675c; opacity: 1; }
 .roll b { display: block; font-size: 12px; letter-spacing: 0.14em; }
 .roll .gone { color: var(--blood); }
 
+.seats { display: flex; gap: 8px; margin: 0 0 14px; overflow-x: auto; }
+.seats button {
+  width: auto;
+  min-height: 36px;
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 6px 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+}
+.seats button.on { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+.sheet .seats button { color: var(--ink); border-color: var(--ink); }
+.sheet .seats button.on { background: var(--ink); color: var(--cream); }
+
 .sheet .paper-link, .screen .paper-link {
   display: block;
   margin: 8px 0 14px;
