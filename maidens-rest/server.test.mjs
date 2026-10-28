@@ -34,6 +34,11 @@ test("a group can finish a week and start another", async () => {
   assert.equal(JSON.stringify(outsider.house).includes("Alex"), true);
   assert.equal(JSON.stringify(outsider.house).includes("cellar"), false);
 
+  const paper = await call(`/api/houses/${code}/paper`, { method: "GET" });
+  assert.equal(paper.paper.edition.headline, "The house moved for Alex.");
+  assert.equal(paper.paper.edition.shareText.includes("http"), false);
+  assert.equal(JSON.stringify(paper).includes(sam.token), false);
+
   house = await call(`/api/houses/${code}/advance`, { token: alex.token });
   house = await call(`/api/houses/${code}/move`, { token: sam.token, body: { action: "hide" } });
   house = await call(`/api/houses/${code}/move`, { token: alex.token, body: { action: "hide" } });

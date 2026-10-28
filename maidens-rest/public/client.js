@@ -23,6 +23,14 @@ boot();
 
 function boot() {
   const params = new URLSearchParams(location.search);
+  const paperCode = (params.get("paper") || "").trim().toLowerCase();
+  if (paperCode) {
+    openPaper(paperCode).catch((error) => {
+      ui.error = error.message;
+      showGate("");
+    });
+    return;
+  }
   const fromUrl = (params.get("code") || "").trim().toLowerCase();
   const last = localStorage.getItem("mr-last") || "";
   const code = fromUrl || last;
@@ -32,6 +40,58 @@ function boot() {
     return;
   }
   showGate(fromUrl);
+}
+
+async function openPaper(code) {
+  stopPoll();
+  token = "";
+  ui.mode = null;
+  ui.reading = null;
+  const result = await api(`/api/houses/${encodeURIComponent(code)}/paper`);
+  const paper = result.paper;
+  const archive = paper.archive || [];
+  const latest = paper.edition || archive.at(-1) || null;
+  const params = new URLSearchParams(location.search);
+  const wanted = publishedEdition(paper, params.get("night"), params.get("week")) || latest;
+  if (!wanted) {
+    house = null;
+    drawUnpublished(paper.code);
+    return;
+  }
+  const index = archive.findIndex((item) => item.week === wanted.week && item.night === wanted.night && item.headline === wanted.headline);
+  ui.reading = index >= 0 && !(latest && wanted.week === latest.week && wanted.night === latest.night && wanted.headline === latest.headline) ? index : null;
+  house = {
+    code: paper.code,
+    phase: latest?.finale ? "finale" : "morning",
+    week: latest?.week || paper.week,
+    night: latest?.night || paper.night,
+    edition: latest,
+    archive,
+    you: null,
+    players: [],
+    lastHeadline: null,
+  };
+  document.title = wanted.headline;
+  paint(true);
+}
+
+function publishedEdition(paper, night, week) {
+  const archive = paper.archive || [];
+  if (night) {
+    const found = [...archive].reverse().find((item) =>
+      String(item.night) === String(night) && (!week || String(item.week) === String(week)));
+    if (found) return found;
+  }
+  return paper.edition || archive.at(-1) || null;
+}
+
+function drawUnpublished(code) {
+  app.replaceChildren(el("main", { class: "screen" }, [
+    el("div", { class: "kicker" }, "The evening edition"),
+    el("h1", {}, "The night is still open."),
+    el("p", {}, "The paper has not been printed yet."),
+    el("a", { class: "paper-link", href: `${location.pathname}?code=${code}` }, "Knock"),
+  ]));
 }
 
 function showGate(code) {
@@ -751,15 +811,19 @@ function drawPaper() {
         already.length ? roll("Already in the paper", already, true) : null,
       ]),
       ui.error ? el("p", { class: "error" }, ui.error) : null,
+      el("a", { class: "paper-link", href: paperUrl(edition) }, softUrl(paperUrl(edition))),
       el("div", { class: "stack" }, [
-        el("button", { class: "primary", onclick: () => shareEdition(edition) }, "Send the broadcast"),
+        el("button", { class: "primary", onclick: () => shareEdition(edition) }, "Copy the link"),
+        el("button", { class: "ghost", onclick: () => savePicture(edition) }, "Save the picture"),
         house.phase === "finale" && ui.reading == null && house.archive.length > 1
           ? el("button", { class: "ghost", onclick: () => { ui.reelIndex = 0; ui.beat = 0; ui.mode = "reel"; paint(true); } }, "Play the week")
           : null,
         el("button", { class: "ghost", onclick: () => playEdition(edition) }, "Play this night"),
         ui.reading != null
           ? el("button", { class: "ghost", onclick: () => { ui.reading = null; paint(true); } }, "Back to tonight")
-          : el("button", { class: "ghost", onclick: () => act("advance") }, house.phase === "finale" ? "Start another week" : `Wake for night ${house.night + 1}`),
+          : house.you
+            ? el("button", { class: "ghost", onclick: () => act("advance") }, house.phase === "finale" ? "Start another week" : `Wake for night ${house.night + 1}`)
+            : el("button", { class: "ghost", onclick: () => { location.assign(`${location.pathname}?code=${house.code}`); } }, localStorage.getItem(`mr:${house.code}`) ? "Open the house" : "Knock"),
       ]),
       house.archive.length > 1 ? editionStrip() : null,
     ]),
@@ -822,32 +886,53 @@ async function sendInvite() {
   await shareOrCopy(text, "Come to the house");
 }
 
+function softUrl(url) {
+  return url.replace(/([/?&=])/g, "$1\u200b");
+}
+
+function paperUrl(edition) {
+  const params = new URLSearchParams();
+  params.set("paper", house.code);
+  if (edition?.week) params.set("week", String(edition.week));
+  if (edition?.night) params.set("night", String(edition.night));
+  return `${location.origin}${location.pathname}?${params}`;
+}
+
 async function shareEdition(edition) {
-  const url = `${location.origin}${location.pathname}?code=${house.code}`;
+  const url = paperUrl(edition);
   const text = `${edition.shareText}\n\n${url}`;
-  let file = null;
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: edition.headline, text, url });
+      return;
+    }
+  } catch (error) {
+    if (error.name === "AbortError") return;
+  }
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch {
+    copied = false;
+  }
+  const note = el("p", { class: "quiet" }, copied ? "Link copied. Send it." : "Hold the link to copy it.");
+  app.querySelector(".paper-link")?.before(note);
+}
+
+async function savePicture(edition) {
   try {
     const blob = await MaidenScene.card(edition);
-    if (blob) file = new File([blob], "maidens-rest.png", { type: "image/png" });
-  } catch (error) {
-    file = null;
-  }
-  if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-    try {
-      await navigator.share({ title: edition.headline, text, files: [file] });
-      return;
-    } catch (error) {
-      if (error.name === "AbortError") return;
-    }
-  }
-  if (file) {
+    if (!blob) return;
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(file);
+    link.href = URL.createObjectURL(blob);
     link.download = "maidens-rest.png";
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 4000);
+  } catch {
+    ui.error = "The picture stayed on the page.";
+    paint(true);
   }
-  await shareOrCopy(text, edition.headline);
 }
 
 async function shareOrCopy(text, title) {

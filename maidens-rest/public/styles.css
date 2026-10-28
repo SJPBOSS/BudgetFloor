@@ -261,6 +261,13 @@ input::placeholder { color: #6f675c; opacity: 1; }
 .roll b { display: block; font-size: 12px; letter-spacing: 0.14em; }
 .roll .gone { color: var(--blood); }
 
+.sheet .paper-link, .screen .paper-link {
+  display: block;
+  margin: 8px 0 14px;
+  color: inherit;
+  font-size: 16px;
+}
+
 .sheet .error { color: var(--blood); }
 .sheet .primary { background: var(--ink); color: var(--cream); }
 .sheet .ghost { color: var(--ink); border-color: var(--ink); }

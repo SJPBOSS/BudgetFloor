@@ -80,6 +80,13 @@ async function route(req, res, url) {
     return;
   }
 
+  if (req.method === "GET" && action === "paper") {
+    const found = load()[code];
+    if (!found) throw Object.assign(new Error("There is no house by that name."), { status: 404 });
+    send(res, 200, { paper: publicPaper(found) });
+    return;
+  }
+
   const token = req.headers["x-player-token"] || "";
   if (req.method === "GET" && !action) {
     const house = load()[code];
@@ -198,6 +205,18 @@ function requirePlayer(house, token) {
   const player = house.players.find((p) => p.token === token);
   if (!player) throw Object.assign(new Error("The house does not know you."), { status: 401 });
   return player;
+}
+
+function publicPaper(house) {
+  const printed = house.phase === "night" ? house.archive.at(-1) || null : house.edition;
+  return {
+    code: house.code,
+    phase: house.phase,
+    week: house.week,
+    night: house.night,
+    edition: printed,
+    archive: house.archive || [],
+  };
 }
 
 function lobbyOnly(house) {
